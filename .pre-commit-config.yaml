@@ -1,0 +1,101 @@
+---
+default_stages: [commit]
+
+repos:
+  - repo: meta
+    hooks:
+      # - id: check-hooks-apply
+      - id: check-useless-excludes
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      # We re-set the `stages` setting because pre-commit-hooks over-rides it
+      # otherwise.
+      # See https://github.com/pre-commit/pre-commit-hooks/issues/515
+      - id: end-of-file-fixer
+        stages: [commit]
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        stages: [commit]
+      - id: check-executables-have-shebangs
+        stages: [commit]
+
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: check-docstring-first
+      - id: check-toml
+      - id: check-yaml
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.9.0  # Use the ref you want to point at
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-check-blanket-type-ignore
+      - id: python-check-mock-methods
+      - id: python-use-type-annotations
+      - id: python-use-type-annotations
+      - id: rst-backticks
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+
+  - repo: https://github.com/PyCQA/doc8
+    rev: 0.9.0a1
+    hooks:
+      - id: doc8
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: run all tests
+        stages: [push]
+        language: system
+        entry: poetry run pytest --full-trace
+        pass_filenames: false
+
+      - id: pyproject.toml
+        name: validate pyproject.toml
+        language: system
+        entry: poetry check
+        files: 'pyproject\.toml'
+        pass_filenames: false
+
+      - id: version
+        name: verify version is set correctly
+        language: system
+        entry: pytest --quiet --no-header --no-summary --no-cov -k version
+        files: 'pyproject\.toml|downforeveryone/__init__.py'
+        pass_filenames: false
+
+      - id: isort
+        name: isort
+        language: system
+        entry: poetry run isort
+        types: [python]
+
+      - id: black
+        name: black
+        language: system
+        entry: poetry run black
+        types: [python]
+
+      - id: flake8
+        name: flake8
+        language: system
+        entry: poetry run flake8
+        types: [python]
+
+      - id: shellcheck
+        name: shellcheck
+        language: system
+        entry: shellcheck
+        types: [shell]
+
+      - id: mypy
+        name: mypy
+        language: system
+        entry: poetry run mypy
+        types: [python]
