@@ -1,22 +1,22 @@
-dumb-pwgen
+dumbpw
 ======================
 |LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |COVERAGE|
 |MAINTAINABILITY| |STYLE|
 
-.. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/dumb-pwgen
-   :target: https://circleci.com/gh/rpdelaney/dumb-pwgen/tree/master
+.. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/dumbpw
+   :target: https://circleci.com/gh/rpdelaney/dumbpw/tree/master
 .. |LICENSE| image:: https://img.shields.io/badge/license-Apache%202.0-informational
    :target: https://www.apache.org/licenses/LICENSE-2.0.txt
 .. |MAINTAINED| image:: https://img.shields.io/maintenance/yes/2021?logoColor=informational
-.. |VERSION| image:: https://img.shields.io/pypi/v/dumb-pwgen
-   :target: https://pypi.org/project/dumb-pwgen
+.. |VERSION| image:: https://img.shields.io/pypi/v/dumbpw
+   :target: https://pypi.org/project/dumbpw
 .. |STYLE| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
-.. |LANGUAGE| image:: https://img.shields.io/pypi/pyversions/dumb-pwgen
-.. |COVERAGE| image:: https://img.shields.io/codeclimate/coverage/rpdelaney/dumb-pwgen
-   :target: https://codeclimate.com/github/rpdelaney/dumb-pwgen
-.. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/dumb-pwgen
-   :target: https://codeclimate.com/github/rpdelaney/dumb-pwgen
+.. |LANGUAGE| image:: https://img.shields.io/pypi/pyversions/dumbpw
+.. |COVERAGE| image:: https://img.shields.io/codeclimate/coverage/rpdelaney/dumbpw
+   :target: https://codeclimate.com/github/rpdelaney/dumbpw
+.. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/dumbpw
+   :target: https://codeclimate.com/github/rpdelaney/dumbpw
 
 To create and remember passwords for online services, the best practice is to
 use a password management tool such as `Bitwarden <https://bitwarden.com/>`_ to
