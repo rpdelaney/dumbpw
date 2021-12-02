@@ -27,6 +27,9 @@ pytest-cov = "^3.0.0"
 pytest-mock = "^3.6.1"
 mypy = "^0.910"
 
+[tool.mypy]
+plugins = ["deal.mypy"]
+
 [tool.black]
 line-length = 79
 target_version = [ "py39",]
