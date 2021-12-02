@@ -10,22 +10,22 @@ homepage = "https://pypi.org/project/dumbpw"
 [tool.poetry.dependencies]
 python = "^3.9"
 click = "^8.0.3"
-flake8-simplify = "^0.14.2"
-flake8-pytest-style = "^1.5.1"
-flake8-comprehensions = "^3.7.0"
-flake8-annotations-complexity = "^0.0.6"
-flake8-breakpoint = "^1.1.0"
 deal = "^4.18.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"
 flake8 = "^4.0.1"
-flake8-bugbear = "^21.9.2"
+flake8-annotations-complexity = "^0.0.6"
 flake8-bandit = "^2.1.2"
+flake8-breakpoint = "^1.1.0"
+flake8-bugbear = "^21.9.2"
+flake8-comprehensions = "^3.7.0"
+flake8-pytest-style = "^1.5.1"
+flake8-simplify = "^0.14.2"
+mypy = "^0.910"
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
 pytest-mock = "^3.6.1"
-mypy = "^0.910"
 
 [tool.mypy]
 plugins = ["deal.mypy"]
