@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   lint_and_test_code:
     docker:
-      - image: python:3.9.7-buster
+      - image: python:3.10.0-buster
     steps:
       - checkout
       - run:

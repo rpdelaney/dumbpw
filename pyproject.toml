@@ -8,7 +8,7 @@ repository = "https://github.com/rpdelaney/dumbpw"
 homepage = "https://pypi.org/project/dumbpw"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 click = "^8.0.3"
 deal = "^4.18.0"
 
