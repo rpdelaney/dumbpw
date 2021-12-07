@@ -3,7 +3,7 @@ import secrets
 import deal
 
 
-@deal.has()
+@deal.has("random")
 @deal.pure
 @deal.raises(IndexError)
 @deal.reason(
