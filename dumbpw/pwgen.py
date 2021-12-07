@@ -25,6 +25,13 @@ import deal
     lambda keyspace, pass_length, result: len(result) == pass_length,
     message="function return value len must equal requested pass_length.",
 )
+@deal.ensure(
+    lambda keyspace, pass_length, result: all(
+        char in keyspace for char in result
+    ),
+    message="function return value must be "
+    "composed of characters in the keyspace",
+)
 def _generate(keyspace: str, pass_length: int) -> str:
     """Return a cryptographically secure password of length pass_length using
     characters only from the given keyspace. Max pass_length is 512."""
