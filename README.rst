@@ -13,8 +13,6 @@ dumbpw
 .. |STYLE| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 .. |LANGUAGE| image:: https://img.shields.io/pypi/pyversions/dumbpw
-.. |COVERAGE| image:: https://img.shields.io/codeclimate/coverage/rpdelaney/dumbpw
-   :target: https://codeclimate.com/github/rpdelaney/dumbpw
 .. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/dumbpw
    :target: https://codeclimate.com/github/rpdelaney/dumbpw
 

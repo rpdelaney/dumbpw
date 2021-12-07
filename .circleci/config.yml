@@ -19,23 +19,12 @@ jobs:
           name: Run pre-commit hooks on all files
           command: pre-commit run --all-files --show-diff-on-failure
       - run:
-          name: Set up test reporting
-          command: |
-            curl -L https://s3.amazonaws.com/codeclimate/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-            ./cc-test-reporter before-build
-      - run:
           name: Run tests
           command: |
             direnv allow
-            poetry run pytest --full-trace --cov-report=xml:coverage.xml
-      - store_test_results:
-          path: coverage.xml
+            poetry run pytest --full-trace
       - store_artifacts:
           path: dist
-      - run:
-          name: Publish test results
-          command: ./cc-test-reporter after-build --coverage-input-type coverage.py
       - run:
           name: Test basic cli elements
           command: |
