@@ -5,11 +5,7 @@ import deal
 
 @deal.has("random")
 @deal.pure
-@deal.raises(IndexError)
-@deal.reason(
-    event=IndexError,
-    validator=lambda keyspace, pass_length: len(keyspace) < 1,
-)
+@deal.raises()
 def _generate(keyspace: str, pass_length: int) -> str:
     """Return a cryptographically secure password of length pass_length using
     characters only from the given keyspace."""
