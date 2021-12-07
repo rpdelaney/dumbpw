@@ -11,8 +11,6 @@ import deal
     validator=lambda keyspace, pass_length: len(keyspace) < 1,
 )
 def _generate(keyspace: str, pass_length: int) -> str:
-    candidate: str = "".join(
-        secrets.choice(keyspace) for i in range(pass_length)
-    )
-
-    return candidate
+    """Return a cryptographically secure password of length pass_length using
+    characters only from the given keyspace."""
+    return "".join(secrets.choice(keyspace) for i in range(pass_length))
