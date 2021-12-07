@@ -1,7 +1,7 @@
 dumbpw
 ======================
-|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |COVERAGE|
-|MAINTAINABILITY| |STYLE|
+|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |MAINTAINABILITY|
+|STYLE|
 
 .. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/dumbpw
    :target: https://circleci.com/gh/rpdelaney/dumbpw/tree/master
