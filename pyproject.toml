@@ -43,6 +43,12 @@ multi_line_output = 3
 version = "^5.10.1"
 extras = [ "pyproject",]
 
+[tool.pytest.ini_options]
+console_output_style = "progress"
+addopts = "--strict-markers --strict-config"
+filterwarnings = ["error"]
+xfail_strict = true
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
