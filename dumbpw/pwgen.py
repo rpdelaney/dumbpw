@@ -18,7 +18,7 @@ import deal
 )
 @deal.pre(
     validator=lambda keyspace, pass_length: len(keyspace) > 0,
-    message="keyspace have positive len.",
+    message="keyspace must have positive len.",
     exception=ValueError,
 )
 @deal.ensure(
