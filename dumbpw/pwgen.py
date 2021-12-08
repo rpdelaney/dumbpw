@@ -1,4 +1,5 @@
 import secrets
+from typing import FrozenSet, Set
 
 import deal
 
@@ -32,7 +33,9 @@ import deal
     message="function return value must be "
     "composed of characters in the keyspace",
 )
-def generate(keyspace: str, pass_length: int) -> str:
+def generate(keyspace: Set[str] | FrozenSet[str], pass_length: int) -> str:
     """Return a cryptographically secure password of length pass_length using
     characters only from the given keyspace. Max pass_length is 512."""
-    return "".join(secrets.choice(keyspace) for i in range(pass_length))
+    return "".join(
+        secrets.choice("".join(keyspace)) for i in range(pass_length)
+    )
