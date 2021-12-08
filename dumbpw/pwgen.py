@@ -18,7 +18,7 @@ import deal
     exception=ValueError,
 )
 @deal.pre(
-    validator=lambda keyspace, pass_length: len(keyspace) > 0,
+    validator=lambda keyspace, pass_length: len("".join(keyspace)) > 0,
     message="keyspace must have positive len.",
     exception=ValueError,
 )
@@ -28,7 +28,7 @@ import deal
 )
 @deal.ensure(
     lambda keyspace, pass_length, result: all(
-        char in keyspace for char in result
+        char in "".join(keyspace) for char in result
     ),
     message="function return value must be "
     "composed of characters in the keyspace",
