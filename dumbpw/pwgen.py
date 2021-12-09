@@ -13,11 +13,6 @@ import deal
     exception=ValueError,
 )
 @deal.pre(
-    validator=lambda keyspace, pass_length: pass_length <= 512,
-    message="pass_length cannot be greater than 512.",
-    exception=ValueError,
-)
-@deal.pre(
     validator=lambda keyspace, pass_length: len("".join(keyspace)) > 0,
     message="keyspace must have positive len.",
     exception=ValueError,
@@ -35,7 +30,7 @@ import deal
 )
 def generate(keyspace: Set[str] | FrozenSet[str], pass_length: int) -> str:
     """Return a cryptographically secure password of length pass_length using
-    characters only from the given keyspace. Max pass_length is 512."""
+    characters only from the given keyspace."""
     return "".join(
         secrets.choice("".join(keyspace)) for i in range(pass_length)
     )
