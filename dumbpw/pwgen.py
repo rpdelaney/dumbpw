@@ -1,7 +1,8 @@
 import secrets
-from typing import FrozenSet, Set
 
 import deal
+
+from .charspace import Charspace
 
 
 @deal.has("random")
@@ -18,8 +19,8 @@ import deal
     exception=ValueError,
 )
 @deal.pre(
-    validator=lambda charspace, pass_length: len("".join(charspace)) > 0,
-    message="charspace must have positive len.",
+    validator=lambda charspace, pass_length: len(charspace.charset) > 0,
+    message="charset must have positive len.",
     exception=ValueError,
 )
 @deal.ensure(
@@ -28,14 +29,14 @@ import deal
 )
 @deal.ensure(
     lambda charspace, pass_length, result: all(
-        char in "".join(charspace) for char in result
+        char in "".join(charspace.charset) for char in result
     ),
     message="function return value must be "
     "composed of characters in the charspace",
 )
-def generate(charspace: Set[str] | FrozenSet[str], pass_length: int) -> str:
+def generate(charspace: Charspace, pass_length: int) -> str:
     """Return a cryptographically secure password of length pass_length using
     characters only from the given charspace. Max pass_length is 512."""
     return "".join(
-        secrets.choice("".join(charspace)) for i in range(pass_length)
+        secrets.choice(charspace.charset) for i in range(pass_length)
     )
