@@ -1,5 +1,4 @@
 import string
-from typing import FrozenSet
 
 
 class Charspace:
@@ -22,12 +21,14 @@ class Charspace:
         return self._lowers + self._uppers + self._digits + self._extras
 
     @property
-    def charset(self) -> FrozenSet[str]:
-        return frozenset(
-            "".join(
-                char
-                for char in self.base_charset
-                if char not in self._blocklist
+    def charset(self) -> str:
+        return str(
+            set(
+                "".join(
+                    char
+                    for char in self.base_charset
+                    if char not in self._blocklist
+                )
             )
         )
 
