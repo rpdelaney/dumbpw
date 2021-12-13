@@ -16,10 +16,10 @@ dumbpw
 .. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/dumbpw
    :target: https://codeclimate.com/github/rpdelaney/dumbpw
 
-To create and remember passwords for online services, the best practice is to
-use a password management tool such as `Bitwarden <https://bitwarden.com/>`_ to
-generate long, cryptographically random passwords. Then, a very strong
-passphrase is used to lock the password manager.
+To create and remember passwords for online services, the best practice for
+most folks online is to use a password management tool such as `Bitwarden
+<https://bitwarden.com/>`_ to generate long, cryptographically random
+passwords. Then, a very strong passphrase is used to lock the password manager.
 
 Unfortunately, in a misguided attempt to encourage users to choose better
 passwords, many websites and apps have `very bad password policies <https://kottke.org/12/06/the-worlds-worst-password-requirements-list>`_
@@ -31,6 +31,8 @@ several "random" passwords before one is accepted.
 
 Enter dumbpw. dumbpw allows you to configure a set of rules, and then it will
 generate a cryptographically secure password that conforms to those dumb rules.
+
+If all you need is a password generator, **you should not use this**.
 
 Installation
 ------------
