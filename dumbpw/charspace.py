@@ -24,7 +24,7 @@ class Charspace:
     def charset(self) -> str:
         """De-duplicate the base charset, remove characters that are in the
         blocklist, and return a charset as a string."""
-        return str(
+        return "".join(
             set(
                 "".join(
                     char
