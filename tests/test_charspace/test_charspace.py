@@ -1,3 +1,5 @@
+from collections import Counter
+
 import hypothesis.strategies as strats
 from hypothesis import given
 
@@ -21,3 +23,14 @@ def test_blocklist(text):
     sp = Charspace(blocklist=text)
 
     assert all(char not in text for char in sp.charset)
+
+
+def test_charset_unique():
+    """The characters in the charset must be deduplicated."""
+    sp = Charspace()
+    count = Counter()
+
+    for c in sp.charset:
+        count.update(c)
+
+    assert all(value == 1 for _, value in count.items())
