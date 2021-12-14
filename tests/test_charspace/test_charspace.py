@@ -17,6 +17,7 @@ def test_defaults():
 
 @given(strats.text())
 def test_blocklist(text):
+    """The charset must not contain any characters from the blocklist."""
     sp = Charspace(blocklist=text)
 
     assert all(char not in text for char in sp.charset)
