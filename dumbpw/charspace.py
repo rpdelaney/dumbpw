@@ -4,7 +4,7 @@ import string
 class Charspace:
     def __init__(
         self,
-        blocklist: str = "",
+        blocklist: str = """'";\\""",
         extras: str = string.punctuation,
         uppers: str = string.ascii_uppercase,
         lowers: str = string.ascii_lowercase,
