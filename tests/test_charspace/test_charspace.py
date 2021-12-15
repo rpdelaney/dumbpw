@@ -34,3 +34,17 @@ def test_charset_unique():
         count.update(c)
 
     assert all(value == 1 for _, value in count.items())
+
+
+def test_base_charset():
+    """The characters in the base charspace must come from the charset
+    properties."""
+    sp = Charspace()
+
+    assert any(
+        char in sp.extras
+        or char in sp.uppers
+        or char in sp.lowers
+        or char in sp.digits
+        for char in sp.base_charset
+    )
