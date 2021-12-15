@@ -1,4 +1,5 @@
 import string
+from typing import Generator, Tuple
 
 
 class Charspace:
@@ -67,3 +68,12 @@ class Charspace:
     @digits.setter
     def digits(self, new_digits: str) -> None:
         self._digits = new_digits
+
+    def __iter__(self) -> Generator[Tuple[str, str], None, None]:
+        yield "base_charset", self.base_charset
+        yield "charset", self.charset
+        yield "blocklist", self.blocklist
+        yield "extras", self.extras
+        yield "lowers", self.lowers
+        yield "uppers", self.uppers
+        yield "digits", self.digits

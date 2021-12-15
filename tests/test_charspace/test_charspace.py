@@ -48,3 +48,9 @@ def test_base_charset():
         or char in sp.digits
         for char in sp.base_charset
     )
+
+
+def test_dict():
+    sp = Charspace()
+
+    assert dict(sp)
