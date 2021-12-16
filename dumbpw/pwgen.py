@@ -1,5 +1,4 @@
 import secrets
-from typing import FrozenSet, Set
 
 import deal
 
@@ -33,7 +32,7 @@ import deal
     message="function return value must be "
     "composed of characters in the charset",
 )
-def generate(charset: Set[str] | FrozenSet[str], pass_length: int) -> str:
+def generate(charset: str, pass_length: int) -> str:
     """Return a cryptographically secure password of length pass_length using
     characters only from the given charset. Max pass_length is 512."""
     return "".join(
