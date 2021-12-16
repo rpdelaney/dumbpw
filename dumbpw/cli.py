@@ -19,28 +19,24 @@ from .pwgen import generate
     "--uppercase",
     type=int,
     default=1,
-    show_default=True,
     help="The minimum number of uppercase characters.",
 )
 @click.option(
     "--lowercase",
     type=int,
     default=1,
-    show_default=True,
     help="The minimum number of lowercase characters.",
 )
 @click.option(
     "--digits",
     type=int,
     default=1,
-    show_default=True,
     help="The minimum number of digit characters.",
 )
 @click.option(
     "--specials",
     type=int,
     default=1,
-    show_default=True,
     help="The minimum number of special characters.",
 )
 @click.option(
