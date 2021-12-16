@@ -39,7 +39,7 @@ Installation
 
 .. code-block :: console
 
-    pip3 install dumbpw
+    poetry build && pip3 install dist/dumbpw-0.1.0-py3-none-any.whl
 
 Usage
 -----
