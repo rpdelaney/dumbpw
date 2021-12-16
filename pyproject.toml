@@ -7,6 +7,9 @@ license = "Apache 2.0"
 repository = "https://github.com/rpdelaney/dumbpw"
 homepage = "https://pypi.org/project/dumbpw"
 
+[tool.poetry.scripts]
+dumbpw = "dumbpw.cli:cli"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 click = "^8.0.3"
