@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "A bad password generator for bad websites with bad password policies"
 authors = ["Ryan Delaney <ryan.patrick.delaney@protonmail.com>"]
 license = "Apache 2.0"
+readme = "README.rst"
 repository = "https://github.com/rpdelaney/dumbpw"
 homepage = "https://pypi.org/project/dumbpw"
 
