@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+#
+# builds and uploads a distribution to pypi
+#
+
+if [ -z "$TWINE_USERNAME" ] ; then
+  echo "TWINE_USERNAME must be set." 1>&2
+  exit 1
+fi
+
+if [ -z "$TWINE_PASSWORD" ] ; then
+  echo "TWINE_PASSWORD must be set." 1>&2
+  exit 1
+fi
+
+if poetry build ; then
+    poetry publish -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "${1:-pypi_test}"
+fi
