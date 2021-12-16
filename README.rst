@@ -47,7 +47,17 @@ Usage
 .. code-block :: console
 
     $ dumbpw -h
-    Not implemented.
+    Usage: dumbpw [OPTIONS]
+
+    Options:
+    --length INTEGER RANGE  The length of the password.  [1<=x<=512]
+    --uppercase INTEGER     The minimum number of uppercase characters.
+    --lowercase INTEGER     The minimum number of lowercase characters.
+    --digits INTEGER        The minimum number of digit characters.
+    --specials INTEGER      The minimum number of special characters.
+    --blocklist TEXT        Characters that may not be in the password.
+                            [default: '";]
+    --help                  Show this message and exit.
 
 dumbpw can be imported into your application. However, you should understand
 the implications of using it to create secrets in bulk, as the entropy on your
