@@ -10,6 +10,7 @@ from .pwgen import generate
 @click.command(
     no_args_is_help=True,
 )
+@click.version_option()
 @click.option(
     "--length",
     type=click.IntRange(min=1, max=512),
