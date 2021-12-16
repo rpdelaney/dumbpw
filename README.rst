@@ -74,6 +74,6 @@ and `pre-commit <https://pre-commit.com/>`_.
 .. code-block :: console
 
     pre-commit install --install-hooks
-    poetry install
+    poetry install && poetry shell
 
 `direnv <https://direnv.net/>`_ is optional, but recommended for convenience.
