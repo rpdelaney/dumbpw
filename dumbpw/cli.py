@@ -1,9 +1,10 @@
 import sys
 
 import click
-from candidate import Candidate
-from charspace import Charspace
-from pwgen import generate
+
+from .candidate import Candidate
+from .charspace import Charspace
+from .pwgen import generate
 
 
 @click.command(
