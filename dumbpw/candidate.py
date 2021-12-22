@@ -27,7 +27,7 @@ class Candidate:
         return self._count_string_type(string.ascii_lowercase)
 
     @property
-    def has_duplicates(self) -> int:
+    def has_duplicates(self) -> bool:
         return (
             any(self._password.count(c) != 1 for c in self._password)
             if len(self._password)
