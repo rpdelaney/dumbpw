@@ -79,7 +79,7 @@ def cli(
             and try_password.lowers >= lowercase
             and try_password.digits >= digits
             and try_password.specials >= specials
-            and (allow_repeating or not try_password.has_duplicates)
+            and (allow_repeating or not try_password.has_repeating)
         ]
     ):
         try_password = Candidate(generate(charspace.charset, length))
