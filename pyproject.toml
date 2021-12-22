@@ -49,6 +49,7 @@ indent = "    "
 length_sort = false
 line_length = 79
 multi_line_output = 3
+include_trailing_comma = true  # this prevents isort from fighting with black
 
 [tool.poetry.dev-dependencies.isort]
 version = "^5.10.1"
