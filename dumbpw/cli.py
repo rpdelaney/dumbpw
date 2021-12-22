@@ -57,12 +57,7 @@ def cli(
 ) -> int:
     # You can't request more stuff than you have room for
     # There is probably a better way to do this using Click
-    local = locals()
-    requests = sum(
-        local[key]
-        for key in local.keys()
-        if key not in ("length", "blocklist")
-    )
+    requests = uppercase + lowercase + digits + specials
     if length < requests:
         print("You cannot request more characters than the password length.")
         return 1
