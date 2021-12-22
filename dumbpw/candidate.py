@@ -34,6 +34,14 @@ class Candidate:
             else False
         )
 
+    @property
+    def has_repeating(self) -> bool:
+        for index in range(1, len(self._password)):
+            if self._password[index] == self._password[index - 1]:
+                return True
+        else:
+            return False
+
     def __len__(self) -> int:
         return len(self._password)
 
