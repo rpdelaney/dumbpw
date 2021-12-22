@@ -1,4 +1,5 @@
 import string
+from typing import Iterator
 
 
 class Candidate:
@@ -47,3 +48,9 @@ class Candidate:
 
     def __str__(self) -> str:
         return self._password
+
+    def __iter__(self) -> Iterator[str]:
+        return iter(self._password)
+
+    def __getitem__(self, item: int) -> str:
+        return self._password[item]
