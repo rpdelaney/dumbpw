@@ -47,6 +47,12 @@ from .pwgen import generate
     show_default=True,
     help="Characters that may not be in the password.",
 )
+@click.option(
+    "--allow-repeating/--reject-repeating",
+    help="Allow or reject repeating characters in the password.",
+    default=False,
+    show_default=True,
+)
 def cli(
     length: int,
     uppercase: int,
@@ -54,6 +60,7 @@ def cli(
     digits: int,
     specials: int,
     blocklist: str,
+    allow_repeating: bool,
 ) -> int:
     # You can't request more stuff than you have room for
     # There is probably a better way to do this using Click
@@ -68,10 +75,11 @@ def cli(
     while not all(
         [
             True
-            and (try_password.uppers >= uppercase)
-            and (try_password.lowers >= lowercase)
-            and (try_password.digits >= digits)
-            and (try_password.specials >= specials)
+            and try_password.uppers >= uppercase
+            and try_password.lowers >= lowercase
+            and try_password.digits >= digits
+            and try_password.specials >= specials
+            and (allow_repeating or not try_password.has_duplicates)
         ]
     ):
         try_password = Candidate(generate(charspace.charset, length))
