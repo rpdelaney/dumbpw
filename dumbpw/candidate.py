@@ -86,3 +86,6 @@ class Candidate:
 
     def __gt__(self, lvalue: str) -> bool:
         return bool(self._password > lvalue)
+
+    def __add__(self, new_chars: str) -> "Candidate":
+        return Candidate(self._password + new_chars)
