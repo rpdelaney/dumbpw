@@ -12,30 +12,30 @@ from .pwgen import generate
 )
 @click.version_option()
 @click.option(
-    "--length",
+    "--min_length",
     type=click.IntRange(min=1, max=512),
     help="The length of the password.",
 )
 @click.option(
-    "--uppercase",
+    "--min_uppercase",
     type=int,
     default=0,
     help="The minimum number of uppercase characters.",
 )
 @click.option(
-    "--lowercase",
+    "--min_lowercase",
     type=int,
     default=0,
     help="The minimum number of lowercase characters.",
 )
 @click.option(
-    "--digits",
+    "--min_digits",
     type=int,
     default=0,
     help="The minimum number of digit characters.",
 )
 @click.option(
-    "--specials",
+    "--min_specials",
     type=int,
     default=0,
     help="The minimum number of special characters.",
@@ -54,18 +54,18 @@ from .pwgen import generate
     show_default=True,
 )
 def cli(
-    length: int,
-    uppercase: int,
-    lowercase: int,
-    digits: int,
-    specials: int,
+    min_length: int,
+    min_uppercase: int,
+    min_lowercase: int,
+    min_digits: int,
+    min_specials: int,
     blocklist: str,
     allow_repeating: bool,
 ) -> int:
     # You can't request more stuff than you have room for
     # There is probably a better way to do this using Click
-    requests = uppercase + lowercase + digits + specials
-    if length < requests:
+    requests = min_uppercase + min_lowercase + min_digits + min_specials
+    if min_length < requests:
         print("You cannot request more characters than the password length.")
         return 1
 
@@ -75,14 +75,14 @@ def cli(
     while not all(
         [
             True
-            and try_password.uppers >= uppercase
-            and try_password.lowers >= lowercase
-            and try_password.digits >= digits
-            and try_password.specials >= specials
+            and try_password.uppers >= min_uppercase
+            and try_password.lowers >= min_lowercase
+            and try_password.digits >= min_digits
+            and try_password.specials >= min_specials
             and (allow_repeating or not try_password.has_repeating)
         ]
     ):
-        try_password = Candidate(generate(charspace.charset, length))
+        try_password = Candidate(generate(charspace.charset, min_length))
 
     print(try_password)
 
