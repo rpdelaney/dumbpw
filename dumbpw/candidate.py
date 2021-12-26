@@ -12,6 +12,14 @@ class Candidate:
         return sum(1 for char in self._password if char in haystack)
 
     @property
+    def password(self) -> str:
+        return self._password
+
+    @password.setter
+    def password(self, new_password: str) -> None:
+        self._password = new_password
+
+    @property
     def digits(self) -> int:
         return self._count_string_type(string.digits)
 
