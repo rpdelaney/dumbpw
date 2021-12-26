@@ -1,5 +1,5 @@
 import string
-from typing import Iterator
+from typing import Any, Iterator
 
 
 class Candidate:
@@ -49,8 +49,29 @@ class Candidate:
     def __str__(self) -> str:
         return self._password
 
+    def __repr__(self) -> str:
+        return repr(self._password)
+
     def __iter__(self) -> Iterator[str]:
         return iter(self._password)
 
     def __getitem__(self, item: int) -> str:
         return self._password[item]
+
+    def __lt__(self, lvalue: str) -> bool:
+        return bool(self._password < lvalue)
+
+    def __le__(self, lvalue: str) -> bool:
+        return bool(self._password <= lvalue)
+
+    def __eq__(self, lvalue: Any) -> bool:
+        return bool(self._password == lvalue)
+
+    def __ne__(self, lvalue: Any) -> bool:
+        return bool(self._password != lvalue)
+
+    def __ge__(self, lvalue: str) -> bool:
+        return bool(self._password >= lvalue)
+
+    def __gt__(self, lvalue: str) -> bool:
+        return bool(self._password > lvalue)
