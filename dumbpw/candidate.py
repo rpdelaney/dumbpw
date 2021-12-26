@@ -51,6 +51,9 @@ class Candidate:
         else:
             return False
 
+    def copy(self) -> "Candidate":
+        return Candidate(self._password)
+
     def __len__(self) -> int:
         return len(self._password)
 
