@@ -2,9 +2,7 @@ import sys
 
 import click
 
-from .candidate import Candidate
-from .charspace import Charspace
-from .pwgen import generate
+from .pwgen import search
 
 
 @click.command(
@@ -62,29 +60,21 @@ def cli(
     blocklist: str,
     allow_repeating: bool,
 ) -> int:
-    # You can't request more stuff than you have room for
-    # There is probably a better way to do this using Click
-    requests = min_uppercase + min_lowercase + min_digits + min_specials
-    if min_length < requests:
-        print("You cannot request more characters than the password length.")
+    try_password = search(
+        min_length,
+        min_uppercase,
+        min_lowercase,
+        min_digits,
+        min_specials,
+        blocklist,
+        allow_repeating,
+    )
+
+    try:
+        print(try_password)
+    except ValueError as ve:
+        print(ve)
         return 1
-
-    charspace = Charspace(blocklist=blocklist)
-    try_password = Candidate("")
-
-    while not all(
-        [
-            True
-            and try_password.uppers >= min_uppercase
-            and try_password.lowers >= min_lowercase
-            and try_password.digits >= min_digits
-            and try_password.specials >= min_specials
-            and (allow_repeating or not try_password.has_repeating)
-        ]
-    ):
-        try_password = Candidate(generate(charspace.charset, min_length))
-
-    print(try_password)
 
     return 0
 

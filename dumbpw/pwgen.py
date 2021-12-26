@@ -2,6 +2,42 @@ import secrets
 
 import deal
 
+from .candidate import Candidate
+from .charspace import Charspace
+
+
+def search(
+    min_length: int,
+    min_uppercase: int,
+    min_lowercase: int,
+    min_digits: int,
+    min_specials: int,
+    blocklist: str,
+    allow_repeating: bool,
+) -> str:
+    requests = min_uppercase + min_lowercase + min_digits + min_specials
+    if min_length < requests:
+        raise ValueError(
+            "You cannot request more characters than the password length."
+        )
+
+    charspace = Charspace(blocklist=blocklist)
+    try_password = Candidate("")
+
+    while not all(
+        [
+            True
+            and try_password.uppers >= min_uppercase
+            and try_password.lowers >= min_lowercase
+            and try_password.digits >= min_digits
+            and try_password.specials >= min_specials
+            and (allow_repeating or not try_password.has_repeating)
+        ]
+    ):
+        try_password = Candidate(generate(charspace.charset, min_length))
+
+    return str(try_password)
+
 
 @deal.has("random")
 @deal.pure
