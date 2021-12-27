@@ -5,3 +5,5 @@ import string
 import deal
 
 import dumbpw
+from dumbpw.candidate import Candidate
+from dumbpw.charspace import Charspace
