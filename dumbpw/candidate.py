@@ -61,7 +61,17 @@ class Candidate:
         return self._password
 
     def __repr__(self) -> str:
-        return repr(self._password)
+        """Convert to a formal string, for repr().
+
+        >>> cd = Candidate("hi")
+        >>> repr(cd)
+        'dumbpw.candidate.Candidate("hi")'
+        """
+        return '{}.{}("{}")'.format(
+            self.__class__.__module__,
+            self.__class__.__qualname__,
+            self._password,
+        )
 
     def __iter__(self) -> Iterator[str]:
         return iter(self._password)

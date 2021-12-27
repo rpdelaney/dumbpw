@@ -58,3 +58,10 @@ def test_str(text):
     cd = Candidate(text)
 
     assert str(cd) == text
+
+
+@given(strats.text())
+def test_repr(text):
+    cd = Candidate(text)
+
+    assert repr(cd) == f'dumbpw.candidate.Candidate("{text}")'
