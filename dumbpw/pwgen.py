@@ -43,7 +43,6 @@ def search(
 
 
 @deal.has("random")
-@deal.raises()
 @deal.pre(
     validator=lambda charset, pass_length: pass_length > 0,
     message="pass_length must be greater than zero.",
