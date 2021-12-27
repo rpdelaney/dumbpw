@@ -62,34 +62,32 @@ def search(
 
 @deal.has("random")
 @deal.pre(
-    validator=lambda charset, pass_length: pass_length > 0,
-    message="pass_length must be greater than zero.",
+    validator=lambda charset, length: length > 0,
+    message="length must be greater than zero.",
     exception=ValueError,
 )
 @deal.pre(
-    validator=lambda charset, pass_length: pass_length <= MAX_PASSWORD_LENGTH,
-    message=f"pass_length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    validator=lambda charset, length: length <= MAX_PASSWORD_LENGTH,
+    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
     exception=ValueError,
 )
 @deal.pre(
-    validator=lambda charset, pass_length: len("".join(charset)) > 0,
+    validator=lambda charset, length: len("".join(charset)) > 0,
     message="charset must have positive len.",
     exception=ValueError,
 )
 @deal.ensure(
-    lambda charset, pass_length, result: len(result) == pass_length,
-    message="function return value len must equal requested pass_length.",
+    lambda charset, length, result: len(result) == length,
+    message="function return value len must equal requested length.",
 )
 @deal.ensure(
-    lambda charset, pass_length, result: all(
+    lambda charset, length, result: all(
         char in "".join(charset) for char in result
     ),
     message="function return value must be "
     "composed of characters in the charset",
 )
-def generate(charset: str, pass_length: int) -> str:
-    """Return a cryptographically secure password of length pass_length using
+def generate(charset: str, length: int) -> str:
+    """Return a cryptographically secure password of len length using
     characters only from the given charset."""
-    return "".join(
-        secrets.choice("".join(charset)) for i in range(pass_length)
-    )
+    return "".join(secrets.choice("".join(charset)) for i in range(length))
