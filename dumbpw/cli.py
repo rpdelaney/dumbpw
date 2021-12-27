@@ -60,21 +60,21 @@ def cli(
     blocklist: str,
     allow_repeating: bool,
 ) -> int:
-    try_password = search(
-        min_length,
-        min_uppercase,
-        min_lowercase,
-        min_digits,
-        min_specials,
-        blocklist,
-        allow_repeating,
-    )
-
     try:
-        print(try_password)
+        try_password = search(
+            min_length,
+            min_uppercase,
+            min_lowercase,
+            min_digits,
+            min_specials,
+            blocklist,
+            allow_repeating,
+        )
     except ValueError as ve:
         print(ve)
         return 1
+
+    print(try_password)
 
     return 0
 
