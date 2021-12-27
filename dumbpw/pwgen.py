@@ -11,7 +11,7 @@ from .charspace import Charspace
     + _.min_lowercase
     + _.min_digits
     + _.min_specials
-    < _.min_length,
+    <= _.min_length,
     exception=ValueError,
     message="You cannot request more characters than the password length.",
 )
