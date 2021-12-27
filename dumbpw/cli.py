@@ -66,13 +66,13 @@ def cli(
 ) -> int:
     try:
         try_password = search(
-            length,
-            min_uppercase,
-            min_lowercase,
-            min_digits,
-            min_specials,
-            blocklist,
-            allow_repeating,
+            length=length,
+            min_uppercase=min_uppercase,
+            min_lowercase=min_lowercase,
+            min_digits=min_digits,
+            min_specials=min_specials,
+            blocklist=blocklist,
+            allow_repeating=allow_repeating,
         )
     except ValueError as ve:
         print(ve)
