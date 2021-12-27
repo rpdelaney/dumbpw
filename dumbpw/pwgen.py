@@ -20,6 +20,11 @@ precondition_for_min_password_length = deal.pre(
     exception=ValueError,
 )
 
+ensure_returned_password_length = deal.ensure(
+    lambda _: len(_.result) == _.length,
+    message="The returned value len must equal the requested length.",
+)
+
 
 @precondition_for_max_password_length
 @precondition_for_min_password_length
@@ -32,10 +37,7 @@ precondition_for_min_password_length = deal.pre(
     exception=ValueError,
     message="You cannot request more characters than the password length.",
 )
-@deal.ensure(
-    lambda _: len(_.result) == _.length,
-    message="The returned password length must equal the requested length.",
-)
+@ensure_returned_password_length
 def search(
     length: int,
     min_uppercase: int,
@@ -72,10 +74,7 @@ def search(
     message="charset must have positive len.",
     exception=ValueError,
 )
-@deal.ensure(
-    lambda charset, length, result: len(result) == length,
-    message="function return value len must equal requested length.",
-)
+@ensure_returned_password_length
 @deal.ensure(
     lambda charset, length, result: all(
         char in "".join(charset) for char in result
