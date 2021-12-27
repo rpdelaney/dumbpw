@@ -37,6 +37,17 @@ class Candidate:
 
     @property
     def has_duplicates(self) -> bool:
+        """Return True if the password has duplicate characters, otherwise
+        False.
+        >>> Candidate("").has_duplicates
+        False
+        >>> Candidate("ABC").has_duplicates
+        False
+        >>> Candidate("ABA").has_duplicates
+        True
+        >>> Candidate("ABB").has_duplicates
+        True
+        """
         return (
             any(self._password.count(c) != 1 for c in self._password)
             if len(self._password)
@@ -45,6 +56,17 @@ class Candidate:
 
     @property
     def has_repeating(self) -> bool:
+        """Return True if the password has repeating characters, otherwise
+        False.
+        >>> Candidate("").has_repeating
+        False
+        >>> Candidate("A").has_repeating
+        False
+        >>> Candidate("ABA").has_repeating
+        False
+        >>> Candidate("ABB").has_repeating
+        True
+        """
         for index in range(1, len(self._password)):
             if self._password[index] == self._password[index - 1]:
                 return True
@@ -52,12 +74,30 @@ class Candidate:
             return False
 
     def copy(self) -> "Candidate":
+        """Return a copy of self.
+        >>> cd = Candidate("A")
+        >>> cp = cd.copy()
+        >>> cd == cp
+        True
+        >>> cp is cd
+        False
+        """
         return Candidate(self._password)
 
     def __len__(self) -> int:
+        """Return length of the password, for len().
+        >>> cd = Candidate("hi")
+        >>> len(cd)
+        2
+        """
         return len(self._password)
 
     def __str__(self) -> str:
+        """Convert to a string, for str().
+        >>> cd = Candidate("hi")
+        >>> str(cd)
+        'hi'
+        """
         return self._password
 
     def __repr__(self) -> str:
@@ -77,25 +117,96 @@ class Candidate:
         return iter(self._password)
 
     def __getitem__(self, item: int) -> str:
+        """Supports subscription of the password.
+        >>> cd = Candidate("ABC")
+        >>> cd[0]
+        'A'
+        >>> cd[2]
+        'C'
+        >>> cd[1:]
+        'BC'
+        >>> cd[:1]
+        'A'
+        >>> cd[:-1]
+        'AB'
+        >>> 'B' in cd
+        True
+        >>> 'D' not in cd
+        True
+        """
         return self._password[item]
 
     def __lt__(self, lvalue: str) -> bool:
+        """Supports the '<' comparison operator.
+        >>> Candidate("B") < Candidate("A")
+        False
+        >>> Candidate("A") < Candidate("B")
+        True
+        >>> Candidate("A") < Candidate("A")
+        False
+        """
         return bool(self._password < lvalue)
 
     def __le__(self, lvalue: str) -> bool:
+        """Supports the '<=' comparison operator.
+        >>> Candidate("B") <= Candidate("A")
+        False
+        >>> Candidate("A") <= Candidate("B")
+        True
+        >>> Candidate("A") <= Candidate("A")
+        True
+        """
         return bool(self._password <= lvalue)
 
     def __eq__(self, lvalue: Any) -> bool:
-        return bool(self._password == lvalue)
+        """Supports the '==' comparison operator.
+        >>> Candidate("A") == Candidate("B")
+        False
+        >>> Candidate("A") == "B"
+        False
+        >>> Candidate("A") == Candidate("A")
+        True
+        >>> Candidate("A") == "A"
+        True
+        """
+        return bool(str(self) == lvalue)
 
     def __ne__(self, lvalue: Any) -> bool:
+        """Supports the '!=' comparison operator.
+        >>> Candidate("A") != Candidate("B")
+        True
+        >>> Candidate("A") != Candidate("A")
+        False
+        """
         return bool(self._password != lvalue)
 
     def __gt__(self, lvalue: str) -> bool:
+        """Supports the '>' comparison operator.
+        >>> Candidate("B") > Candidate("A")
+        True
+        >>> Candidate("A") > Candidate("B")
+        False
+        >>> Candidate("A") > Candidate("A")
+        False
+        """
         return bool(self._password > lvalue)
 
     def __ge__(self, lvalue: str) -> bool:
+        """Supports the '>=' comparison operator.
+        >>> Candidate("B") >= Candidate("A")
+        True
+        >>> Candidate("A") >= Candidate("B")
+        False
+        >>> Candidate("A") >= Candidate("A")
+        True
+        """
         return bool(self._password >= lvalue)
 
     def __add__(self, new_chars: str) -> "Candidate":
-        return Candidate(self._password + new_chars)
+        """Supports the '+' operator.
+        >>> Candidate("A") + "B"
+        dumbpw.candidate.Candidate("AB")
+        >>> Candidate("A") + Candidate("B")
+        dumbpw.candidate.Candidate("AB")
+        """
+        return Candidate(str(self) + str(new_chars))
