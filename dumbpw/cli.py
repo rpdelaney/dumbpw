@@ -10,30 +10,30 @@ from .pwgen import search
 )
 @click.version_option()
 @click.option(
-    "--min_length",
+    "--min-length",
     type=click.IntRange(min=1, max=512),
     help="The length of the password.",
 )
 @click.option(
-    "--min_uppercase",
+    "--min-uppercase",
     type=int,
     default=0,
     help="The minimum number of uppercase characters.",
 )
 @click.option(
-    "--min_lowercase",
+    "--min-lowercase",
     type=int,
     default=0,
     help="The minimum number of lowercase characters.",
 )
 @click.option(
-    "--min_digits",
+    "--min-digits",
     type=int,
     default=0,
     help="The minimum number of digit characters.",
 )
 @click.option(
-    "--min_specials",
+    "--min-specials",
     type=int,
     default=0,
     help="The minimum number of special characters.",
