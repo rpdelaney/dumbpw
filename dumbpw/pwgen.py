@@ -6,6 +6,15 @@ from .candidate import Candidate
 from .charspace import Charspace
 
 
+@deal.pre(
+    validator=lambda _: _.min_uppercase
+    + _.min_lowercase
+    + _.min_digits
+    + _.min_specials
+    < _.min_length,
+    exception=ValueError,
+    message="You cannot request more characters than the password length.",
+)
 def search(
     min_length: int,
     min_uppercase: int,
@@ -15,12 +24,6 @@ def search(
     blocklist: str,
     allow_repeating: bool,
 ) -> str:
-    requests = min_uppercase + min_lowercase + min_digits + min_specials
-    if min_length < requests:
-        raise ValueError(
-            "You cannot request more characters than the password length."
-        )
-
     charspace = Charspace(blocklist=blocklist)
     try_password = Candidate("")
 
