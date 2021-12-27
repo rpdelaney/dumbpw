@@ -14,8 +14,15 @@ precondition_for_max_password_length = deal.pre(
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
 )
 
+precondition_for_min_password_length = deal.pre(
+    validator=lambda _: _.length > 0,
+    message="length must be greater than zero.",
+    exception=ValueError,
+)
+
 
 @precondition_for_max_password_length
+@precondition_for_min_password_length
 @deal.pre(
     validator=lambda _: _.min_uppercase
     + _.min_lowercase
@@ -24,11 +31,6 @@ precondition_for_max_password_length = deal.pre(
     <= _.length,
     exception=ValueError,
     message="You cannot request more characters than the password length.",
-)
-@deal.pre(
-    validator=lambda _: _.length > 0,
-    message="length must be greater than zero.",
-    exception=ValueError,
 )
 @deal.ensure(
     lambda _: len(_.result) == _.length,
@@ -64,11 +66,7 @@ def search(
 
 @deal.has("random")
 @precondition_for_max_password_length
-@deal.pre(
-    validator=lambda charset, length: length > 0,
-    message="length must be greater than zero.",
-    exception=ValueError,
-)
+@precondition_for_min_password_length
 @deal.pre(
     validator=lambda charset, length: len("".join(charset)) > 0,
     message="charset must have positive len.",
