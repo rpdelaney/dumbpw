@@ -18,6 +18,16 @@ from .constants import MAX_PASSWORD_LENGTH
     exception=ValueError,
     message="You cannot request more characters than the password length.",
 )
+@deal.pre(
+    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    exception=ValueError,
+    message=f"The maximum password length is {MAX_PASSWORD_LENGTH}.",
+)
+@deal.pre(
+    validator=lambda _: _.length > 0,
+    message="length must be greater than zero.",
+    exception=ValueError,
+)
 def search(
     length: int,
     min_uppercase: int,
