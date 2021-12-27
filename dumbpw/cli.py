@@ -10,7 +10,7 @@ from .pwgen import search
 )
 @click.version_option()
 @click.option(
-    "--min-length",
+    "--length",
     type=click.IntRange(min=1, max=512),
     help="The length of the password.",
 )
@@ -52,7 +52,7 @@ from .pwgen import search
     show_default=True,
 )
 def cli(
-    min_length: int,
+    length: int,
     min_uppercase: int,
     min_lowercase: int,
     min_digits: int,
@@ -62,7 +62,7 @@ def cli(
 ) -> int:
     try:
         try_password = search(
-            min_length,
+            length,
             min_uppercase,
             min_lowercase,
             min_digits,

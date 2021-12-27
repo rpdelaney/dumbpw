@@ -11,12 +11,12 @@ from .charspace import Charspace
     + _.min_lowercase
     + _.min_digits
     + _.min_specials
-    <= _.min_length,
+    <= _.length,
     exception=ValueError,
     message="You cannot request more characters than the password length.",
 )
 def search(
-    min_length: int,
+    length: int,
     min_uppercase: int,
     min_lowercase: int,
     min_digits: int,
@@ -37,7 +37,7 @@ def search(
             and (allow_repeating or not try_password.has_repeating)
         ]
     ):
-        try_password = Candidate(generate(charspace.charset, min_length))
+        try_password = Candidate(generate(charspace.charset, length))
 
     return str(try_password)
 
