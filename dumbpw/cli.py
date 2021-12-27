@@ -1,6 +1,9 @@
 import sys
 
 import click
+import deal
+
+deal.activate()
 
 from .constants import MAX_PASSWORD_LENGTH
 from .pwgen import search

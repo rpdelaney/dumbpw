@@ -2,6 +2,8 @@ import secrets
 
 import deal
 
+deal.activate()
+
 from .candidate import Candidate
 from .charspace import Charspace
 from .constants import MAX_PASSWORD_LENGTH
