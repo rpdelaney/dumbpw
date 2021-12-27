@@ -28,6 +28,10 @@ from .constants import MAX_PASSWORD_LENGTH
     message="length must be greater than zero.",
     exception=ValueError,
 )
+@deal.ensure(
+    lambda _: len(_.result) == _.length,
+    message="The returned password length must equal the requested length.",
+)
 def search(
     length: int,
     min_uppercase: int,
