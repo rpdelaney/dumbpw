@@ -8,7 +8,14 @@ from .candidate import Candidate
 from .charspace import Charspace
 from .constants import MAX_PASSWORD_LENGTH
 
+precondition_for_max_password_length = deal.pre(
+    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    exception=ValueError,
+    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+)
 
+
+@precondition_for_max_password_length
 @deal.pre(
     validator=lambda _: _.min_uppercase
     + _.min_lowercase
@@ -17,11 +24,6 @@ from .constants import MAX_PASSWORD_LENGTH
     <= _.length,
     exception=ValueError,
     message="You cannot request more characters than the password length.",
-)
-@deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
-    exception=ValueError,
-    message=f"The maximum password length is {MAX_PASSWORD_LENGTH}.",
 )
 @deal.pre(
     validator=lambda _: _.length > 0,
@@ -61,14 +63,10 @@ def search(
 
 
 @deal.has("random")
+@precondition_for_max_password_length
 @deal.pre(
     validator=lambda charset, length: length > 0,
     message="length must be greater than zero.",
-    exception=ValueError,
-)
-@deal.pre(
-    validator=lambda charset, length: length <= MAX_PASSWORD_LENGTH,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
     exception=ValueError,
 )
 @deal.pre(
