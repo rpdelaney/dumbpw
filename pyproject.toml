@@ -57,7 +57,7 @@ extras = [ "pyproject",]
 
 [tool.pytest.ini_options]
 console_output_style = "progress"
-addopts = "--strict-markers --strict-config"
+addopts = "--strict-markers --strict-config --doctest-modules"
 filterwarnings = ["error"]
 xfail_strict = true
 
