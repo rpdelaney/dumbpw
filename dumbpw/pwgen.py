@@ -35,6 +35,7 @@ def search(
             and try_password.digits >= min_digits
             and try_password.specials >= min_specials
             and (allow_repeating or not try_password.has_repeating)
+            and len(try_password) == length
         ]
     ):
         try_password = Candidate(generate(charspace.charset, length))
