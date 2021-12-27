@@ -2,6 +2,7 @@ import sys
 
 import click
 
+from .constants import MAX_PASSWORD_LENGTH
 from .pwgen import search
 
 
@@ -11,7 +12,7 @@ from .pwgen import search
 @click.version_option()
 @click.option(
     "--length",
-    type=click.IntRange(min=1, max=512),
+    type=click.IntRange(min=1, max=MAX_PASSWORD_LENGTH),
     help="The length of the password.",
 )
 @click.option(

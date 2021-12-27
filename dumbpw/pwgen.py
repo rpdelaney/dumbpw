@@ -4,6 +4,7 @@ import deal
 
 from .candidate import Candidate
 from .charspace import Charspace
+from .constants import MAX_PASSWORD_LENGTH
 
 
 @deal.pre(
@@ -50,8 +51,8 @@ def search(
     exception=ValueError,
 )
 @deal.pre(
-    validator=lambda charset, pass_length: pass_length <= 512,
-    message="pass_length cannot be greater than 512.",
+    validator=lambda charset, pass_length: pass_length <= MAX_PASSWORD_LENGTH,
+    message=f"pass_length cannot be greater than {MAX_PASSWORD_LENGTH}.",
     exception=ValueError,
 )
 @deal.pre(
@@ -72,7 +73,7 @@ def search(
 )
 def generate(charset: str, pass_length: int) -> str:
     """Return a cryptographically secure password of length pass_length using
-    characters only from the given charset. Max pass_length is 512."""
+    characters only from the given charset."""
     return "".join(
         secrets.choice("".join(charset)) for i in range(pass_length)
     )
