@@ -22,7 +22,7 @@ dumbpw = "dumbpw.cli:cli"
 [tool.poetry.dependencies]
 python = "^3.10"
 click = "^8.0.3"
-deal = "^4.18.0"
+deal = "^4.19.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"
