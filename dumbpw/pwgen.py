@@ -8,17 +8,26 @@ from .candidate import Candidate
 from .charspace import Charspace
 from .constants import MAX_PASSWORD_LENGTH
 
-
-@deal.pre(
+precondition_for_max_password_length = deal.pre(
     validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
     exception=ValueError,
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
 )
-@deal.pre(
+
+precondition_for_min_password_length = deal.pre(
     validator=lambda _: _.length > 0,
     message="length must be greater than zero.",
     exception=ValueError,
 )
+
+ensure_returned_password_length = deal.ensure(
+    lambda _: len(_.result) == _.length,
+    message="The returned value len must equal the requested length.",
+)
+
+
+@precondition_for_max_password_length
+@precondition_for_min_password_length
 @deal.pre(
     validator=lambda _: _.min_uppercase
     + _.min_lowercase
@@ -28,10 +37,7 @@ from .constants import MAX_PASSWORD_LENGTH
     exception=ValueError,
     message="You cannot request more characters than the password length.",
 )
-@deal.ensure(
-    lambda _: len(_.result) == _.length,
-    message="The returned value len must equal the requested length.",
-)
+@ensure_returned_password_length
 def search(
     length: int,
     min_uppercase: int,
@@ -61,25 +67,14 @@ def search(
 
 
 @deal.has("random")
-@deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
-    exception=ValueError,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
-)
-@deal.pre(
-    validator=lambda _: _.length > 0,
-    message="length must be greater than zero.",
-    exception=ValueError,
-)
+@precondition_for_max_password_length
+@precondition_for_min_password_length
 @deal.pre(
     validator=lambda charset, length: len("".join(charset)) > 0,
     message="charset must have positive len.",
     exception=ValueError,
 )
-@deal.ensure(
-    lambda _: len(_.result) == _.length,
-    message="The returned value len must equal the requested length.",
-)
+@ensure_returned_password_length
 @deal.ensure(
     lambda charset, length, result: all(
         char in "".join(charset) for char in result
