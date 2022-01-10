@@ -61,7 +61,9 @@ def search(
             and len(try_password) == length
         ]
     ):
-        try_password = Candidate(generate(charspace.charset, length))
+        try_password = Candidate(
+            generate(charset=charspace.charset, length=length)
+        )
 
     return str(try_password)
 
