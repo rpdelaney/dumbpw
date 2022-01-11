@@ -37,7 +37,20 @@ ensure_returned_password_length = deal.ensure(
     exception=ValueError,
     message="You cannot request more characters than the password length.",
 )
-@ensure_returned_password_length
+@deal.pre(
+    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    exception=ValueError,
+    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+)
+@deal.pre(
+    validator=lambda _: _.length > 0,
+    message="length must be greater than zero.",
+    exception=ValueError,
+)
+@deal.ensure(
+    lambda _: len(_.result) == _.length,
+    message="The returned value len must equal the requested length.",
+)
 def search(
     length: int,
     min_uppercase: int,
