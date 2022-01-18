@@ -60,6 +60,7 @@ repos:
 
       - id: poetry-lock
         name: poetry-lock
+        stages: [post-commit, post-merge]
         language: system
         entry: poetry install
         files: 'poetry\.lock'
