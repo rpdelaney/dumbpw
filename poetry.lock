@@ -270,7 +270,7 @@ gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "hypothesis"
-version = "6.35.0"
+version = "6.35.1"
 description = "A library for property-based testing"
 category = "main"
 optional = false
@@ -745,8 +745,8 @@ gitpython = [
     {file = "GitPython-3.1.26.tar.gz", hash = "sha256:fc8868f63a2e6d268fb25f481995ba185a85a66fcad126f039323ff6635669ee"},
 ]
 hypothesis = [
-    {file = "hypothesis-6.35.0-py3-none-any.whl", hash = "sha256:b51d1cbfd5c5d38b59435f695a1ff790c5fa7600baa59eba202a7bf8498d9043"},
-    {file = "hypothesis-6.35.0.tar.gz", hash = "sha256:ce3961fff61e7353d022608788cbc9876c293d2468749eeba27511adc9565131"},
+    {file = "hypothesis-6.35.1-py3-none-any.whl", hash = "sha256:536b928d14934809d0da676579436aaa379b06df84408b4c154412e8fd4e1b91"},
+    {file = "hypothesis-6.35.1.tar.gz", hash = "sha256:8533812bd277925b0c594ef2681dc8f4289a7b6be0169cc2df295d096c7cd783"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
