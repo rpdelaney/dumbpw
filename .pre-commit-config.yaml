@@ -1,6 +1,4 @@
 ---
-default_stages: [commit]
-
 repos:
   - repo: meta
     hooks:
@@ -52,7 +50,6 @@ repos:
         stages: [push]
         language: system
         entry: poetry run pytest --full-trace
-        pass_filenames: false
 
       - id: pyproject.toml
         name: validate pyproject.toml
@@ -60,6 +57,14 @@ repos:
         entry: poetry check
         files: 'pyproject\.toml'
         pass_filenames: false
+
+      - id: poetry-lock
+        name: poetry-lock
+        language: system
+        entry: poetry install
+        files: 'poetry\.lock'
+        pass_filenames: false
+        verbose: true
 
       - id: deal lint
         name: deal lint
