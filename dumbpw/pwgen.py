@@ -43,6 +43,7 @@ from .constants import MAX_PASSWORD_LENGTH
     message="The returned value len must equal the requested length.",
 )
 def search(
+    *,
     length: int,
     min_uppercase: int,
     min_lowercase: int,
@@ -99,7 +100,7 @@ def search(
     message="function return value must be "
     "composed of characters in the charset",
 )
-def generate(charset: str, length: int) -> str:
+def generate(*, charset: str, length: int) -> str:
     """Return a cryptographically secure password of len length using
     characters only from the given charset."""
     return "".join(secrets.choice("".join(charset)) for i in range(length))
