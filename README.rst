@@ -16,6 +16,8 @@ dumbpw
 .. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/dumbpw
    :target: https://codeclimate.com/github/rpdelaney/dumbpw
 
+**THIS IS CURRENTLY ALPHA SOFTWARE. DO NOT USE IT IN PRODUCTION.**
+
 To create and remember passwords for online services, the best practice for
 most folks online is to use a password management tool such as `Bitwarden
 <https://bitwarden.com/>`_ to generate long, cryptographically random
