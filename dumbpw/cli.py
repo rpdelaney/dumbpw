@@ -6,6 +6,7 @@ import deal
 deal.activate()
 
 from .constants import MAX_PASSWORD_LENGTH
+from .exceptions import DumbValueError
 from .pwgen import search
 
 
@@ -74,7 +75,7 @@ def cli(
             blocklist=blocklist,
             allow_repeating=allow_repeating,
         )
-    except ValueError as ve:
+    except DumbValueError as ve:
         print(ve)
         return 1
 
