@@ -21,14 +21,46 @@ class Candidate:
 
     @property
     def digits(self) -> int:
+        """Return a count of the ASCII digit characters in the password.
+        >>> Candidate("").digits
+        0
+        >>> Candidate("abc").digits
+        0
+        >>> Candidate("123").digits
+        3
+        >>> Candidate("0a").digits
+        1
+        >>> Candidate("0#").digits
+        1
+        """
         return self._count_string_type(string.digits)
 
     @property
     def specials(self) -> int:
+        """Return a count of the ASCII punctuation characters in the password.
+        >>> Candidate("").specials
+        0
+        >>> Candidate("abc").specials
+        0
+        >>> Candidate(r"abc%^*.").specials
+        4
+        >>> Candidate(r"a\\bc").specials
+        1
+        """
         return self._count_string_type(string.punctuation)
 
     @property
     def uppers(self) -> int:
+        """Return a count of the ASCII uppercase characters in the password.
+        >>> Candidate("").uppers
+        0
+        >>> Candidate("abc").uppers
+        0
+        >>> Candidate("ABc").uppers
+        2
+        >>> Candidate("ABC").uppers
+        3
+        """
         return self._count_string_type(string.ascii_uppercase)
 
     @property
@@ -64,6 +96,8 @@ class Candidate:
         False
         >>> Candidate("ABA").has_repeating
         False
+        >>> Candidate("AAB").has_repeating
+        True
         >>> Candidate("ABB").has_repeating
         True
         """
