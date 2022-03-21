@@ -77,8 +77,8 @@ def search(
 @deal.has("random")
 @deal.pre(
     validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
-    exception=DumbValueError,
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    exception=DumbValueError,
 )
 @deal.pre(
     validator=lambda _: _.length > 0,
