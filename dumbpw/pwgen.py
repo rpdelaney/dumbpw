@@ -16,11 +16,6 @@ from .exceptions import DumbValueError
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
 )
 @deal.pre(
-    validator=lambda _: _.length > 0,
-    message="length must be greater than zero.",
-    exception=DumbValueError,
-)
-@deal.pre(
     validator=lambda _: _.min_uppercase
     + _.min_lowercase
     + _.min_digits
