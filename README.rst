@@ -66,6 +66,8 @@ Known issues
   requirements, dumbpw discards it and generates another, until one passes.
   Therefore, if you ask dumbpw to generate a long password with high minimums,
   it will run for a very long time before terminating.
+* Likewise, if your minimums require characters that are banned in the
+  blocklist option, dumbpw will run forever.
 * The author is neither a cryptographer, nor a security expert. There has
   been no formal, independent, external security review of this software. As
   explained in the LICENSE, the author assumes no responsibility or liability
