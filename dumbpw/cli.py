@@ -15,11 +15,6 @@ from .pwgen import search
 )
 @click.version_option()
 @click.option(
-    "--length",
-    type=click.IntRange(min=1, max=MAX_PASSWORD_LENGTH),
-    help="The length of the password.",
-)
-@click.option(
     "--min-uppercase",
     type=int,
     default=0,
@@ -55,6 +50,10 @@ from .pwgen import search
     help="Allow or reject repeating characters in the password.",
     default=False,
     show_default=True,
+)
+@click.argument(
+    "length",
+    type=click.IntRange(min=1, max=MAX_PASSWORD_LENGTH),
 )
 def cli(
     length: int,
