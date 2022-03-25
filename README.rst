@@ -59,8 +59,17 @@ Usage
                             [default: '";]
     --help                  Show this message and exit.
 
-dumbpw uses `secrets <https://docs.python.org/3/library/secrets.html>`_
-to generate passwords.
+Known issues
+------------
+* dumbpw uses `secrets <https://docs.python.org/3/library/secrets.html>`_
+  to generate passwords. If the generated string doesn't meet the given
+  requirements, dumbpw discards it and generates another, until one passes.
+  Therefore, if you ask dumbpw to generate a long password with high minimums,
+  it will run for a very long time before terminating.
+* The author is neither a cryptographer, nor a security expert. There has
+  been no formal, independent, external security review of this software. As
+  explained in the LICENSE, the author assumes no responsibility or liability
+  for your use of this software.
 
 ============
 Development
