@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dumbpw"
-version = "0.3.1"
+version = "0.3.2"
 description = "A bad password generator for bad websites with bad password policies"
 authors = ["Ryan Delaney <ryan.patrick.delaney@protonmail.com>"]
 license = "Apache 2.0"
