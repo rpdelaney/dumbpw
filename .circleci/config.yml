@@ -22,7 +22,7 @@ jobs:
           name: Run tests
           command: |
             direnv allow
-            poetry run pytest --full-trace
+            poetry run pytest --full-trace --ignore=.pythonrc.py
       - store_artifacts:
           path: dist
       - run:
