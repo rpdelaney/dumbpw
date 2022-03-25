@@ -46,18 +46,21 @@ Usage
 
 .. code-block :: console
 
-    $ dumbpw -h
-    Usage: dumbpw [OPTIONS]
+    $ dumbpw --help
+    Usage: dumbpw [OPTIONS] LENGTH
 
     Options:
-    --length INTEGER RANGE  The length of the password.  [1<=x<=512]
-    --uppercase INTEGER     The minimum number of uppercase characters.
-    --lowercase INTEGER     The minimum number of lowercase characters.
-    --digits INTEGER        The minimum number of digit characters.
-    --specials INTEGER      The minimum number of special characters.
-    --blocklist TEXT        Characters that may not be in the password.
-                            [default: '";]
-    --help                  Show this message and exit.
+      --version                       Show the version and exit.
+      --min-uppercase INTEGER         The minimum number of uppercase characters.
+      --min-lowercase INTEGER         The minimum number of lowercase characters.
+      --min-digits INTEGER            The minimum number of digit characters.
+      --min-specials INTEGER          The minimum number of special characters.
+      --blocklist TEXT                Characters that may not be in the password.
+                                      [default: '";]
+      --allow-repeating / --reject-repeating
+                                      Allow or reject repeating characters in the
+                                      password.  [default: reject-repeating]
+      --help                          Show this message and exit.
 
 Known issues
 ------------
