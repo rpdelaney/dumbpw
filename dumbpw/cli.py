@@ -17,19 +17,19 @@ from .pwgen import search
 @click.option(
     "--min-uppercase",
     type=int,
-    default=0,
+    default=1,
     help="The minimum number of uppercase characters.",
 )
 @click.option(
     "--min-lowercase",
     type=int,
-    default=0,
+    default=1,
     help="The minimum number of lowercase characters.",
 )
 @click.option(
     "--min-digits",
     type=int,
-    default=0,
+    default=1,
     help="The minimum number of digit characters.",
 )
 @click.option(
