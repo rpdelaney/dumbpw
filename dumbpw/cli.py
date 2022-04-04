@@ -5,7 +5,7 @@ import deal
 
 deal.activate()
 
-from .constants import MAX_PASSWORD_LENGTH
+from .constants import MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
 from .exceptions import DumbValueError
 from .pwgen import search
 
@@ -53,7 +53,10 @@ from .pwgen import search
 )
 @click.argument(
     "length",
-    type=click.IntRange(min=1, max=MAX_PASSWORD_LENGTH),
+    type=click.IntRange(
+        min=MIN_PASSWORD_LENGTH,
+        max=MAX_PASSWORD_LENGTH,
+    ),
 )
 def cli(
     length: int,
