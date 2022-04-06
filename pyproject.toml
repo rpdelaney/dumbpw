@@ -37,6 +37,7 @@ pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
 flake8-docstrings = "^1.6.0"
 hypothesis = "^6.39.4"
+deal-solver = "^0.1.0"
 
 [tool.mypy]
 plugins = ["deal.mypy"]
