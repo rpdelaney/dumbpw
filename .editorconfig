@@ -2,20 +2,19 @@
 root = true
 
 [*]
-indent_style = space
-end_of_line = lf
 charset = utf-8
+end_of_line = lf
+indent_style = space
+insert_final_newline = true
 
 [*.py]
-indent_size = 4
-quote_type = double
-max_line_length = 79
-insert_final_newline = true
-trim_trailing_whitespace = true
-indent_style = space
-skip = build,.tox,.venv
 balanced_wrapping = true
+indent_size = 4
+max_line_length = 79
 not_skip = __init__.py
+quote_type = double
+skip = build,.tox,.venv
+trim_trailing_whitespace = true
 
 [*.{rst,ini}]
 indent_size = 4
