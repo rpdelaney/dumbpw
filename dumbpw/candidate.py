@@ -2,21 +2,13 @@ import string
 
 
 class Candidate(str):
-    def __init__(self, password: str) -> None:
-        self._password = password
+    def __init__(self, /, password: str) -> None:
+        self.password = password
 
     def _count_string_type(self, haystack: str) -> int:
         """Return a count of how many characters in the password are part of
         the haystack."""
-        return sum(1 for char in self._password if char in haystack)
-
-    @property
-    def password(self) -> str:
-        return self._password
-
-    @password.setter
-    def password(self, new_password: str) -> None:
-        self._password = new_password
+        return sum(1 for char in self.password if char in haystack)
 
     @property
     def digits(self) -> int:
@@ -80,8 +72,8 @@ class Candidate(str):
         True
         """
         return (
-            any(self._password.count(c) != 1 for c in self._password)
-            if len(self._password)
+            any(self.password.count(c) != 1 for c in self.password)
+            if len(self.password)
             else False
         )
 
@@ -100,8 +92,8 @@ class Candidate(str):
         >>> Candidate("ABB").has_repeating
         True
         """
-        for index in range(1, len(self._password)):
-            if self._password[index] == self._password[index - 1]:
+        for index in range(1, len(self.password)):
+            if self.password[index] == self.password[index - 1]:
                 return True
         else:
             return False
@@ -115,4 +107,4 @@ class Candidate(str):
         >>> cp is cd
         False
         """
-        return Candidate(self._password)
+        return Candidate(self.password)
