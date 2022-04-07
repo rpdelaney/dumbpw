@@ -73,17 +73,14 @@ def search(
 @deal.pre(
     validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
-    exception=DumbValueError,
 )
 @deal.pre(
     validator=lambda _: _.length > 0,
     message="length must be greater than zero.",
-    exception=DumbValueError,
 )
 @deal.pre(
     validator=lambda charset, length: len("".join(charset)) > 0,
     message="charset must have positive len.",
-    exception=DumbValueError,
 )
 @deal.ensure(
     lambda _: len(_.result) == _.length,
