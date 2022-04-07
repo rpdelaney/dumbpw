@@ -7,7 +7,16 @@ class Candidate(str):
 
     def _count_string_type(self, haystack: str) -> int:
         """Return a count of how many characters in the password are part of
-        the haystack."""
+        the haystack.
+        >>> Candidate("")._count_string_type(string.ascii_lowercase)
+        0
+        >>> Candidate("abcDEFG123!")._count_string_type(string.ascii_lowercase)
+        3
+        >>> Candidate("abcDEFG123!")._count_string_type(string.ascii_uppercase)
+        4
+        >>> Candidate("abcDEFG123!")._count_string_type(string.punctuation)
+        1
+        """
         return sum(1 for char in self.password if char in haystack)
 
     @property
