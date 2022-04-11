@@ -1,18 +1,18 @@
 import deal
 from hypothesis import strategies as strats
 
-import dumbpw.pwgen as pwgen
+import dumbpw.engine as engine
 
 
 @deal.cases(
-    func=pwgen.generate,
+    func=engine.generate,
 )
 def test_generate(case: deal.TestCase) -> None:
     case()
 
 
 @deal.cases(
-    func=pwgen.search,
+    func=engine.search,
     kwargs={
         "min_uppercase": strats.integers(
             min_value=0,

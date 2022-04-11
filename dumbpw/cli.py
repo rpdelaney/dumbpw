@@ -6,8 +6,8 @@ import deal
 deal.activate()
 
 from .constants import MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
+from .engine import search
 from .exceptions import DumbValueError
-from .pwgen import search
 
 
 @click.command(
