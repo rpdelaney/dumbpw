@@ -65,6 +65,16 @@ class Candidate(str):
 
     @property
     def lowers(self) -> int:
+        """Return a count of the ASCII lowoercase characters in the password.
+        >>> Candidate("").lowers
+        0
+        >>> Candidate("abc").lowers
+        3
+        >>> Candidate("ABc").lowers
+        1
+        >>> Candidate("ABC").lowers
+        0
+        """
         return self._count_string_type(string.ascii_lowercase)
 
     @property
