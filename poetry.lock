@@ -115,14 +115,14 @@ toml = ["tomli"]
 
 [[package]]
 name = "deal"
-version = "4.22.0"
+version = "4.23.1"
 description = "**Deal** is a Python library for [design by contract][wiki] (DbC) programming."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-astroid = "*"
+astroid = ">=2.11.0"
 vaa = ">=0.2.1"
 
 [package.extras]
@@ -267,7 +267,7 @@ gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "hypothesis"
-version = "6.42.3"
+version = "6.43.1"
 description = "A library for property-based testing"
 category = "dev"
 optional = false
@@ -690,8 +690,8 @@ coverage = [
     {file = "coverage-6.3.2.tar.gz", hash = "sha256:03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9"},
 ]
 deal = [
-    {file = "deal-4.22.0-py3-none-any.whl", hash = "sha256:d1e2f021831e0c1475c448769d2bdd80c26e16725958a68f8f044e51884b58e6"},
-    {file = "deal-4.22.0.tar.gz", hash = "sha256:1c70da013f945eb1028b3284a67810ff3c22bad3582b16fdcdbb0c154b80f96a"},
+    {file = "deal-4.23.1-py3-none-any.whl", hash = "sha256:4c81ee4ef423eed8364a217fa1f0c9e05a9d09de80c0e89084f9d102af5a2d0f"},
+    {file = "deal-4.23.1.tar.gz", hash = "sha256:70aac61f61d9f8b373512009016eb55f54afca0859851f70a009f8eeb6d5a5d2"},
 ]
 deal-solver = [
     {file = "deal-solver-0.1.0.tar.gz", hash = "sha256:c42300b2bdf01df7315b409613145440bb393fbace0c2fd9795f59513c7a1990"},
@@ -738,8 +738,8 @@ gitpython = [
     {file = "GitPython-3.1.27.tar.gz", hash = "sha256:1c885ce809e8ba2d88a29befeb385fcea06338d3640712b59ca623c220bb5704"},
 ]
 hypothesis = [
-    {file = "hypothesis-6.42.3-py3-none-any.whl", hash = "sha256:1ba279d3d5ffe9f07d82bf4605e31370b404c2f8ee8dc270edd33c97712a761d"},
-    {file = "hypothesis-6.42.3.tar.gz", hash = "sha256:b8904a16b9451e2dba4d27ba9eb63884ca0101849bbeda3bb50b9f6fde84ac5b"},
+    {file = "hypothesis-6.43.1-py3-none-any.whl", hash = "sha256:a4e30f0c787e23ac3081eae5ce327b92b5125010f000403d4b26b74061d8029b"},
+    {file = "hypothesis-6.43.1.tar.gz", hash = "sha256:b0ef5f82bb925e540f5d26e7e06280fa88113a763cc3e6832c93301766fa6900"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
