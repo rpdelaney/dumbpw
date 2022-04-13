@@ -78,7 +78,7 @@ def cli(
             allow_repeating=allow_repeating,
         )
     except DumbValueError as ve:
-        print(ve)
+        print(ve, file=sys.stderr)
         return 1
 
     print(try_password)
