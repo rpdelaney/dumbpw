@@ -66,7 +66,7 @@ def cli(
     min_specials: int,
     blocklist: str,
     allow_repeating: bool,
-) -> int:
+) -> None:
     try:
         try_password = search(
             length=length,
@@ -79,12 +79,8 @@ def cli(
         )
     except DumbValueError as ve:
         print(ve, file=sys.stderr)
-        return 1
+        sys.exit(1)
 
     print(try_password)
 
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(cli())
+    sys.exit(0)
