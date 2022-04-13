@@ -47,7 +47,7 @@ def search(
     min_specials: int,
     blocklist: str,
     allow_repeating: bool,
-) -> str:
+) -> Candidate:
     charspace = Charspace(blocklist=blocklist)
     try_password = Candidate("")
 
@@ -66,7 +66,7 @@ def search(
             generate(charset=charspace.charset, length=length)
         )
 
-    return str(try_password)
+    return try_password
 
 
 @deal.has("random")
