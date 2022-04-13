@@ -103,11 +103,11 @@ def search(
     message="charset must have positive len.",
 )
 @deal.ensure(
-    lambda _: len(_.result) == _.length,
+    validator=lambda _: len(_.result) == _.length,
     message="The returned value len must equal the requested length.",
 )
 @deal.ensure(
-    lambda charset, length, result: all(
+    validator=lambda charset, length, result: all(
         char in "".join(charset) for char in result
     ),
     message="function return value must be "
