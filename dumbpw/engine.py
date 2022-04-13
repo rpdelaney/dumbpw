@@ -35,6 +35,26 @@ from .exceptions import DumbValueError
     exception=DumbValueError,
 )
 @deal.ensure(
+    lambda _: _.result.uppers >= _.min_uppercase,
+    message="Not enough uppercase characters in result.",
+)
+@deal.ensure(
+    lambda _: _.result.lowers >= _.min_lowercase,
+    message="Not enough lowercase characters in result.",
+)
+@deal.ensure(
+    lambda _: _.result.digits >= _.min_digits,
+    message="Not enough digit characters in result.",
+)
+@deal.ensure(
+    lambda _: _.result.specials >= _.min_specials,
+    message="Not enough special characters in result.",
+)
+@deal.ensure(
+    lambda _: _.allow_repeating or not _.result.has_repeating,
+    message="Repeating characters are not allowed.",
+)
+@deal.ensure(
     lambda _: len(_.result) == _.length,
     message="The returned value len must equal the requested length.",
 )
