@@ -1,3 +1,7 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "dumbpw"
 version = "0.3.3"
@@ -39,9 +43,6 @@ flake8-docstrings = "^1.6.0"
 hypothesis = "^6.39.4"
 deal-solver = "^0.1.0"
 
-[tool.mypy]
-plugins = ["deal.mypy"]
-
 [tool.black]
 line-length = 79
 target_version = [ "py310",]
@@ -68,6 +69,52 @@ addopts = [
 filterwarnings = ["error"]
 xfail_strict = true
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.mypy]
+plugins = ["deal.mypy"]
+
+# any
+disallow_any_decorated = true
+disallow_any_explicit = false
+disallow_any_expr = false
+disallow_any_generics = true
+disallow_any_unimported = true
+disallow_subclassing_any = true
+
+# untyped
+allow_untyped_globals = false
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+
+# optionals
+no_implicit_optional = true
+strict_optional = true
+
+# imports
+follow_imports = "normal"
+ignore_missing_imports = false
+
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+strict_equality = true
+
+# error formating
+pretty = true
+show_error_context = true
+show_column_numbers = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ".venv.*"
+ignore_errors = true
