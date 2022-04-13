@@ -99,7 +99,7 @@ def search(
     message="length must be greater than zero.",
 )
 @deal.pre(
-    validator=lambda charset, length: len("".join(charset)) > 0,
+    validator=lambda _: len("".join(_.charset)) > 0,
     message="charset must have positive len.",
 )
 @deal.ensure(
@@ -107,9 +107,7 @@ def search(
     message="The returned value len must equal the requested length.",
 )
 @deal.ensure(
-    validator=lambda charset, length, result: all(
-        char in "".join(charset) for char in result
-    ),
+    validator=lambda _: all(char in "".join(_.charset) for char in _.result),
     message="function return value must be "
     "composed of characters in the charset",
 )
