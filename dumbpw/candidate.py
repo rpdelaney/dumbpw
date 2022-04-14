@@ -5,8 +5,9 @@ import deal
 
 class Candidate(str):
     @deal.pure
-    def __init__(self, password: str) -> None:
+    def __init__(self, /, password: str) -> None:
         self.password = password
+        return
 
     @deal.pure
     def _count_string_type(self, haystack: str) -> int:
