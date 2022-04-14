@@ -10,6 +10,8 @@ from .constants import MAX_PASSWORD_LENGTH
 from .exceptions import DumbValueError
 
 
+@deal.safe
+@deal.has("random")
 @deal.pre(
     validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
     exception=DumbValueError,
@@ -89,6 +91,7 @@ def search(
     return try_password
 
 
+@deal.safe
 @deal.has("random")
 @deal.pre(
     validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,

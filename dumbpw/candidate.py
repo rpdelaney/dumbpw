@@ -1,10 +1,14 @@
 import string
 
+import deal
+
 
 class Candidate(str):
+    @deal.pure
     def __init__(self, password: str) -> None:
         self.password = password
 
+    @deal.pure
     def _count_string_type(self, haystack: str) -> int:
         """Return a count of how many characters in the password are part of
         the haystack.
@@ -19,7 +23,8 @@ class Candidate(str):
         """
         return sum(1 for char in self.password if char in haystack)
 
-    @property
+    @property  # type: ignore[misc]
+    @deal.pure
     def digits(self) -> int:
         """Return a count of the ASCII digit characters in the password.
         >>> Candidate("").digits
@@ -35,7 +40,8 @@ class Candidate(str):
         """
         return self._count_string_type(string.digits)
 
-    @property
+    @property  # type: ignore[misc]
+    @deal.pure
     def specials(self) -> int:
         """Return a count of the ASCII punctuation characters in the password.
         >>> Candidate("").specials
@@ -49,7 +55,8 @@ class Candidate(str):
         """
         return self._count_string_type(string.punctuation)
 
-    @property
+    @property  # type: ignore[misc]
+    @deal.pure
     def uppers(self) -> int:
         """Return a count of the ASCII uppercase characters in the password.
         >>> Candidate("").uppers
@@ -63,7 +70,8 @@ class Candidate(str):
         """
         return self._count_string_type(string.ascii_uppercase)
 
-    @property
+    @property  # type: ignore[misc]
+    @deal.pure
     def lowers(self) -> int:
         """Return a count of the ASCII lowoercase characters in the password.
         >>> Candidate("").lowers
@@ -77,7 +85,8 @@ class Candidate(str):
         """
         return self._count_string_type(string.ascii_lowercase)
 
-    @property
+    @property  # type: ignore[misc]
+    @deal.pure
     def has_duplicates(self) -> bool:
         """Return True if the password has duplicate characters, otherwise
         False.
@@ -96,7 +105,8 @@ class Candidate(str):
             else False
         )
 
-    @property
+    @property  # type: ignore[misc]
+    @deal.pure
     def has_repeating(self) -> bool:
         """Return True if the password has repeating characters, otherwise
         False.
@@ -117,6 +127,7 @@ class Candidate(str):
         else:
             return False
 
+    @deal.pure
     def copy(self) -> "Candidate":
         """Return a copy of self.
         >>> cd = Candidate("A")

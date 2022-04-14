@@ -11,6 +11,8 @@ from .engine import search
 from .exceptions import DumbValueError
 
 
+@deal.has("io", "stderr", "stdout")
+@deal.raises(SystemExit)  # type: ignore[arg-type]
 @click.command(
     no_args_is_help=True,
 )
