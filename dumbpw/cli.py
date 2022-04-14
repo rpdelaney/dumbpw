@@ -1,4 +1,5 @@
 import sys
+from typing import NoReturn
 
 import click
 import deal
@@ -66,7 +67,7 @@ def cli(
     min_specials: int,
     blocklist: str,
     allow_repeating: bool,
-) -> None:
+) -> NoReturn:
     try:
         try_password = search(
             length=length,
