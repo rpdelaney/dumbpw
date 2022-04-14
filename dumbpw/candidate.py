@@ -2,7 +2,7 @@ import string
 
 
 class Candidate(str):
-    def __init__(self, /, password: str) -> None:
+    def __init__(self, password: str) -> None:
         self.password = password
 
     def _count_string_type(self, haystack: str) -> int:
