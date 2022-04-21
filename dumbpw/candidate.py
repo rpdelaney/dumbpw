@@ -74,7 +74,7 @@ class Candidate(str):
     @property  # type: ignore[misc]
     @deal.pure
     def lowers(self) -> int:
-        """Return a count of the ASCII lowoercase characters in the password.
+        """Return a count of the ASCII lowercase characters in the password.
         >>> Candidate("").lowers
         0
         >>> Candidate("abc").lowers
