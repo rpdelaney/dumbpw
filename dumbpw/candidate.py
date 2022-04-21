@@ -100,10 +100,8 @@ class Candidate(str):
         >>> Candidate("ABB").has_duplicates
         True
         """
-        return (
-            any(self.password.count(c) != 1 for c in self.password)
-            if len(self.password)
-            else False
+        return sum(self.password.count(c) for c in self.password) != len(
+            self.password
         )
 
     @property  # type: ignore[misc]
