@@ -22,9 +22,8 @@ most folks online is to use a password management tool such as `Bitwarden
 passwords. Then, a very strong passphrase is used to lock the password manager.
 
 Unfortunately, in a misguided attempt to encourage users to choose better
-passwords, many websites and apps enforce `restrictive password policies <https://kottke.org/12/06/the-worlds-worst-password-requirements-list>`_
-that place restrictions on what sorts of characters must be (or may not be) in
-a password. These policies inhibit users from using cryptographically random
+passwords, many websites and apps enforce `restrictive password policies <https://github.com/duffn/dumb-password-rules>`_.
+These policies inhibit users from using cryptographically random
 password generators: a long, high-entropy password is more likely to
 violate such rules, which means a security-savvy user may have to attempt
 several "random" passwords before one is accepted. This punishes users
