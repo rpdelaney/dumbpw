@@ -76,6 +76,10 @@ Known issues
   explained in the LICENSE, the author assumes no responsibility or liability
   for your use of this software.
 
+Related tools
+-------------
+* Apple's `Password Rules Validation Tool <https://developer.apple.com/password-rules/>`_
+
 ============
 Development
 ============
