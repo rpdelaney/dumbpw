@@ -15,6 +15,8 @@ class Candidate(str):
         the haystack.
         >>> Candidate("")._count_string_type(string.ascii_lowercase)
         0
+        >>> Candidate("123")._count_string_type(string.ascii_lowercase)
+        0
         >>> Candidate("abcDEFG123!")._count_string_type(string.ascii_lowercase)
         3
         >>> Candidate("abcDEFG123!")._count_string_type(string.ascii_uppercase)
