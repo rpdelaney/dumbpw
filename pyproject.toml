@@ -30,18 +30,18 @@ deal = "^4.19.1"
 
 [tool.poetry.dev-dependencies]
 black = "*"
+deal-solver = "^0.1.0"
 flake8 = "^4.0.1"
 flake8-annotations-complexity = "^0.0.6"
 flake8-bandit = "^3.0.0"
 flake8-bugbear = "^21.9.2"
 flake8-comprehensions = "^3.7.0"
+flake8-docstrings = "^1.6.0"
 flake8-simplify = "^0.14.2"
+hypothesis = "^6.39.4"
 mypy = "^0.910"
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
-flake8-docstrings = "^1.6.0"
-hypothesis = "^6.39.4"
-deal-solver = "^0.1.0"
 
 [tool.black]
 line-length = 79
