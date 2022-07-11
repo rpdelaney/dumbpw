@@ -12,7 +12,7 @@ from .exceptions import DumbValueError
 
 
 @deal.has("io", "stderr", "stdout")
-@deal.raises(SystemExit)  # type: ignore[arg-type]
+@deal.raises(SystemExit)
 @click.command(
     no_args_is_help=True,
 )
