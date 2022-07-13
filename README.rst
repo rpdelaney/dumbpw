@@ -3,8 +3,9 @@ dumbpw
 |LANGUAGE| |VERSION| |BUILD| |MAINTAINED| |MAINTAINABILITY|
 |LICENSE| |STYLE|
 
-.. |BUILD| image:: https://img.shields.io/circleci/build/gh/rpdelaney/dumbpw
-   :target: https://circleci.com/gh/rpdelaney/dumbpw/tree/main
+.. |BUILD| image:: https://github.com/github/docs/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/rpdelaney/dumbpw/actions/workflows/integration.yaml
+   :alt: build status
 .. |LICENSE| image:: https://img.shields.io/badge/license-Apache%202.0-informational
    :target: https://www.apache.org/licenses/LICENSE-2.0.txt
 .. |MAINTAINED| image:: https://img.shields.io/maintenance/yes/2022?logoColor=informational
