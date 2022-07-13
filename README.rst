@@ -1,9 +1,9 @@
 dumbpw
 ======================
-|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |MAINTAINABILITY|
-|STYLE|
+|LANGUAGE| |VERSION| |BUILD| |MAINTAINED| |MAINTAINABILITY|
+|LICENSE| |STYLE|
 
-.. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/dumbpw
+.. |BUILD| image:: https://img.shields.io/circleci/build/gh/rpdelaney/dumbpw
    :target: https://circleci.com/gh/rpdelaney/dumbpw/tree/main
 .. |LICENSE| image:: https://img.shields.io/badge/license-Apache%202.0-informational
    :target: https://www.apache.org/licenses/LICENSE-2.0.txt
