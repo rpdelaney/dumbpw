@@ -65,7 +65,7 @@ jobs:
         run: poetry install --no-interaction
 
       # ----------------------------------------------
-      # build virtual environment and install
+      # run tests
       # ----------------------------------------------
       - name: Run tests
         run: poetry run pytest
