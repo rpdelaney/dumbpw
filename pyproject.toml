@@ -64,7 +64,8 @@ console_output_style = "progress"
 addopts = [
     "--strict-markers",
     "--strict-config",
-    "--doctest-modules"
+    "--doctest-modules",
+    "--ignore=.pythonrc.py"
 ]
 filterwarnings = ["error"]
 xfail_strict = true
