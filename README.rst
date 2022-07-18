@@ -3,7 +3,7 @@ dumbpw
 |LANGUAGE| |VERSION| |BUILD| |MAINTAINED| |MAINTAINABILITY|
 |LICENSE| |STYLE|
 
-.. |BUILD| image:: https://github.com/github/docs/actions/workflows/integration.yml/badge.svg
+.. |BUILD| image:: https://github.com/rpdelaney/dumbpw/actions/workflows/integration.yaml/badge.svg
    :target: https://github.com/rpdelaney/dumbpw/actions/workflows/integration.yaml
    :alt: build status
 .. |LICENSE| image:: https://img.shields.io/badge/license-Apache%202.0-informational
