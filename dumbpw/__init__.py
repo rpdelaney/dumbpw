@@ -1,6 +1,6 @@
-try:
-    import importlib.metadata
+import importlib.metadata
 
+try:
     __version__ = importlib.metadata.version(__name__)
-except ModuleNotFoundError:
+except importlib.metadata.PackageNotFoundError:
     __version__ = "UNKNOWN"
