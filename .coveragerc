@@ -5,3 +5,9 @@ omit = tests/*
 [report]
 show_missing = true
 fail_under = 100
+
+[html]
+directory = cov/html
+
+[xml]
+output = cov/coverage.xml
