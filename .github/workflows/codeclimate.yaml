@@ -1,4 +1,11 @@
 ---
+name: CodeClimate reporting
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
 steps:
   - name: Test & publish code coverage
     uses: paambaati/codeclimate-action@v3.0.0
