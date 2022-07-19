@@ -1,3 +1,4 @@
+import fileinput
 import sys
 from typing import NoReturn
 
@@ -11,8 +12,8 @@ from .engine import search
 from .exceptions import DumbValueError
 
 
-@deal.has("io", "stderr", "stdout")
-@deal.raises(SystemExit)
+@deal.has("io", "global", "stderr", "stdout")
+@deal.raises(SystemExit, RuntimeError)
 @click.command(
     no_args_is_help=True,
 )
@@ -61,15 +62,27 @@ from .exceptions import DumbValueError
         max=MAX_PASSWORD_LENGTH,
     ),
 )
+@click.option(
+    "--specials",
+    envvar="DUMBPW_SPECIALS",
+    help=(
+        "Non-alphanumeric characters that may be in the password. "
+        "Pass '-' to read from standard input."
+    ),
+)
 def cli(
     length: int,
     min_uppercase: int,
     min_lowercase: int,
     min_digits: int,
     min_specials: int,
+    specials: str,
     blocklist: str,
     allow_repeating: bool,
 ) -> NoReturn:
+    if specials == "-":
+        specials = "".join(char for char in fileinput.input(files="-")).strip()
+
     try:
         try_password = search(
             length=length,
@@ -77,6 +90,7 @@ def cli(
             min_lowercase=min_lowercase,
             min_digits=min_digits,
             min_specials=min_specials,
+            specials=specials,
             blocklist=blocklist,
             allow_repeating=allow_repeating,
         )

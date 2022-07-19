@@ -1,4 +1,6 @@
 import secrets
+import string
+from typing import Optional
 
 import deal
 
@@ -68,9 +70,18 @@ def search(
     min_digits: int,
     min_specials: int,
     blocklist: str,
+    specials: Optional[str],
     allow_repeating: bool,
 ) -> Candidate:
-    charspace = Charspace(blocklist=blocklist)
+    charspace_args = {
+        "blocklist": blocklist,
+    }
+    if specials is not None:
+        charspace_args["specials"] = specials
+    else:
+        charspace_args["specials"] = string.punctuation
+
+    charspace = Charspace(**charspace_args)
     try_password = Candidate("")
 
     while not all(
