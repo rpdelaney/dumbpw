@@ -65,7 +65,11 @@ addopts = [
     "--strict-markers",
     "--strict-config",
     "--doctest-modules",
-    "--ignore=.pythonrc.py"
+    "--ignore=.pythonrc.py",
+    "--cov",
+    "--cov-report=html",
+    "--cov-report=term",
+    "--cov-report=xml",
 ]
 filterwarnings = ["error"]
 xfail_strict = true
