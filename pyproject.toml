@@ -60,12 +60,12 @@ version = "^5.10.1"
 extras = [ "pyproject",]
 
 [tool.pytest.ini_options]
+testpaths = "tests"
 console_output_style = "progress"
 addopts = [
     "--strict-markers",
     "--strict-config",
     "--doctest-modules",
-    "--ignore=.pythonrc.py",
     "--cov",
     "--cov-report=html",
     "--cov-report=term",
