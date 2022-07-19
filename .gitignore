@@ -1,3 +1,7 @@
 .envrc.local
+.coverage
+.hypothesis
+.mypy_cache
 coverage.xml
 htmlcov
+__pycache__
