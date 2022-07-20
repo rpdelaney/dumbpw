@@ -12,7 +12,6 @@ on:
       - tests/*
       - pyproject.toml
       - poetry.lock
-      - .coveragerc
       - .pre-commit-config.yaml
       - .github/workflows/integration.yaml
 
