@@ -7,13 +7,13 @@ on:
   pull_request:
   push:
     branches: [main]
-  paths:
-    - dumbpw/*
-    - tests/*
-    - pyproject.toml
-    - poetry.lock
-    - .coveragerc
-    - .pre-commit-config.yaml
+    paths:
+      - dumbpw/*
+      - tests/*
+      - pyproject.toml
+      - poetry.lock
+      - .coveragerc
+      - .pre-commit-config.yaml
 
 jobs:
   lint:
