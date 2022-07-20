@@ -114,11 +114,11 @@ jobs:
   # ----------------------------------------------
   publish:
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - name: Publish coverage report
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
+          coverageCommand: coverage xml
           coverageLocations: ${{github.workspace}}/cov/coverage.xml:coverage.py
