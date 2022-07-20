@@ -120,4 +120,4 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: <code_climate_reporter_id>
         with:
-          coverageLocations: ${{github.workspace}}/cov/coverage.xml
+          coverageLocations: ${{github.workspace}}/cov/coverage.xml:coverage.py
