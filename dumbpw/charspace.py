@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import deal
 
 deal.activate()
+deal.module_load(deal.pure)
 
 from .constants import (
     DEFAULT_DIGITS,

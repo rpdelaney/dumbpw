@@ -3,6 +3,7 @@ import secrets
 import deal
 
 deal.activate()
+deal.module_load(deal.pure)
 
 from .candidate import Candidate
 from .charspace import Charspace
