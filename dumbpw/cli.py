@@ -6,7 +6,7 @@ import deal
 
 deal.activate()
 
-from .constants import MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
+from .constants import DEFAULT_BLOCKS, MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
 from .engine import search
 from .exceptions import DumbValueError
 
@@ -44,7 +44,7 @@ from .exceptions import DumbValueError
 @click.option(
     "--blocklist",
     type=str,
-    default="""'";""",
+    default=DEFAULT_BLOCKS,
     show_default=True,
     help="Characters that may not be in the password.",
 )
