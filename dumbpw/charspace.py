@@ -2,6 +2,8 @@ from dataclasses import dataclass
 
 import deal
 
+deal.activate()
+
 from .constants import (
     DEFAULT_DIGITS,
     DEFAULT_EXTRAS,
