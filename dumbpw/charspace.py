@@ -1,16 +1,22 @@
-import string
 from dataclasses import dataclass
 
 import deal
+
+from .constants import (
+    DEFAULT_DIGITS,
+    DEFAULT_EXTRAS,
+    DEFAULT_LOWERS,
+    DEFAULT_UPPERS,
+)
 
 
 @dataclass(frozen=True)
 class Charspace:
     blocklist: str = ""
-    digits: str = string.digits
-    extras: str = string.punctuation
-    lowers: str = string.ascii_lowercase
-    uppers: str = string.ascii_uppercase
+    digits: str = DEFAULT_DIGITS
+    extras: str = DEFAULT_EXTRAS
+    lowers: str = DEFAULT_LOWERS
+    uppers: str = DEFAULT_UPPERS
 
     @property  # type: ignore[misc]
     @deal.pure
