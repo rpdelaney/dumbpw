@@ -49,7 +49,7 @@ repos:
         name: run all tests
         stages: [push]
         language: system
-        entry: poetry run pytest --full-trace
+        entry: poetry run pytest --full-trace --cov
 
       - id: pyproject.toml
         name: validate pyproject.toml
