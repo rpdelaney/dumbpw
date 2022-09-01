@@ -50,3 +50,12 @@ def test_has_no_repeating(text):
     )
 
     assert not cd.has_repeating
+
+
+@given(strats.text())
+def test_copy_method(text):
+    cd = Candidate(text)
+    cp = cd.copy()
+
+    assert cd == cp
+    assert cd is not cp

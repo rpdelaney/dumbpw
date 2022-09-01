@@ -1,6 +1,14 @@
 [run]
 branch = true
+omit = tests/*
 
 [report]
+skip_empty = true
 show_missing = true
 fail_under = 100
+
+[html]
+directory = cov/html
+
+[xml]
+output = cov/coverage.xml

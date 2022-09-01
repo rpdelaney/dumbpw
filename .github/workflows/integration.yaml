@@ -7,6 +7,13 @@ on:
   pull_request:
   push:
     branches: [main]
+    paths:
+      - dumbpw/*
+      - tests/*
+      - pyproject.toml
+      - poetry.lock
+      - .pre-commit-config.yaml
+      - .github/workflows/integration.yaml
 
 jobs:
   lint:
