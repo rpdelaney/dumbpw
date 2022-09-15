@@ -6,7 +6,7 @@ import deal
 
 deal.activate()
 
-from .constants import DEFAULT_BLOCKS, MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
+from .constants import DEFAULT_BLOCKS, PASSWORD_LENGTH_MAX, PASSWORD_LENGTH_MIN
 from .engine import search
 from .exceptions import DumbValueError
 
@@ -57,8 +57,8 @@ from .exceptions import DumbValueError
 @click.argument(
     "length",
     type=click.IntRange(
-        min=MIN_PASSWORD_LENGTH,
-        max=MAX_PASSWORD_LENGTH,
+        min=PASSWORD_LENGTH_MIN,
+        max=PASSWORD_LENGTH_MAX,
     ),
 )
 def cli(
