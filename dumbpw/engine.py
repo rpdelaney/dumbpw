@@ -77,9 +77,9 @@ def search(
         "blocklist": blocklist,
     }
     if specials is not None:
-        charspace_args["specials"] = specials
+        charspace_args["extras"] = specials
     else:
-        charspace_args["specials"] = string.punctuation
+        charspace_args["extras"] = string.punctuation
 
     charspace = Charspace(**charspace_args)
     try_password = Candidate("")
