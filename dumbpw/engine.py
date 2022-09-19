@@ -14,26 +14,23 @@ from .exceptions import DumbValueError
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    lambda _: _.length <= MAX_PASSWORD_LENGTH,
     exception=DumbValueError,
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
 )
 @deal.pre(
-    validator=lambda _: _.min_uppercase
-    + _.min_lowercase
-    + _.min_digits
-    + _.min_specials
+    lambda _: _.min_uppercase + _.min_lowercase + _.min_digits + _.min_specials
     <= _.length,
     exception=DumbValueError,
     message="You cannot request more characters than the password length.",
 )
 @deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    lambda _: _.length <= MAX_PASSWORD_LENGTH,
     exception=DumbValueError,
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
 )
 @deal.pre(
-    validator=lambda _: _.length > 0,
+    lambda _: _.length > 0,
     message="length must be greater than zero.",
     exception=DumbValueError,
 )
@@ -104,15 +101,15 @@ def search(
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    lambda _: _.length <= MAX_PASSWORD_LENGTH,
     message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
 )
 @deal.pre(
-    validator=lambda _: _.length > 0,
+    lambda _: _.length > 0,
     message="length must be greater than zero.",
 )
 @deal.pre(
-    validator=lambda _: len("".join(_.charset)) > 0,
+    lambda _: len("".join(_.charset)) > 0,
     message="charset must have positive len.",
 )
 @deal.ensure(
