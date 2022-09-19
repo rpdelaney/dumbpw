@@ -69,6 +69,7 @@ from .exceptions import DumbValueError
         "Non-alphanumeric characters that may be in the password. "
         "Pass '-' to read from standard input."
     ),
+    default="",
 )
 def cli(
     length: int,

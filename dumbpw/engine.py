@@ -1,6 +1,5 @@
 import secrets
 import string
-from typing import Optional
 
 import deal
 
@@ -70,13 +69,13 @@ def search(
     min_digits: int,
     min_specials: int,
     blocklist: str,
-    specials: Optional[str],
+    specials: str,
     allow_repeating: bool,
 ) -> Candidate:
     charspace_args = {
         "blocklist": blocklist,
     }
-    if specials is not None:
+    if len(specials):
         charspace_args["extras"] = specials
     else:
         charspace_args["extras"] = string.punctuation
