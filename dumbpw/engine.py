@@ -1,4 +1,5 @@
 import secrets
+import string
 from typing import Set
 
 import deal
@@ -20,10 +21,7 @@ from .exceptions import DumbValueError
     message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
-    validator=lambda _: _.min_uppercase
-    + _.min_lowercase
-    + _.min_digits
-    + _.min_specials
+    lambda _: _.min_uppercase + _.min_lowercase + _.min_digits + _.min_specials
     <= _.length,
     exception=DumbValueError,
     message="You cannot request more characters than the password length.",
@@ -34,7 +32,7 @@ from .exceptions import DumbValueError
     message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
-    validator=lambda _: _.length > 0,
+    lambda _: _.length > 0,
     message="length must be greater than zero.",
     exception=DumbValueError,
 )
@@ -70,9 +68,18 @@ def search(
     min_digits: int,
     min_specials: int,
     blocklist: str,
+    specials: str,
     allow_repeating: bool,
 ) -> Candidate:
-    charspace = Charspace(blocklist=blocklist)
+    charspace_args = {
+        "blocklist": blocklist,
+    }
+    if len(specials):
+        charspace_args["extras"] = specials
+    else:
+        charspace_args["extras"] = string.punctuation
+
+    charspace = Charspace(**charspace_args)
     try_password = Candidate("")
 
     while not all(
@@ -100,11 +107,11 @@ def search(
     message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
-    validator=lambda _: _.length > 0,
+    lambda _: _.length > 0,
     message="length must be greater than zero.",
 )
 @deal.pre(
-    validator=lambda _: len("".join(_.charset)) > 0,
+    lambda _: len("".join(_.charset)) > 0,
     message="charset must have positive len.",
 )
 @deal.ensure(

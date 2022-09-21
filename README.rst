@@ -51,17 +51,20 @@ Usage
     Usage: dumbpw [OPTIONS] LENGTH
 
     Options:
-      --version                       Show the version and exit.
-      --min-uppercase INTEGER         The minimum number of uppercase characters.
-      --min-lowercase INTEGER         The minimum number of lowercase characters.
-      --min-digits INTEGER            The minimum number of digit characters.
-      --min-specials INTEGER          The minimum number of special characters.
-      --blocklist TEXT                Characters that may not be in the password.
-                                      [default: '";]
-      --allow-repeating / --reject-repeating
-                                      Allow or reject repeating characters in the
-                                      password.  [default: reject-repeating]
-      --help                          Show this message and exit.
+    --version                       Show the version and exit.
+    --min-uppercase INTEGER         The minimum number of uppercase characters.
+    --min-lowercase INTEGER         The minimum number of lowercase characters.
+    --min-digits INTEGER            The minimum number of digit characters.
+    --min-specials INTEGER          The minimum number of special characters.
+    --blocklist TEXT                Characters that may not be in the password.
+                                    [default: '";]
+    --allow-repeating / --reject-repeating
+                                    Allow or reject repeating characters in the
+                                    password.  [default: reject-repeating]
+    --specials TEXT                 Non-alphanumeric characters that may be in
+                                    the password. Pass '-' to read from standard
+                                    input.
+    --help                          Show this message and exit.
 
 Known issues
 ------------

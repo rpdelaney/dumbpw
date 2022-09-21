@@ -1,3 +1,5 @@
+import string
+
 import deal
 from hypothesis import strategies as strats
 
@@ -29,6 +31,11 @@ def test_generate(case: deal.TestCase) -> None:
         "min_specials": strats.integers(
             min_value=0,
             max_value=3,
+        ),
+        "specials": strats.text(
+            alphabet=string.punctuation,
+            min_size=0,
+            max_size=3,
         ),
     },
 )
