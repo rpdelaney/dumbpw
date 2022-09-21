@@ -8,16 +8,16 @@ deal.module_load(deal.pure)
 
 from .candidate import Candidate
 from .charspace import Charspace
-from .constants import MAX_PASSWORD_LENGTH
+from .constants import PASSWORD_LENGTH_MAX
 from .exceptions import DumbValueError
 
 
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
     exception=DumbValueError,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
     validator=lambda _: _.min_uppercase
@@ -29,9 +29,9 @@ from .exceptions import DumbValueError
     message="You cannot request more characters than the password length.",
 )
 @deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
     exception=DumbValueError,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
     validator=lambda _: _.length > 0,
@@ -96,8 +96,8 @@ def search(
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    validator=lambda _: _.length <= MAX_PASSWORD_LENGTH,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
+    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
     validator=lambda _: _.length > 0,
