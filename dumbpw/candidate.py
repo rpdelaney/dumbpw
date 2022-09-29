@@ -29,7 +29,7 @@ class Candidate(str):
         """
         return sum(1 for char in self.password if char in haystack)
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def digits(self) -> int:
         """Return a count of the ASCII digit characters in the password.
@@ -46,7 +46,7 @@ class Candidate(str):
         """
         return self._count_string_type(string.digits)
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def specials(self) -> int:
         """Return a count of the ASCII punctuation characters in the password.
@@ -61,7 +61,7 @@ class Candidate(str):
         """
         return self._count_string_type(string.punctuation)
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def uppers(self) -> int:
         """Return a count of the ASCII uppercase characters in the password.
@@ -76,7 +76,7 @@ class Candidate(str):
         """
         return self._count_string_type(string.ascii_uppercase)
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def lowers(self) -> int:
         """Return a count of the ASCII lowercase characters in the password.
@@ -91,7 +91,7 @@ class Candidate(str):
         """
         return self._count_string_type(string.ascii_lowercase)
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def has_duplicates(self) -> bool:
         """Return True if the password has duplicate characters, otherwise
@@ -111,7 +111,7 @@ class Candidate(str):
             else False
         )
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def has_repeating(self) -> bool:
         """Return True if the password has repeating characters, otherwise
