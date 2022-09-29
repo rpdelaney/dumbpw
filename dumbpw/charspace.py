@@ -1,28 +1,36 @@
-import string
 from dataclasses import dataclass
+from typing import Set
 
 import deal
+
+deal.activate()
+deal.module_load(deal.pure)
+
+from .constants import (
+    DEFAULT_DIGITS,
+    DEFAULT_EXTRAS,
+    DEFAULT_LOWERS,
+    DEFAULT_UPPERS,
+)
 
 
 @dataclass(frozen=True)
 class Charspace:
     blocklist: str = ""
-    digits: str = string.digits
-    extras: str = string.punctuation
-    lowers: str = string.ascii_lowercase
-    uppers: str = string.ascii_uppercase
+    digits: str = DEFAULT_DIGITS
+    extras: str = DEFAULT_EXTRAS
+    lowers: str = DEFAULT_LOWERS
+    uppers: str = DEFAULT_UPPERS
 
     @property  # type: ignore[misc]
     @deal.pure
-    def base_charset(self) -> str:
-        return self.lowers + self.uppers + self.digits + self.extras
+    def base_charset(self) -> Set[str]:
+        return set(self.lowers + self.uppers + self.digits + self.extras)
 
     @property  # type: ignore[misc]
     @deal.pure
-    def charset(self) -> str:
+    def charset(self) -> Set[str]:
         """De-duplicate the base charset, remove characters that are in the
         blocklist, and return a charset as a string.
         """
-        return "".join(
-            {char for char in self.base_charset if char not in self.blocklist}
-        )
+        return set(self.base_charset) - set(self.blocklist)

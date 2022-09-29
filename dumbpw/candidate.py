@@ -2,6 +2,9 @@ import string
 
 import deal
 
+deal.activate()
+deal.module_load(deal.pure)
+
 
 class Candidate(str):
     @deal.pure

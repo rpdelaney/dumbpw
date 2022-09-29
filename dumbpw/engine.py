@@ -1,22 +1,24 @@
 import secrets
 import string
+from typing import Set
 
 import deal
 
 deal.activate()
+deal.module_load(deal.pure)
 
 from .candidate import Candidate
 from .charspace import Charspace
-from .constants import MAX_PASSWORD_LENGTH
+from .constants import PASSWORD_LENGTH_MAX
 from .exceptions import DumbValueError
 
 
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
     exception=DumbValueError,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
     lambda _: _.min_uppercase + _.min_lowercase + _.min_digits + _.min_specials
@@ -25,9 +27,9 @@ from .exceptions import DumbValueError
     message="You cannot request more characters than the password length.",
 )
 @deal.pre(
-    lambda _: _.length <= MAX_PASSWORD_LENGTH,
+    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
     exception=DumbValueError,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
     lambda _: _.length > 0,
@@ -101,8 +103,8 @@ def search(
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    lambda _: _.length <= MAX_PASSWORD_LENGTH,
-    message=f"length cannot be greater than {MAX_PASSWORD_LENGTH}.",
+    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
+    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
     lambda _: _.length > 0,
@@ -121,7 +123,7 @@ def search(
     message="function return value must be "
     "composed of characters in the charset",
 )
-def generate(*, charset: str, length: int) -> str:
+def generate(*, charset: Set[str], length: int) -> str:
     """Return a cryptographically secure password of len length using
     characters only from the given charset."""
     return "".join(secrets.choice("".join(charset)) for i in range(length))
