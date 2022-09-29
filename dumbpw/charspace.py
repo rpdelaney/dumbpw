@@ -22,12 +22,12 @@ class Charspace:
     lowers: str = DEFAULT_LOWERS
     uppers: str = DEFAULT_UPPERS
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def base_charset(self) -> Set[str]:
         return set(self.lowers + self.uppers + self.digits + self.extras)
 
-    @property  # type: ignore[misc]
+    @property
     @deal.pure
     def charset(self) -> Set[str]:
         """De-duplicate the base charset, remove characters that are in the
