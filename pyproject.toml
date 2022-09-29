@@ -39,7 +39,7 @@ flake8-comprehensions = ">=3.7.0"
 flake8-docstrings = ">=1.6.0"
 flake8-simplify = ">=0.14.2"
 hypothesis = ">=6.39.4"
-mypy = ">=0.910"
+mypy = ">=0.981"
 pytest = ">=6.2.5"
 pytest-cov = ">=3.0.0"
 
