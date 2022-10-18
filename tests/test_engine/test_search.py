@@ -7,13 +7,6 @@ import dumbpw.engine as engine
 
 
 @deal.cases(
-    func=engine.generate,
-)
-def test_generate(case: deal.TestCase) -> None:
-    case()
-
-
-@deal.cases(
     func=engine.search,
     kwargs={
         "min_uppercase": strats.integers(
