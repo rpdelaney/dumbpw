@@ -9,6 +9,7 @@ import dumbpw.engine as engine
 @deal.cases(
     func=engine.search,
     kwargs={
+        "length": 30,
         "min_uppercase": strats.integers(
             min_value=0,
             max_value=3,
