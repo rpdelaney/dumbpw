@@ -4,6 +4,11 @@ omit =
     tests/*
     dumbpw/cli.py
 
+# concurrency
+concurrency = multiprocessing
+parallel = true
+sigterm = true
+
 [report]
 skip_empty = true
 show_missing = true
