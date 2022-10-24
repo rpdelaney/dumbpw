@@ -31,6 +31,11 @@ import dumbpw.engine as engine
             min_size=0,
             max_size=3,
         ),
+        "blocklist": strats.text(
+            alphabet=string.punctuation,
+            min_size=0,
+            max_size=3,
+        ),
     },
 )
 def test_search(case: deal.TestCase) -> None:
