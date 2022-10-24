@@ -78,11 +78,8 @@ def search(
 ) -> Candidate:
     charspace_args = {
         "blocklist": blocklist,
+        "extras": specials if len(specials) else string.punctuation,
     }
-    if len(specials):
-        charspace_args["extras"] = specials
-    else:
-        charspace_args["extras"] = string.punctuation
 
     charspace = Charspace(**charspace_args)
     try_password = Candidate("")
