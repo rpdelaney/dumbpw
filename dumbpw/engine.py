@@ -34,7 +34,12 @@ from .exceptions import DumbValueError
 @deal.pre(
     lambda _: _.length > 0,
     message="length must be greater than zero.",
+)
+@deal.pre(
+    lambda _: all(c not in _.blocklist for c in _.specials),
     exception=DumbValueError,
+    message="You cannot require a special character that is also in the"
+    "blocklist.",
 )
 @deal.ensure(
     lambda _: _.result.uppers >= _.min_uppercase,
