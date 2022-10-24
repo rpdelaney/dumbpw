@@ -1,6 +1,8 @@
 [run]
 branch = true
-omit = tests/*
+omit =
+    tests/*
+    dumbpw/cli.py
 
 [report]
 skip_empty = true

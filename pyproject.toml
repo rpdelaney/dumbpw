@@ -63,6 +63,7 @@ extras = [ "pyproject",]
 testpaths = "tests"
 console_output_style = "progress"
 addopts = [
+    "--cov=dumbpw",
     "--strict-markers",
     "--strict-config",
     "--doctest-modules",
