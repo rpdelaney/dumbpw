@@ -28,7 +28,7 @@ python = "^3.8"
 click = "^8.0.3"
 deal = "^4.19.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "*"
 deal-solver = ">=0.1.0"
 flake8 = ">=4.0.1"
@@ -37,14 +37,12 @@ flake8-bandit = ">=3.0.0"
 flake8-bugbear = ">=21.9.2"
 flake8-comprehensions = ">=3.7.0"
 flake8-docstrings = ">=1.6.0"
+flake8-pie = "^0.16.0"
 flake8-simplify = ">=0.14.2"
 hypothesis = ">=6.39.4"
 mypy = ">=0.981"
 pytest = ">=6.2.5"
 pytest-cov = ">=3.0.0"
-
-[tool.poetry.group.dev.dependencies]
-flake8-pie = "^0.16.0"
 
 [tool.black]
 line-length = 79
