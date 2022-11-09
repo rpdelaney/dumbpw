@@ -43,6 +43,9 @@ mypy = ">=0.981"
 pytest = ">=6.2.5"
 pytest-cov = ">=3.0.0"
 
+[tool.poetry.group.dev.dependencies]
+flake8-pie = "^0.16.0"
+
 [tool.black]
 line-length = 79
 target_version = [ "py310",]
