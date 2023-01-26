@@ -24,9 +24,9 @@ classifiers = [
 dumbpw = "dumbpw.cli:cli"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-click = "^8.0.3"
-deal = "^4.19.1"
+python = ">=3.8"
+click = ">=8.0.3"
+deal = ">=4.19.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
@@ -37,7 +37,7 @@ flake8-bandit = ">=3.0.0"
 flake8-bugbear = ">=21.9.2"
 flake8-comprehensions = ">=3.7.0"
 flake8-docstrings = ">=1.6.0"
-flake8-pie = "^0.16.0"
+flake8-pie = ">=0.16.0"
 flake8-simplify = ">=0.14.2"
 hypothesis = ">=6.39.4"
 mypy = ">=0.981"
@@ -57,7 +57,7 @@ multi_line_output = 3
 include_trailing_comma = true  # this prevents isort from fighting with black
 
 [tool.poetry.dev-dependencies.isort]
-version = "^5.10.1"
+version = ">=5.10.1"
 extras = [ "pyproject",]
 
 [tool.pytest.ini_options]
