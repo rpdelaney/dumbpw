@@ -21,8 +21,10 @@ from .exceptions import DumbValueError
     message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
-    lambda _: _.min_uppercase + _.min_lowercase + _.min_digits + _.min_specials
-    <= _.length,
+    lambda _: (
+        _.min_uppercase + _.min_lowercase + _.min_digits + _.min_specials
+        <= _.length
+    ),
     exception=DumbValueError,
     message="You cannot request more characters than the password length.",
 )
@@ -38,8 +40,9 @@ from .exceptions import DumbValueError
 @deal.pre(
     lambda _: all(c not in _.blocklist for c in _.specials),
     exception=DumbValueError,
-    message="You cannot require a special character that is also in the"
-    "blocklist.",
+    message=(
+        "You cannot require a special character that is also in the blocklist."
+    ),
 )
 @deal.ensure(
     lambda _: _.result.uppers >= _.min_uppercase,
@@ -122,8 +125,9 @@ def search(
 )
 @deal.ensure(
     lambda _: all(char in "".join(_.charset) for char in _.result),
-    message="function return value must be "
-    "composed of characters in the charset",
+    message=(
+        "function return value must be composed of characters in the charset"
+    ),
 )
 def generate(*, charset: Set[str], length: int) -> str:
     """Return a cryptographically secure password of len length using
