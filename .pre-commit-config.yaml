@@ -8,19 +8,10 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
-      # We re-set the `stages` setting because pre-commit-hooks over-rides it
-      # otherwise.
-      # See https://github.com/pre-commit/pre-commit-hooks/issues/515
       - id: end-of-file-fixer
-        stages: [commit]
       - id: trailing-whitespace
-        args: [--markdown-linebreak-ext=md]
-        stages: [commit]
       - id: check-executables-have-shebangs
-        stages: [commit]
-
       - id: mixed-line-ending
-        args: [--fix=lf]
       - id: check-added-large-files
       - id: check-merge-conflict
       - id: detect-private-key
@@ -29,7 +20,7 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.10.0  # Use the ref you want to point at
+    rev: v1.10.0
     hooks:
       - id: python-check-blanket-noqa
       - id: python-check-blanket-type-ignore
@@ -50,27 +41,12 @@ repos:
 
   - repo: local
     hooks:
-      - id: pytest
-        name: run all tests
-        stages: [push]
-        language: system
-        entry: poetry run pytest --full-trace --cov
-
       - id: pyproject.toml
         name: validate pyproject.toml
         language: system
         entry: poetry check
         files: 'pyproject\.toml'
         pass_filenames: false
-
-      - id: poetry-lock
-        name: poetry-lock
-        stages: [post-commit, post-merge]
-        language: system
-        entry: poetry install
-        files: 'poetry\.lock'
-        pass_filenames: false
-        verbose: true
 
       - id: deal lint
         name: deal lint
