@@ -1,6 +1,5 @@
 import secrets
 import string
-from typing import Set
 
 import deal
 
@@ -129,7 +128,7 @@ def search(
         "function return value must be composed of characters in the charset"
     ),
 )
-def generate(*, charset: Set[str], length: int) -> str:
+def generate(*, charset: set[str], length: int) -> str:
     """Return a cryptographically secure password of len length using
     characters only from the given charset."""
     return "".join(secrets.choice("".join(charset)) for i in range(length))

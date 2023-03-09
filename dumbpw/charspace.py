@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Set
 
 import deal
 
@@ -24,12 +23,12 @@ class Charspace:
 
     @property
     @deal.pure
-    def base_charset(self) -> Set[str]:
+    def base_charset(self) -> set[str]:
         return set(self.lowers + self.uppers + self.digits + self.extras)
 
     @property
     @deal.pure
-    def charset(self) -> Set[str]:
+    def charset(self) -> set[str]:
         """De-duplicate the base charset, remove characters that are in the
         blocklist, and return a charset as a string.
         """
