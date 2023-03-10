@@ -83,3 +83,10 @@ repos:
         language: system
         entry: poetry run mypy
         types: [python]
+
+      - id: pylic
+        name: validate dependency licenses
+        language: system
+        entry: poetry run pylic check
+        pass_filenames: false
+        files: 'pyproject\.toml'
