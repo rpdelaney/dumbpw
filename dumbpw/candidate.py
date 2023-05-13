@@ -133,13 +133,10 @@ class Candidate(str):
         )
 
     @deal.pure
+    @deal.ensure(
+        lambda self, result: result == self and result is not self,
+        message="Must return a copy.",
+    )
     def copy(self) -> "Candidate":
-        """Return a copy of self.
-        >>> cd = Candidate("A")
-        >>> cp = cd.copy()
-        >>> cd == cp
-        True
-        >>> cp is cd
-        False
-        """
+        """Return a copy of self."""
         return Candidate(self.password)
