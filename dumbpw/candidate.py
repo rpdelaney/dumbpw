@@ -7,6 +7,23 @@ deal.module_load(deal.pure)
 
 
 class Candidate(str):
+    """
+    A subclass of str representing a password candidate.
+    >>> password = Candidate("abcDEFG123!")
+    >>> print(password.digits)
+    3
+    >>> print(password.specials)
+    1
+    >>> print(password.uppers)
+    4
+    >>> print(password.lowers)
+    3
+    >>> print(password.has_duplicates)
+    False
+    >>> print(password.has_repeating)
+    False
+    """
+
     @deal.pure
     def __init__(self, /, password: str) -> None:
         self.password = password
