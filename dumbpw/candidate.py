@@ -127,11 +127,10 @@ class Candidate(str):
         >>> Candidate("ABB").has_repeating
         True
         """
-        for index in range(1, len(self.password)):
-            if self.password[index] == self.password[index - 1]:
-                return True
-        else:
-            return False
+        return any(
+            self.password[i] == self.password[i - 1]
+            for i in range(1, len(self.password))
+        )
 
     @deal.pure
     def copy(self) -> "Candidate":
