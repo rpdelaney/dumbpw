@@ -13,6 +13,10 @@ class Candidate(str):
         return
 
     @deal.pure
+    @deal.post(
+        lambda result: result >= 0,
+        message="Count cannot be negative.",
+    )
     def _count_string_type(self, haystack: str) -> int:
         """Return a count of how many characters in the password are part of
         the haystack.
@@ -31,6 +35,10 @@ class Candidate(str):
 
     @property
     @deal.pure
+    @deal.post(
+        lambda result: result >= 0,
+        message="Count cannot be negative.",
+    )
     def digits(self) -> int:
         """Return a count of the ASCII digit characters in the password.
         >>> Candidate("").digits
@@ -48,6 +56,10 @@ class Candidate(str):
 
     @property
     @deal.pure
+    @deal.post(
+        lambda result: result >= 0,
+        message="Count cannot be negative.",
+    )
     def specials(self) -> int:
         """Return a count of the ASCII punctuation characters in the password.
         >>> Candidate("").specials
@@ -63,6 +75,10 @@ class Candidate(str):
 
     @property
     @deal.pure
+    @deal.post(
+        lambda result: result >= 0,
+        message="Count cannot be negative.",
+    )
     def uppers(self) -> int:
         """Return a count of the ASCII uppercase characters in the password.
         >>> Candidate("").uppers
@@ -78,6 +94,10 @@ class Candidate(str):
 
     @property
     @deal.pure
+    @deal.post(
+        lambda result: result >= 0,
+        message="Count cannot be negative.",
+    )
     def lowers(self) -> int:
         """Return a count of the ASCII lowercase characters in the password.
         >>> Candidate("").lowers
