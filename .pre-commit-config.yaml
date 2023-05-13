@@ -60,12 +60,6 @@ repos:
         entry: poetry run python3 -m deal lint
         types: [python]
 
-      - id: isort
-        name: isort
-        language: system
-        entry: poetry run isort
-        types: [python]
-
       - id: black
         name: black
         language: system
