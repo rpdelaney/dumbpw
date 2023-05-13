@@ -14,14 +14,12 @@
             "matchUpdateTypes": [
                 "major"
             ],
-            "groupName": "dependencies",
             "reviewers": [
                 "rpdelaney"
             ]
         },
         {
             "automerge": true,
-            "groupName": "dependencies",
             "matchUpdateTypes": [
                 "patch",
                 "pin",
@@ -30,10 +28,5 @@
             ]
         }
     ],
-    "schedule": [
-        "every weekday",
-        "after 9am and before 5pm"
-    ],
-    "separateMinorPatch": false,
-    "timezone": "America/Los_Angeles"
+    "separateMinorPatch": false
 }
