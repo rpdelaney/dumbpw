@@ -72,10 +72,10 @@ repos:
         entry: poetry run black
         types: [python]
 
-      - id: ruff
-        name: ruff
+      - id: flake8
+        name: flake8
         language: system
-        entry: poetry run ruff
+        entry: poetry run flake8
         types: [python]
 
       - id: mypy
