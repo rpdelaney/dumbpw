@@ -41,9 +41,10 @@ flake8-pie = ">=0.16.0"
 flake8-simplify = ">=0.14.2"
 hypothesis = ">=6.39.4"
 mypy = ">=0.981"
+ptpython = "^3.0.23"
+pylic = ">=3.5.0"
 pytest = ">=6.2.5"
 pytest-cov = ">=3.0.0"
-pylic = ">=3.5.0"
 
 [tool.black]
 line-length = 79
