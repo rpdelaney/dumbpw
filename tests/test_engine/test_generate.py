@@ -2,6 +2,7 @@ import os
 
 import deal
 from hypothesis import HealthCheck, settings
+from hypothesis import strategies as strats
 
 from dumbpw.engine import generate
 
@@ -19,6 +20,9 @@ else:
 @deal.cases(
     func=generate,
     settings=ci_settings,
+    kwargs={
+        "length": strats.integers(min_value=1, max_value=16),
+    },
 )
 def test_generate(case: deal.TestCase) -> None:
     case()
