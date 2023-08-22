@@ -12,7 +12,7 @@ if os.environ.get("CI"):
         suppress_health_check=(HealthCheck.too_slow,),
     )
     settings.load_profile("CI")
-    ci_settings = settings.from_profile("CI")
+    ci_settings = settings.get_profile("CI")
 else:
     ci_settings = settings()
 
