@@ -16,9 +16,9 @@ else:
     ci_settings = settings()
 
 
-@ci_settings
 @deal.cases(
     func=generate,
+    settings=ci_settings,
 )
 def test_generate(case: deal.TestCase) -> None:
     case()
