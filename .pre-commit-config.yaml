@@ -19,6 +19,17 @@ repos:
       - id: check-toml
       - id: check-yaml
 
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.26.1
+    hooks:
+      - id: check-github-workflows
+        name: validate github workflows
+        args: ["--verbose"]
+      - id: check-renovate
+        name: validate renovate config
+        args: ["--verbose"]
+
+
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:

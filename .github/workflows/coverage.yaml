@@ -6,8 +6,8 @@ on:
   push:
     branches: [main]
     paths:
-      - dumbpw/*
-      - tests/*
+      - dumbpw/**
+      - tests/**
       - .coveragerc
       - .github/workflows/coverage.yaml
 

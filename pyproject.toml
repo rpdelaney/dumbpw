@@ -24,7 +24,7 @@ classifiers = [
 dumbpw = "dumbpw.cli:cli"
 
 [tool.poetry.dependencies]
-python = ">=3.8, <4.0"
+python = ">=3.10, <4.0"
 click = ">=8.0.3"
 deal = ">=4.19.1"
 
@@ -41,9 +41,10 @@ flake8-pie = ">=0.16.0"
 flake8-simplify = ">=0.14.2"
 hypothesis = ">=6.39.4"
 mypy = ">=0.981"
+ptpython = "^3.0.23"
+pylic = ">=3.5.0"
 pytest = ">=6.2.5"
 pytest-cov = ">=3.0.0"
-pylic = ">=3.5.0"
 
 [tool.black]
 line-length = 79
