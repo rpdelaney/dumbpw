@@ -134,6 +134,7 @@ safe_licenses = [
     "Mozilla Public License 2.0 (MPL 2.0)",
     "Python Software Foundation License",
     "Apache Software License",
+    "Apache",
 ]
 unsafe_packages = ["ptpython"]  # https://github.com/prompt-toolkit/ptpython/pull/532
 ignore_packages = []
