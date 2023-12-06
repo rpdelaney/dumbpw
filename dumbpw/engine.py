@@ -84,21 +84,25 @@ def search(
     }
 
     charspace = Charspace(**charspace_args)
+
+    def is_valid_password(password: Candidate) -> bool:
+        return (
+            password.uppers >= min_uppercase
+            and password.lowers >= min_lowercase
+            and password.digits >= min_digits
+            and password.specials >= min_specials
+            and (allow_repeating or not password.has_repeating)
+            and len(password) == length
+        )
+
     try_password = Candidate("")
 
-    while not all(
-        [
-            True
-            and try_password.uppers >= min_uppercase
-            and try_password.lowers >= min_lowercase
-            and try_password.digits >= min_digits
-            and try_password.specials >= min_specials
-            and (allow_repeating or not try_password.has_repeating)
-            and len(try_password) == length
-        ]
-    ):
+    while not is_valid_password(try_password):
         try_password = Candidate(
-            generate(charset=charspace.charset, length=length)
+            generate(
+                charset=charspace.charset,
+                length=length,
+            )
         )
 
     return try_password
