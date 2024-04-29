@@ -1,14 +1,17 @@
+"""Provide an object for evaluating candidate passwords."""
+
 import string
 
 import deal
+
 
 deal.activate()
 deal.module_load(deal.pure)
 
 
 class Candidate(str):
-    """
-    A subclass of str representing a password candidate.
+    """A subclass of str representing a password candidate.
+
     >>> password = Candidate("abcDEFG123!")
     >>> print(password.digits)
     3
@@ -24,10 +27,13 @@ class Candidate(str):
     False
     """
 
+    __slots__ = ()
+
     @deal.pure
     def __init__(self, /, password: str) -> None:
+        """Initialize the Candidate object."""
         self.password = password
-        return
+        return  # noqa: PLR1711
 
     @deal.pure
     @deal.post(
@@ -35,8 +41,8 @@ class Candidate(str):
         message="Count cannot be negative.",
     )
     def _count_string_type(self, haystack: str) -> int:
-        """Return a count of how many characters in the password are part of
-        the haystack.
+        """Count how many characters in the password are part of the haystack.
+
         >>> Candidate("")._count_string_type(string.ascii_lowercase)
         0
         >>> Candidate("123")._count_string_type(string.ascii_lowercase)
@@ -58,6 +64,7 @@ class Candidate(str):
     )
     def digits(self) -> int:
         """Return a count of the ASCII digit characters in the password.
+
         >>> Candidate("").digits
         0
         >>> Candidate("abc").digits
@@ -78,7 +85,8 @@ class Candidate(str):
         message="Count cannot be negative.",
     )
     def specials(self) -> int:
-        """Return a count of the ASCII punctuation characters in the password.
+        r"""Return a count of the ASCII punctuation characters in the password.
+
         >>> Candidate("").specials
         0
         >>> Candidate("abc").specials
@@ -98,6 +106,7 @@ class Candidate(str):
     )
     def uppers(self) -> int:
         """Return a count of the ASCII uppercase characters in the password.
+
         >>> Candidate("").uppers
         0
         >>> Candidate("abc").uppers
@@ -117,6 +126,7 @@ class Candidate(str):
     )
     def lowers(self) -> int:
         """Return a count of the ASCII lowercase characters in the password.
+
         >>> Candidate("").lowers
         0
         >>> Candidate("abc").lowers
@@ -131,8 +141,8 @@ class Candidate(str):
     @property
     @deal.pure
     def has_duplicates(self) -> bool:
-        """Return True if the password has duplicate characters, otherwise
-        False.
+        """Return if the password has duplicate characters.
+
         >>> Candidate("").has_duplicates
         False
         >>> Candidate("ABC").has_duplicates
@@ -151,8 +161,8 @@ class Candidate(str):
     @property
     @deal.pure
     def has_repeating(self) -> bool:
-        """Return True if the password has repeating characters, otherwise
-        False.
+        """Return if the password has repeating characters.
+
         >>> Candidate("").has_repeating
         False
         >>> Candidate("A").has_repeating
