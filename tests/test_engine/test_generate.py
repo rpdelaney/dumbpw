@@ -6,6 +6,7 @@ from hypothesis import strategies as strats
 
 from dumbpw.engine import generate
 
+
 if os.environ.get("CI"):
     settings.register_profile(
         "CI",

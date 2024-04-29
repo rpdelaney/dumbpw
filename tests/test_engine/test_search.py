@@ -4,7 +4,8 @@ import deal
 from hypothesis import HealthCheck, settings
 from hypothesis import strategies as strats
 
-import dumbpw.engine as engine
+from dumbpw import engine
+
 
 settings.register_profile(
     "CI",
