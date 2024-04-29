@@ -1,15 +1,18 @@
+"""Provide an engine for finding a good dumb password."""
+
 import secrets
 import string
 
 import deal
 
-deal.activate()
-deal.module_load(deal.pure)
-
 from .candidate import Candidate
 from .charspace import Charspace
 from .constants import PASSWORD_LENGTH_MAX
 from .exceptions import DumbValueError
+
+
+deal.activate()
+deal.module_load(deal.pure)
 
 
 @deal.safe
@@ -78,6 +81,7 @@ def search(
     specials: str,
     allow_repeating: bool,
 ) -> Candidate:
+    """Search for a password that meets the given requirements."""
     charspace_args = {
         "blocklist": blocklist,
         "extras": specials if specials else string.punctuation,
@@ -133,6 +137,9 @@ def search(
     ),
 )
 def generate(*, charset: set[str], length: int) -> str:
-    """Return a cryptographically secure password of len length using
-    characters only from the given charset."""
+    """Return a cryptographically secure password.
+
+    The value must be of len length using characters only from the given
+    charset.
+    """
     return "".join(secrets.choice("".join(charset)) for i in range(length))
