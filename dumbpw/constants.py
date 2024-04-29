@@ -1,6 +1,8 @@
+"""Provide constants and hard-coded values."""
 import string
 
 import deal
+
 
 deal.activate()
 deal.module_load(deal.pure)
