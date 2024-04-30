@@ -1,6 +1,6 @@
-class DumbException(Exception):
+class DumbError(Exception):
     pass
 
 
-class DumbValueError(ValueError, DumbException):
+class DumbValueError(ValueError, DumbError):
     pass
