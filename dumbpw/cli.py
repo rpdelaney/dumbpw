@@ -1,3 +1,5 @@
+"""Create a command-line interface entrypoint."""
+
 import fileinput
 import sys
 from typing import NoReturn
@@ -81,6 +83,7 @@ def cli(
     blocklist: str,
     allow_repeating: bool,
 ) -> NoReturn:
+    """A dumb password generator for dumb apps with dumb rules."""  # noqa: D401
     if specials == "-":
         specials = "".join(char for char in fileinput.input(files="-")).strip()
 
