@@ -7,6 +7,7 @@ from typing import NoReturn
 import click
 import deal
 
+
 deal.activate()
 
 from .constants import DEFAULT_BLOCKS, PASSWORD_LENGTH_MAX, PASSWORD_LENGTH_MIN
@@ -74,6 +75,7 @@ from .exceptions import DumbValueError
     default="",
 )
 def cli(
+    *,
     length: int,
     min_uppercase: int,
     min_lowercase: int,

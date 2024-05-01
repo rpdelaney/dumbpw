@@ -1,4 +1,5 @@
 """Provide constants and hard-coded values."""
+
 import string
 
 import deal
