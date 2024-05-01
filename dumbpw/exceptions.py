@@ -1,6 +1,7 @@
-class DumbError(Exception):
-    pass
+"""Define exceptions for dumbpw."""
 
+class DumbError(Exception):
+    """Generic exception."""
 
 class DumbValueError(ValueError, DumbError):
-    pass
+    """ValueError for own objects."""
