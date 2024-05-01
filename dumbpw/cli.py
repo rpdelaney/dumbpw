@@ -74,7 +74,7 @@ from .exceptions import DumbValueError  # noqa: E402
     ),
     default="",
 )
-def cli(
+def cli(  # noqa: PLR0913
     *,
     length: int,
     min_uppercase: int,

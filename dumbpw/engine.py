@@ -70,7 +70,7 @@ deal.module_load(deal.pure)
     lambda _: len(_.result) == _.length,
     message="The returned value len must equal the requested length.",
 )
-def search(
+def search(  # noqa: PLR0913
     *,
     length: int,
     min_uppercase: int,
