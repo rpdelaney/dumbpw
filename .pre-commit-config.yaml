@@ -65,6 +65,18 @@ repos:
         files: 'pyproject\.toml'
         pass_filenames: false
 
+      - id: ruff check
+        name: ruff check
+        language: system
+        entry: poetry run ruff check --fix .
+        types: [python]
+
+      - id: ruff check
+        name: ruff check
+        language: system
+        entry: poetry run ruff format .
+        types: [python]
+
       - id: deal lint
         name: deal lint
         language: system
