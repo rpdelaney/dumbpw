@@ -27,7 +27,7 @@ class Candidate(str):
     False
     """
 
-    __slots__ = ()
+    __slots__ = ("password",)
 
     @deal.pure
     def __init__(self, /, password: str) -> None:
