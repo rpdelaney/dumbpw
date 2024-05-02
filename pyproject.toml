@@ -104,14 +104,12 @@ ignore_errors = true
 [tool.pylic]
 # OSI approved licenses: https://opensource.org/licenses/
 safe_licenses = [
-    "MIT",
     "MIT License",
     "BSD License",
     "GNU Lesser General Public License v2 (LGPLv2)",
     "Mozilla Public License 2.0 (MPL 2.0)",
     "Python Software Foundation License",
     "Apache Software License",
-    "Apache",
 ]
 unsafe_packages = []
 ignore_packages = []
