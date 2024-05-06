@@ -11,8 +11,8 @@ dumbpw
 .. |MAINTAINED| image:: https://img.shields.io/maintenance/yes/2024?logoColor=informational
 .. |VERSION| image:: https://img.shields.io/pypi/v/dumbpw
    :target: https://pypi.org/project/dumbpw
-.. |STYLE| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://github.com/psf/black
+.. |STYLE| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+   :target: https://github.com/astral-sh/ruff
 .. |LANGUAGE| image:: https://img.shields.io/pypi/pyversions/dumbpw
 .. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/dumbpw
    :target: https://codeclimate.com/github/rpdelaney/dumbpw
