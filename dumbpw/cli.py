@@ -10,7 +10,11 @@ import deal
 
 deal.activate()
 
-from .constants import DEFAULT_BLOCKS, PASSWORD_LENGTH_MAX, PASSWORD_LENGTH_MIN  # noqa: E402, I001
+from .constants import (  # noqa: E402
+    DEFAULT_BLOCKS,
+    PASSWORD_LENGTH_MAX,
+    PASSWORD_LENGTH_MIN,
+)
 from .engine import search  # noqa: E402
 from .exceptions import DumbValueError  # noqa: E402
 
