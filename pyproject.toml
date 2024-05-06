@@ -112,4 +112,4 @@ safe_licenses = [
     "Apache Software License",
 ]
 unsafe_packages = []
-ignore_packages = ["pynvim"]
+ignore_packages = []
