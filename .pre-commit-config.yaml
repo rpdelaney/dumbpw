@@ -72,8 +72,8 @@ repos:
         types: [python]
         pass_filenames: true
 
-      - id: ruff check
-        name: ruff check
+      - id: ruff format
+        name: ruff format
         language: system
         entry: poetry run ruff format
         types: [python]
