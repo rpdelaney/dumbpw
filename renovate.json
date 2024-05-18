@@ -1,14 +1,15 @@
 {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         "config:base"
     ],
-    "lockFileMaintenance": {
-        "enabled": true,
-        "automerge": true
-    },
     "labels": [
         "dependencies"
     ],
+    "lockFileMaintenance": {
+        "automerge": true,
+        "enabled": true
+    },
     "packageRules": [
         {
             "matchUpdateTypes": [
