@@ -17,6 +17,7 @@ from .constants import (  # noqa: E402
 )
 from .engine import search  # noqa: E402
 from .exceptions import DumbValueError  # noqa: E402
+from .settings import Settings  # noqa: E402
 
 
 @deal.has("io", "global", "stderr", "stdout")
@@ -93,17 +94,18 @@ def cli(  # noqa: PLR0913
     if specials == "-":
         specials = "".join(char for char in fileinput.input(files="-")).strip()
 
+    settings = Settings(
+        length=length,
+        min_uppercase=min_uppercase,
+        min_lowercase=min_lowercase,
+        min_digits=min_digits,
+        min_specials=min_specials,
+        specials=specials,
+        blocklist=blocklist,
+        allow_repeating=allow_repeating,
+    )
     try:
-        try_password = search(
-            length=length,
-            min_uppercase=min_uppercase,
-            min_lowercase=min_lowercase,
-            min_digits=min_digits,
-            min_specials=min_specials,
-            specials=specials,
-            blocklist=blocklist,
-            allow_repeating=allow_repeating,
-        )
+        try_password = search(settings)
     except DumbValueError as ve:
         print(ve, file=sys.stderr)
         sys.exit(1)

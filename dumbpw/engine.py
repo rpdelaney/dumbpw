@@ -9,6 +9,7 @@ from .candidate import Candidate
 from .charspace import Charspace
 from .constants import PASSWORD_LENGTH_MAX
 from .exceptions import DumbValueError
+from .settings import Settings
 
 
 deal.activate()
@@ -25,7 +26,7 @@ deal.module_load(deal.pure)
 @deal.pre(
     lambda _: (
         _.min_uppercase + _.min_lowercase + _.min_digits + _.min_specials
-        <= _.length
+        <= _.settings.length
     ),
     exception=DumbValueError,
     message="You cannot request more characters than the password length.",
@@ -40,7 +41,8 @@ deal.module_load(deal.pure)
     message="length must be greater than zero.",
 )
 @deal.pre(
-    lambda _: all(c not in _.blocklist for c in _.specials),
+    lambda _: _.settings.blocklist
+    and all(c not in _.settings.blocklist for c in _.settings.specials),
     exception=DumbValueError,
     message=(
         "You cannot require a special character that is also in the blocklist."
@@ -63,40 +65,32 @@ deal.module_load(deal.pure)
     message="Not enough special characters in result.",
 )
 @deal.ensure(
-    lambda _: _.allow_repeating or not _.result.has_repeating,
+    lambda _: _.result.has_repeating or not _.allow_repeating,
     message="Repeating characters are not allowed.",
 )
 @deal.ensure(
     lambda _: len(_.result) == _.length,
     message="The returned value len must equal the requested length.",
 )
-def search(  # noqa: PLR0913
-    *,
-    length: int,
-    min_uppercase: int,
-    min_lowercase: int,
-    min_digits: int,
-    min_specials: int,
-    blocklist: str,
-    specials: str,
-    allow_repeating: bool,
-) -> Candidate:
+def search(settings: Settings) -> Candidate:
     """Search for a password that meets the given requirements."""
     charspace_args = {
-        "blocklist": blocklist,
-        "extras": specials if specials else string.punctuation,
+        "blocklist": settings.blocklist,
+        "extras": settings.specials
+        if settings.specials
+        else string.punctuation,
     }
 
     charspace = Charspace(**charspace_args)
 
     def is_valid_password(password: Candidate) -> bool:
         return (
-            password.uppers >= min_uppercase
-            and password.lowers >= min_lowercase
-            and password.digits >= min_digits
-            and password.specials >= min_specials
-            and (allow_repeating or not password.has_repeating)
-            and len(password) == length
+            password.uppers >= settings.min_uppercase
+            and password.lowers >= settings.min_lowercase
+            and password.digits >= settings.min_digits
+            and password.specials >= settings.min_specials
+            and (settings.allow_repeating or not password.has_repeating)
+            and len(password) == settings.length
         )
 
     try_password = Candidate("")
@@ -105,7 +99,7 @@ def search(  # noqa: PLR0913
         try_password = Candidate(
             generate(
                 charset=charspace.charset,
-                length=length,
+                length=settings.length,
             )
         )
 
