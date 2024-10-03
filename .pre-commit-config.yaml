@@ -25,10 +25,11 @@ repos:
       - id: check-github-workflows
         name: validate github workflows
         args: ["--verbose"]
-      - id: check-renovate
-        name: validate renovate config
-        args: ["--verbose"]
 
+  - repo: https://github.com/renovatebot/pre-commit-hooks
+    rev: 38.107.0
+    hooks:
+      - id: renovate-config-validator
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
