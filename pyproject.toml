@@ -44,9 +44,10 @@ testpaths = "tests"
 console_output_style = "progress"
 addopts = [
     "--cov=dumbpw",
-    "--strict-markers",
-    "--strict-config",
     "--doctest-modules",
+    "--strict-config",
+    "--strict-markers",
+    "-rA",
 ]
 filterwarnings = ["error"]
 xfail_strict = true
