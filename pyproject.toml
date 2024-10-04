@@ -35,7 +35,6 @@ deal-solver = ">=0.1.0"
 hypothesis = ">=6.39.4"
 mypy = ">=0.981"
 ptpython = "^3.0.23"
-pylic = ">=3.5.0"
 pytest = ">=6.2.5"
 pytest-cov = ">=3.0.0"
 ruff = "*"
@@ -101,16 +100,3 @@ ignore_errors = true
 [[tool.mypy.overrides]]
 module = ".venv.*"
 ignore_errors = true
-
-[tool.pylic]
-# OSI approved licenses: https://opensource.org/licenses/
-safe_licenses = [
-    "MIT License",
-    "BSD License",
-    "GNU Lesser General Public License v2 (LGPLv2)",
-    "Mozilla Public License 2.0 (MPL 2.0)",
-    "Python Software Foundation License",
-    "Apache Software License",
-]
-unsafe_packages = []
-ignore_packages = []
