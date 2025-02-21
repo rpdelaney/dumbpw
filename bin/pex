@@ -1,0 +1,5 @@
+pex --interpreter-constraint \
+  "$(grep -Po '(?<=dumbpw = ")[^"]*' pyproject.toml)" \
+  --pip-version latest . \
+  --script dumbpw \
+  --output-file dumbpw.pex
