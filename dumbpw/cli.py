@@ -10,14 +10,14 @@ import deal
 
 deal.activate()
 
-from .constants import (  # noqa: E402
+from dumbpw.constants import (  # noqa: E402
     DEFAULT_BLOCKS,
     PASSWORD_LENGTH_MAX,
     PASSWORD_LENGTH_MIN,
 )
-from .engine import search  # noqa: E402
-from .exceptions import DumbValueError  # noqa: E402
-from .settings import Settings  # noqa: E402
+from dumbpw.engine import search  # noqa: E402
+from dumbpw.exceptions import DumbValueError  # noqa: E402
+from dumbpw.settings import Settings  # noqa: E402
 
 
 @deal.has("io", "global", "stderr", "stdout")

@@ -5,11 +5,11 @@ import string
 
 import deal
 
-from .candidate import Candidate
-from .charspace import Charspace
-from .constants import PASSWORD_LENGTH_MAX
-from .exceptions import DumbValueError
-from .settings import Settings
+from dumbpw.candidate import Candidate
+from dumbpw.charspace import Charspace
+from dumbpw.constants import PASSWORD_LENGTH_MAX
+from dumbpw.exceptions import DumbValueError
+from dumbpw.settings import Settings
 
 
 deal.activate()

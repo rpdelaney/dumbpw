@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import deal
 
-from .constants import (
+from dumbpw.constants import (
     DEFAULT_DIGITS,
     DEFAULT_EXTRAS,
     DEFAULT_LOWERS,
