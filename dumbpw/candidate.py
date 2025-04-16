@@ -173,6 +173,10 @@ class Candidate(str):
         True
         >>> Candidate("ABB").has_repeating
         True
+        >>> Candidate("ABA").has_repeating
+        False
+        >>> Candidate("8[z]>").has_repeating
+        False
         """
         return any(
             self.password[i] == self.password[i - 1]
