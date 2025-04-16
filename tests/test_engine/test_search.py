@@ -5,6 +5,7 @@ from hypothesis import HealthCheck, settings
 from hypothesis import strategies as strats
 
 from dumbpw import engine
+from dumbpw.constants import DEFAULT_BLOCKS, PASSWORD_LENGTH_MIN
 from dumbpw.settings import Settings
 
 
@@ -17,13 +18,13 @@ settings.load_profile("CI")
 SETTINGS_STRATEGY = strats.builds(
     Settings,
     allow_repeating=strats.booleans(),
-    length=strats.just(30),
-    min_uppercase=strats.integers(min_value=0, max_value=3),
-    min_lowercase=strats.integers(min_value=0, max_value=3),
-    min_digits=strats.integers(min_value=0, max_value=3),
-    min_specials=strats.integers(min_value=0, max_value=3),
-    specials=strats.text(alphabet=string.punctuation, min_size=0, max_size=3),
-    blocklist=strats.just(""),
+    length=strats.integers(min_value=PASSWORD_LENGTH_MIN, max_value=10),
+    min_uppercase=strats.integers(min_value=0, max_value=1),
+    min_lowercase=strats.integers(min_value=0, max_value=1),
+    min_digits=strats.integers(min_value=0, max_value=1),
+    min_specials=strats.integers(min_value=0, max_value=1),
+    specials=strats.text(alphabet=string.punctuation, min_size=0, max_size=1),
+    blocklist=strats.just(DEFAULT_BLOCKS),
 )
 
 
