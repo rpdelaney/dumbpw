@@ -14,5 +14,5 @@ if [ -z "$TWINE_PASSWORD" ] ; then
 fi
 
 if poetry build ; then
-  poetry publish --build -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "${1:-pypi_test}"
+  poetry publish -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "${1:-pypi_test}"
 fi
