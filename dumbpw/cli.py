@@ -92,7 +92,7 @@ def cli(  # noqa: PLR0913
 ) -> NoReturn:
     """A dumb password generator."""  # noqa: D401
     if specials == "-":
-        specials = "".join(char for char in fileinput.input(files="-")).strip()
+        specials = "".join(char for char in fileinput.input(files="-")).strip()  # noqa: SIM115
 
     settings = Settings(
         length=length,
