@@ -12,7 +12,7 @@ deal.module_load(deal.pure)
 class Candidate(str):
     """A subclass of str representing a password candidate.
 
-    >>> password = Candidate("abcDEFG123!")
+    >>> password = Candidate("abcDEFG123!abc")
     >>> print(password.digits)
     3
     >>> print(password.specials)
@@ -20,9 +20,9 @@ class Candidate(str):
     >>> print(password.uppers)
     4
     >>> print(password.lowers)
-    3
+    6
     >>> print(password.has_duplicates)
-    False
+    True
     >>> print(password.has_repeating)
     False
     """
