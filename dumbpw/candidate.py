@@ -93,7 +93,7 @@ class Candidate(str):
         0
         >>> Candidate(r"abc%^*.").specials
         4
-        >>> Candidate(r"a\\bc").specials
+        >>> Candidate(r"a\bc").specials
         1
         """
         return self._count_string_type(string.punctuation)
