@@ -40,7 +40,7 @@ pytest-cov = ">=3.0.0"
 ruff = "*"
 
 [tool.pytest.ini_options]
-testpaths = "tests"
+testpaths = ["dumbpw", "tests"]
 console_output_style = "progress"
 addopts = [
     "--cov=dumbpw",
