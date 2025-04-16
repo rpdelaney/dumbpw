@@ -65,6 +65,7 @@ unfixable = [
 "__init__.py" = ["D104", "E402"]
 "dumbpw/cli.py" = ["T201"]
 "**/{tests,docs}/*" = ["ARG", "ANN", "D", "S"]
+".pythonrc.py" = ["ALL"]
 
 [lint.mccabe]
 max-complexity = 10
