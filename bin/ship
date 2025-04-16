@@ -3,6 +3,12 @@
 # builds and uploads a distribution to pypi
 #
 
+repo="${1:-pypi_test}"
+
+if [ "$repo" = "pypi_test" ]; then
+  TWINE_PASSWORD="$TWINE_TEST_PASSWORD"
+fi
+
 if [ -z "$TWINE_USERNAME" ] ; then
   echo "TWINE_USERNAME must be set." 1>&2
   exit 1
@@ -14,5 +20,5 @@ if [ -z "$TWINE_PASSWORD" ] ; then
 fi
 
 if poetry build ; then
-  poetry publish -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "${1:-pypi_test}"
+  poetry publish -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "$repo"
 fi
