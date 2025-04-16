@@ -19,25 +19,28 @@ deal.module_load(deal.pure)
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
+    validator=lambda _: _.settings.length <= PASSWORD_LENGTH_MAX,
     exception=DumbValueError,
     message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
     lambda _: (
-        _.min_uppercase + _.min_lowercase + _.min_digits + _.min_specials
+        _.settings.min_uppercase
+        + _.settings.min_lowercase
+        + _.settings.min_digits
+        + _.settings.min_specials
         <= _.settings.length
     ),
     exception=DumbValueError,
     message="You cannot request more characters than the password length.",
 )
 @deal.pre(
-    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
+    validator=lambda _: _.settings.length <= PASSWORD_LENGTH_MAX,
     exception=DumbValueError,
     message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
 )
 @deal.pre(
-    lambda _: _.length > 0,
+    lambda _: _.settings.length > 0,
     message="length must be greater than zero.",
 )
 @deal.pre(
@@ -49,27 +52,27 @@ deal.module_load(deal.pure)
     ),
 )
 @deal.ensure(
-    lambda _: _.result.uppers >= _.min_uppercase,
+    lambda _: _.result.uppers >= _.settings.min_uppercase,
     message="Not enough uppercase characters in result.",
 )
 @deal.ensure(
-    lambda _: _.result.lowers >= _.min_lowercase,
+    lambda _: _.result.lowers >= _.settings.min_lowercase,
     message="Not enough lowercase characters in result.",
 )
 @deal.ensure(
-    lambda _: _.result.digits >= _.min_digits,
+    lambda _: _.result.digits >= _.settings.min_digits,
     message="Not enough digit characters in result.",
 )
 @deal.ensure(
-    lambda _: _.result.specials >= _.min_specials,
+    lambda _: _.result.specials >= _.settings.min_specials,
     message="Not enough special characters in result.",
 )
 @deal.ensure(
-    lambda _: _.result.has_repeating or not _.allow_repeating,
+    lambda _: _.result.has_repeating or not _.settings.allow_repeating,
     message="Repeating characters are not allowed.",
 )
 @deal.ensure(
-    lambda _: len(_.result) == _.length,
+    lambda _: len(_.result) == _.settings.length,
     message="The returned value len must equal the requested length.",
 )
 def search(settings: Settings) -> Candidate:
