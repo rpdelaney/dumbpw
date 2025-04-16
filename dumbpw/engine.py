@@ -68,7 +68,7 @@ deal.module_load(deal.pure)
     message="Not enough special characters in result.",
 )
 @deal.ensure(
-    lambda _: _.result.has_repeating or not _.settings.allow_repeating,
+    lambda _: _.result.has_repeating and not _.settings.allow_repeating,
     message="Repeating characters are not allowed.",
 )
 @deal.ensure(
