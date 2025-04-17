@@ -1,4 +1,4 @@
-# flake8: noqa
+# noqa
 import secrets
 import string
 from pprint import pprint
