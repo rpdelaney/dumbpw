@@ -37,5 +37,7 @@
             "automerge": false
         }
     ],
-    "separateMinorPatch": false
+    "separateMinorPatch": false,
+    "prHourlyLimit": 0,
+    "prConcurrentLimit": 0
 }
