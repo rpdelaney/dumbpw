@@ -34,7 +34,7 @@ jobs:
       # build virtual environment and install
       # ----------------------------------------------
       - name: Install Poetry
-        uses: snok/install-poetry@v1.3.1
+        uses: snok/install-poetry@v1.4.1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
@@ -84,7 +84,7 @@ jobs:
       # build virtual environment and install
       # ----------------------------------------------
       - name: Install Poetry
-        uses: snok/install-poetry@v1.3.1
+        uses: snok/install-poetry@v1.4.1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
