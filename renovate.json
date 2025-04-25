@@ -9,7 +9,7 @@
     "lockFileMaintenance": {
         "automerge": true,
         "enabled": true,
-        "schedule": ["at any time"]
+        "schedule": ["* * * * 0,6"]
     },
     "packageRules": [
         {
@@ -34,7 +34,8 @@
                 "github-actions"
             ],
             "groupName": "github-actions",
-            "automerge": false
+            "automerge": false,
+            "schedule": ["* * * * 0,6"]
         }
     ],
     "separateMinorPatch": false,
