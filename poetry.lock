@@ -588,19 +588,19 @@ files = [
 
 [[package]]
 name = "z3-solver"
-version = "4.14.1.0"
+version = "4.15.0.0"
 description = "an efficient SMT solver library"
 optional = false
 python-versions = "*"
 groups = ["dev"]
 files = [
-    {file = "z3_solver-4.14.1.0-py3-none-macosx_13_0_arm64.whl", hash = "sha256:cb58bc05a88889d5ba6246ebc9f0d2f6cf346002fe73df4a4d8b358ac012ab44"},
-    {file = "z3_solver-4.14.1.0-py3-none-macosx_13_0_x86_64.whl", hash = "sha256:86594ca6f25531d4bf1f42d23cbc463877ddd06c9d5c4df7160313e1dace898c"},
-    {file = "z3_solver-4.14.1.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:dc8e48fa2855f6f7fa5fda450a5f7f042651f447835e5a2db531960658eb012d"},
-    {file = "z3_solver-4.14.1.0-py3-none-manylinux_2_34_aarch64.whl", hash = "sha256:4bd2b1956c39e29902910ff3898b4999cd0613cf80eee4c58b1572cae3d33248"},
-    {file = "z3_solver-4.14.1.0-py3-none-win32.whl", hash = "sha256:3ab20f602e9d00b3928f5692b05455c6496dd171761874937169f949cb5ee6f5"},
-    {file = "z3_solver-4.14.1.0-py3-none-win_amd64.whl", hash = "sha256:5c04967807ba3a33a28232c6c4c59d76257b8726a323ee8aea907820f27ca76e"},
-    {file = "z3_solver-4.14.1.0.tar.gz", hash = "sha256:ddc6981d83205cbe6000b8fa71f78da496bbaa635fadaf776b6d129b80e7b113"},
+    {file = "z3_solver-4.15.0.0-py3-none-macosx_13_0_arm64.whl", hash = "sha256:f39d07f6df4c8c09df594f1c9d2bb8b424805033a94725bfd535e7eca13eacfc"},
+    {file = "z3_solver-4.15.0.0-py3-none-macosx_13_0_x86_64.whl", hash = "sha256:83e82ed14073e72ca62bd3833866a9457df124448054a0c9d36db55e2f5baac6"},
+    {file = "z3_solver-4.15.0.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:214d833c2c0959aed3387e35ca36a1bfdfc443f11403d6aaf61ba346b5e21ed3"},
+    {file = "z3_solver-4.15.0.0-py3-none-manylinux_2_34_aarch64.whl", hash = "sha256:f90adbb6987493828c9b8381481eaa3eb3efcdc69d326d4dd341da20deaefd31"},
+    {file = "z3_solver-4.15.0.0-py3-none-win32.whl", hash = "sha256:cf119f1b95f0c0c6a82fce365336c8887e2f557c5b5b9f370a184aa80d164e1c"},
+    {file = "z3_solver-4.15.0.0-py3-none-win_amd64.whl", hash = "sha256:f1d923506654f39834196908ff579c5555b65e2d6140e515dc2d0e43c9218b2f"},
+    {file = "z3_solver-4.15.0.0.tar.gz", hash = "sha256:31012fdbaceb92667fd7e338de8b06b41d60c99bf6a3b8ec197de352372f05f1"},
 ]
 
 [metadata]
