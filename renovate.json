@@ -8,9 +8,9 @@
     ],
     "lockFileMaintenance": {
         "automerge": true,
-        "enabled": true,
-        "schedule": ["* * * * 0,6"]
+        "enabled": true
     },
+    "schedule": ["* 0 1 * 0"],
     "packageRules": [
         {
             "matchUpdateTypes": [
@@ -35,7 +35,10 @@
             ],
             "groupName": "github-actions",
             "automerge": false,
-            "schedule": ["* * * * 0,6"]
+            "schedule": ["* 0 1 * *"],
+            "reviewers": [
+                "rpdelaney"
+            ]
         }
     ],
     "separateMinorPatch": false,
