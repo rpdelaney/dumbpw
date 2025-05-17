@@ -43,5 +43,9 @@
     ],
     "separateMinorPatch": false,
     "prHourlyLimit": 0,
-    "prConcurrentLimit": 0
+    "prConcurrentLimit": 0,
+    "pre-commit": {
+      "enabled": true,
+      "automerge": true
+    }
 }
