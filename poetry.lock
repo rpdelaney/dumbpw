@@ -466,14 +466,14 @@ wcwidth = "*"
 
 [[package]]
 name = "ptpython"
-version = "3.0.30"
+version = "3.0.31"
 description = "Python REPL build on top of prompt_toolkit"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "ptpython-3.0.30-py3-none-any.whl", hash = "sha256:bec3045f0285ac817c902ef98d6ece31d3e00a4604ef3fdde07d365c78bde23c"},
-    {file = "ptpython-3.0.30.tar.gz", hash = "sha256:51a07f9b8ebf8435a5aaeb22831cca4a52e87029771a2637df2763c79d3d8776"},
+    {file = "ptpython-3.0.31-py3-none-any.whl", hash = "sha256:ddd25fadb6f2ecd4469a699c068d2dcd40d77c7105922569bba6dc79c0523458"},
+    {file = "ptpython-3.0.31.tar.gz", hash = "sha256:4fed0be42bad01b7c299922cf262f51d8a77c9c8ab8e261c902e981a57439c13"},
 ]
 
 [package.dependencies]
