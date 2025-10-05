@@ -1,7 +1,6 @@
 dumbpw
 ======================
-|LANGUAGE| |VERSION| |BUILD| |MAINTAINED| |MAINTAINABILITY|
-|LICENSE| |STYLE|
+|LANGUAGE| |VERSION| |BUILD| |MAINTAINED| |LICENSE| |STYLE|
 
 .. |BUILD| image:: https://github.com/rpdelaney/dumbpw/actions/workflows/integration.yaml/badge.svg
    :target: https://github.com/rpdelaney/dumbpw/actions/workflows/integration.yaml
@@ -14,8 +13,6 @@ dumbpw
 .. |STYLE| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
    :target: https://github.com/astral-sh/ruff
 .. |LANGUAGE| image:: https://img.shields.io/pypi/pyversions/dumbpw
-.. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/dumbpw
-   :target: https://codeclimate.com/github/rpdelaney/dumbpw
 
 To create and remember passwords for online services, the best practice for
 most folks online is to use a password management tool such as `Bitwarden
