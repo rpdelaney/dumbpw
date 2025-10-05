@@ -6,7 +6,7 @@ repos:
       - id: check-useless-excludes
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
@@ -20,14 +20,14 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.27.3
+    rev: 0.33.2
     hooks:
       - id: check-github-workflows
         name: validate github workflows
         args: ["--verbose"]
 
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 38.107.0
+    rev: 41.76.0
     hooks:
       - id: renovate-config-validator
 
@@ -39,12 +39,12 @@ repos:
       - id: rst-inline-touching-normal
 
   - repo: https://github.com/PyCQA/doc8
-    rev: v1.1.1
+    rev: v2.0.0
     hooks:
       - id: doc8
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.20.0
     hooks:
       - id: pyupgrade
         args: [--py311-plus]
