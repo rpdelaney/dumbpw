@@ -1,4 +1,4 @@
 def test_version_set():
-    import dumbpw
+    import dumbpw  # noqa: PLC0415
 
     assert dumbpw.__version__
