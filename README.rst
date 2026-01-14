@@ -30,7 +30,7 @@ who are trying to follow best practices.
 Enter dumbpw. dumbpw allows you to configure a set of rules, and then it will
 generate a cryptographically secure password that conforms to those dumb rules.
 
-If all you need is a password generator, **you should not use this**.
+.. hint:: If all you need is a password generator, you should not use this.
 
 Installation
 ------------
@@ -65,6 +65,10 @@ Usage
 
 Known issues
 ------------
+.. caution:: dumbpw has limitiations.
+    Think carefully before introducing any new tool
+    into your security workflows, including this one.
+
 * dumbpw uses `secrets <https://docs.python.org/3/library/secrets.html>`_
   to generate passwords. If the generated string doesn't meet the given
   requirements, dumbpw discards it and generates another, until one passes.
