@@ -120,7 +120,7 @@ def search(settings: Settings) -> Candidate:
     message="length must be greater than zero.",
 )
 @deal.pre(
-    lambda _: len("".join(_.charset)) > 0,
+    lambda _: len(_.charset) > 0,
     message="charset must have positive len.",
 )
 @deal.ensure(
@@ -128,15 +128,16 @@ def search(settings: Settings) -> Candidate:
     message="The returned value len must equal the requested length.",
 )
 @deal.ensure(
-    lambda _: all(char in "".join(_.charset) for char in _.result),
+    lambda _: all(char in _.charset for char in _.result),
     message=(
-        "function return value must be composed of characters in the charset"
+        "function return value must be composed exclusively "
+        "of characters in the charset"
     ),
 )
-def generate(*, charset: set[str], length: int) -> str:
+def generate(*, charset: str, length: int) -> str:
     """Return a cryptographically secure password.
 
     The value must be of len length using characters only from the given
     charset.
     """
-    return "".join(secrets.choice("".join(charset)) for i in range(length))
+    return "".join(secrets.choice(charset) for i in range(length))

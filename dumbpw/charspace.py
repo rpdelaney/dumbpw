@@ -34,10 +34,10 @@ class Charspace:
 
     @property
     @deal.pure
-    def charset(self) -> set[str]:
+    def charset(self) -> str:
         """De-duplicate the base charset.
 
         Remove characters that are in the blocklist, and return a
         charset as a string.
         """
-        return set(self.base_charset) - set(self.blocklist)
+        return "".join(set(self.base_charset) - set(self.blocklist))
