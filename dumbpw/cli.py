@@ -22,6 +22,7 @@ from dumbpw.settings import Settings  # noqa: E402
 
 @click.command(
     no_args_is_help=True,
+    name="dumbpw",
 )
 @click.version_option()
 @click.option(
