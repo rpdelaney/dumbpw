@@ -21,4 +21,4 @@ class DumbExitCode(IntEnum):
     NO_INPUT = os.EX_NOINPUT
     OK = os.EX_OK
     SOFTWARE = os.EX_SOFTWARE
-    USAGE = os.EX_USAGE
+    USAGE = 2
