@@ -16,7 +16,7 @@ from dumbpw.constants import (  # noqa: E402
     PASSWORD_LENGTH_MIN,
 )
 from dumbpw.engine import search  # noqa: E402
-from dumbpw.errors import DumbValueError  # noqa: E402
+from dumbpw.errors import DumbExitCode, DumbValueError  # noqa: E402
 from dumbpw.settings import Settings  # noqa: E402
 
 
@@ -113,4 +113,4 @@ def cli(  # noqa: PLR0913
 
     print(try_password)
 
-    sys.exit(0)
+    sys.exit(DumbExitCode.OK)
