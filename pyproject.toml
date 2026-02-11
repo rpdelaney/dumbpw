@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "dumbpw"
-version = "1.0.0"
+version = "1.0.1"
 description = "A bad password generator for bad websites with bad password policies"
 authors = ["Ryan Delaney <ryan.patrick.delaney+git@protonmail.com>"]
 license = "Apache 2.0"
