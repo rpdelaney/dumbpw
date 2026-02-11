@@ -20,8 +20,6 @@ from dumbpw.exceptions import DumbValueError  # noqa: E402
 from dumbpw.settings import Settings  # noqa: E402
 
 
-@deal.has("io", "global", "stderr", "stdout")
-@deal.raises(SystemExit, RuntimeError)
 @click.command(
     no_args_is_help=True,
 )
@@ -79,6 +77,8 @@ from dumbpw.settings import Settings  # noqa: E402
     ),
     default="",
 )
+@deal.has("io", "global", "stderr", "stdout")
+@deal.raises(SystemExit, RuntimeError)
 def cli(  # noqa: PLR0913
     *,
     length: int,
