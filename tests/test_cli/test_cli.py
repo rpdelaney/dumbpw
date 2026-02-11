@@ -1,3 +1,5 @@
+import os
+
 import hypothesis.strategies as strats
 from click.testing import CliRunner
 from hypothesis import given
@@ -70,3 +72,14 @@ def test_cli_empty_blocklist_allowed():
     result = runner.invoke(cli, ["5", "--blocklist", ""])
 
     assert result.exit_code == DumbExitCode.OK
+
+
+def test_cli_env_specials():
+    """DUMBPW_SPECIALS env var is read."""
+    runner = CliRunner()
+    specials = "!"
+    os.environ["DUMBPW_SPECIALS"] = specials
+
+    result = runner.invoke(cli, ["5", "--min-specials", "1"])
+
+    assert sum(1 for char in result.output if char in specials) >= 1
