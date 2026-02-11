@@ -19,11 +19,6 @@ deal.module_load(deal.pure)
 @deal.safe
 @deal.has("random")
 @deal.pre(
-    validator=lambda _: _.settings.length <= PASSWORD_LENGTH_MAX,
-    exception=DumbValueError,
-    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
-)
-@deal.pre(
     lambda _: (
         _.settings.min_uppercase
         + _.settings.min_lowercase
