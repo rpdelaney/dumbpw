@@ -8,7 +8,7 @@ import deal
 from dumbpw.candidate import Candidate
 from dumbpw.charspace import Charspace
 from dumbpw.constants import PASSWORD_LENGTH_MAX
-from dumbpw.exceptions import DumbValueError
+from dumbpw.errors import DumbValueError
 from dumbpw.settings import Settings
 
 

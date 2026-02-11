@@ -1,4 +1,4 @@
-"""Define exceptions for dumbpw."""
+"""Define exceptions and error states for dumbpw."""
 
 
 class DumbError(Exception):
