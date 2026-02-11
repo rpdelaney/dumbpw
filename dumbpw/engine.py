@@ -39,8 +39,8 @@ deal.module_load(deal.pure)
     message="length must be greater than zero.",
 )
 @deal.pre(
-    lambda _: _.settings.blocklist
-    and all(c not in _.settings.blocklist for c in _.settings.specials),
+    lambda _: not _.settings.blocklist
+    or all(c not in _.settings.blocklist for c in _.settings.specials),
     exception=DumbValueError,
     message=(
         "You cannot require a special character that is also in the blocklist."
