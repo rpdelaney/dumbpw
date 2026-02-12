@@ -7,11 +7,11 @@ from dataclasses import dataclass
 class Settings:
     """Settings object."""
 
-    length: int
-    min_uppercase: int
-    min_lowercase: int
-    min_digits: int
-    min_specials: int
-    specials: str
-    blocklist: str
     allow_repeating: bool
+    blocklist: str
+    length: int
+    min_digits: int
+    min_lowercase: int
+    min_specials: int
+    min_uppercase: int
+    specials: str
