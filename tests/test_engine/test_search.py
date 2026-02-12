@@ -12,6 +12,7 @@ from dumbpw.settings import Settings
 settings.register_profile(
     "CI",
     suppress_health_check=(HealthCheck.too_slow,),
+    deadline=1000,
 )
 settings.load_profile("CI")
 
