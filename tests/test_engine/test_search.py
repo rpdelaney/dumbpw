@@ -16,7 +16,7 @@ settings.register_profile(
 )
 settings.load_profile("CI")
 
-SETTINGS_STRATEGY = strats.builds(
+PROPERTY_STRATEGY = strats.builds(
     Settings,
     allow_repeating=strats.booleans(),
     length=strats.integers(min_value=PASSWORD_LENGTH_MIN, max_value=10),
@@ -31,7 +31,7 @@ SETTINGS_STRATEGY = strats.builds(
 
 @deal.cases(
     func=engine.search,
-    kwargs={"settings": SETTINGS_STRATEGY},
+    kwargs={"settings": PROPERTY_STRATEGY},
 )
 def test_search(case: deal.TestCase) -> None:
     case()
