@@ -33,7 +33,6 @@ class Candidate(str):
     def __init__(self, /, password: str) -> None:
         """Initialize the Candidate object."""
         self.password = password
-        return  # noqa: PLR1711
 
     @deal.pure
     @deal.post(
