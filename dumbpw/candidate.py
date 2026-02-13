@@ -185,7 +185,7 @@ class Candidate(str):
 
     @deal.pure
     @deal.ensure(
-        lambda self, result: result == self and result is not self,
+        lambda self, result: self == result and self is not result,
         message="Must return a copy.",
     )
     def copy(self) -> "Candidate":
