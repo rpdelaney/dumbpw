@@ -22,7 +22,7 @@ def test_blocklist(blocklist):
     """The charset must not contain any characters from the blocklist."""
     sp = Charspace(blocklist=blocklist)
 
-    assert all(char not in blocklist for char in sp.charset)
+    assert all(char not in sp.charset for char in blocklist)
 
 
 def test_charset_unique():
