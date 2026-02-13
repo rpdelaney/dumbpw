@@ -72,14 +72,10 @@ deal.module_load(deal.pure)
 )
 def search(settings: Settings) -> Candidate:
     """Search for a password that meets the given requirements."""
-    charspace_args = {
-        "blocklist": settings.blocklist,
-        "extras": settings.specials
-        if settings.specials
-        else string.punctuation,
-    }
-
-    charspace = Charspace(**charspace_args)
+    charspace = Charspace(
+        blocklist=settings.blocklist,
+        extras=settings.specials if settings.specials else string.punctuation,
+    )
 
     def is_valid_password(password: Candidate) -> bool:
         return (
