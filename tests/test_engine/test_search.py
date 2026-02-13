@@ -1,11 +1,13 @@
 import string
 
 import deal
+import pytest
 from hypothesis import HealthCheck, settings
 from hypothesis import strategies as strats
 
 from dumbpw import engine
 from dumbpw.constants import DEFAULT_BLOCKS, PASSWORD_LENGTH_MIN
+from dumbpw.errors import DumbValueError
 from dumbpw.settings import Settings
 
 
@@ -34,3 +36,23 @@ PROPERTY_STRATEGY = strats.builds(
 )
 def test_search(case: deal.TestCase) -> None:
     case()
+
+
+class TestPigeonholes:
+    """Test handling of unreachable requirements."""
+
+    def test_pigeonholes_small_charset(self):
+        """engine.search raises DumbValueEror on too-short length."""
+        settings = Settings(
+            allow_repeating=True,
+            length=5,
+            min_uppercase=5,
+            min_lowercase=5,
+            min_digits=5,
+            min_specials=5,
+            specials="!@#$",
+            blocklist="",
+        )
+
+        with pytest.raises(DumbValueError):
+            engine.search(settings)
