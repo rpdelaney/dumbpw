@@ -1,13 +1,12 @@
 """Provide an engine for finding a good dumb password."""
 
 import secrets
-import string
 
 import deal
 
 from dumbpw.candidate import Candidate
 from dumbpw.charspace import Charspace
-from dumbpw.constants import PASSWORD_LENGTH_MAX
+from dumbpw.constants import DEFAULT_EXTRAS, PASSWORD_LENGTH_MAX
 from dumbpw.errors import DumbValueError
 from dumbpw.settings import Settings
 
@@ -40,6 +39,7 @@ deal.module_load(deal.pure)
 )
 @deal.pre(
     lambda _: not _.settings.blocklist
+    or not _.settings.specials
     or all(c not in _.settings.blocklist for c in _.settings.specials),
     exception=DumbValueError,
     message="Required special characters in the blocklist.",
@@ -72,61 +72,37 @@ def search(settings: Settings) -> Candidate:
     """Search for a password that meets the given requirements."""
     charspace = Charspace(
         blocklist=settings.blocklist,
-        extras=settings.specials if settings.specials else string.punctuation,
+        extras=DEFAULT_EXTRAS
+        if settings.specials is None
+        else settings.specials,
     )
 
-    def is_valid_password(password: Candidate) -> bool:
-        return (
-            password.uppers >= settings.min_uppercase
-            and password.lowers >= settings.min_lowercase
-            and password.digits >= settings.min_digits
-            and password.specials >= settings.min_specials
-            and (settings.allow_repeating or not password.has_repeating)
-            and len(password) == settings.length
-        )
+    password = (
+        []
+        + [
+            secrets.choice(charspace.digits)
+            for _ in range(settings.min_digits)
+        ]
+        + [
+            secrets.choice(charspace.uppers)
+            for _ in range(settings.min_uppercase)
+        ]
+        + [
+            secrets.choice(charspace.lowers)
+            for _ in range(settings.min_lowercase)
+        ]
+        + [
+            secrets.choice(charspace.extras)
+            for _ in range(settings.min_specials)
+            if charspace.extras
+        ]
+    )
 
-    try_password = Candidate("")
+    while len(password) < settings.length:
+        choice = secrets.choice(charspace.charset)
+        if not password or settings.allow_repeating or password[-1] != choice:
+            password += choice
 
-    while not is_valid_password(try_password):
-        try_password = Candidate(
-            generate(
-                charset=charspace.charset,
-                length=settings.length,
-            )
-        )
+    secrets.SystemRandom().shuffle(password)
 
-    return try_password
-
-
-@deal.safe
-@deal.has("random")
-@deal.pre(
-    validator=lambda _: _.length <= PASSWORD_LENGTH_MAX,
-    message=f"length cannot be greater than {PASSWORD_LENGTH_MAX}.",
-)
-@deal.pre(
-    lambda _: _.length > 0,
-    message="length must be greater than zero.",
-)
-@deal.pre(
-    lambda _: len(_.charset) > 0,
-    message="charset must have positive len.",
-)
-@deal.ensure(
-    lambda _: len(_.result) == _.length,
-    message="The returned value len must equal the requested length.",
-)
-@deal.ensure(
-    lambda _: all(char in _.charset for char in _.result),
-    message=(
-        "function return value must be composed exclusively "
-        "of characters in the charset"
-    ),
-)
-def generate(*, charset: str, length: int) -> str:
-    """Return a cryptographically secure password.
-
-    The value must be of len length using characters only from the given
-    charset.
-    """
-    return "".join(secrets.choice(charset) for i in range(length))
+    return Candidate("".join(password))
