@@ -76,7 +76,6 @@ from dumbpw.settings import Settings  # noqa: E402
         "Non-alphanumeric characters that may be in the password. "
         "Pass '-' to read from standard input."
     ),
-    default="",
 )
 @deal.has("io", "global", "stderr", "stdout")
 @deal.raises(SystemExit, RuntimeError)
