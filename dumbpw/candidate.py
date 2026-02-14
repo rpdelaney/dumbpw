@@ -35,6 +35,11 @@ class Candidate(str):
         self.password = password
 
     @deal.pure
+    def __add__(self, other: str) -> "Candidate":
+        """Handle addition operator."""
+        return Candidate(self.password + other)
+
+    @deal.pure
     @deal.post(
         lambda result: result >= 0,
         message="Count cannot be negative.",
