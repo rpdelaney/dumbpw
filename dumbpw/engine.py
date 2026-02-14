@@ -38,6 +38,11 @@ deal.module_load(deal.pure)
     message="length must be greater than zero.",
 )
 @deal.pre(
+    lambda _: not (_.settings.min_specials > 0 and _.settings.specials == ""),
+    exception=DumbValueError,
+    message="Special characters required from empty character set.",
+)
+@deal.pre(
     lambda _: not _.settings.blocklist
     or not _.settings.specials
     or all(c not in _.settings.blocklist for c in _.settings.specials),

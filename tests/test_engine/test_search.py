@@ -56,3 +56,19 @@ class TestPigeonholes:
 
         with pytest.raises(DumbValueError):
             engine.search(settings)
+
+    def test_pigeonholes_empty_specials(self):
+        """engine.search raises DumbValueError on empty required specials."""
+        settings = Settings(
+            allow_repeating=True,
+            length=5,
+            min_uppercase=0,
+            min_lowercase=0,
+            min_digits=0,
+            min_specials=1,
+            specials="",
+            blocklist="",
+        )
+
+        with pytest.raises(DumbValueError):
+            engine.search(settings)
