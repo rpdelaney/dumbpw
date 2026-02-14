@@ -42,9 +42,7 @@ deal.module_load(deal.pure)
     lambda _: not _.settings.blocklist
     or all(c not in _.settings.blocklist for c in _.settings.specials),
     exception=DumbValueError,
-    message=(
-        "You cannot require a special character that is also in the blocklist."
-    ),
+    message="Required special characters in the blocklist.",
 )
 @deal.ensure(
     lambda _: _.result.uppers >= _.settings.min_uppercase,
