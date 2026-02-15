@@ -106,15 +106,21 @@ def search(settings: Settings) -> Candidate:
         ]
     )
 
-    while len(password) < settings.length:
+    while len(candidate) < settings.length:
         choice = secrets.choice(charspace.charset)
-        if not password or settings.allow_repeating or password[-1] != choice:
-            password += choice
+        if (
+            not candidate
+            or settings.allow_repeating
+            or candidate[-1] != choice
+        ):
+            candidate += choice
 
     # TODO: test this is done at least once  # noqa: TD002, TD003
-    password.shuffle()
+    password = candidate.shuffled()
 
+    # TODO: abstract this and make it safer.  # noqa: TD002, TD003
+    # e.g. 'aaaab' will loop forever
     while not settings.allow_repeating and password.has_repeating:
-        password.shuffle()
+        password = Candidate(password.shuffled())
 
     return password
