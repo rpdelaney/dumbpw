@@ -1,5 +1,6 @@
 """Provide an object for evaluating candidate passwords."""
 
+import secrets
 import string
 
 import deal
@@ -38,6 +39,12 @@ class Candidate(str):
     def __add__(self, other: str) -> "Candidate":
         """Handle addition operator."""
         return Candidate(self.password + other)
+
+    def shuffle(self) -> None:
+        """Cryptographically shuffle the string."""
+        new_password = self.password
+        secrets.SystemRandom().shuffle(list(new_password))
+        self.password = new_password
 
     @deal.pure
     @deal.post(
