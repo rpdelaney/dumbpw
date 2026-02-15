@@ -2,6 +2,7 @@
 
 import secrets
 import string
+from collections.abc import Iterator
 
 import deal
 
@@ -202,3 +203,19 @@ class Candidate(str):
     def copy(self) -> "Candidate":
         """Return a copy of self."""
         return Candidate(self.password)
+
+    @deal.safe
+    def extend(self, iterator: Iterator[str]) -> None:
+        """Extend the password by taking values from an iterator.
+
+        >>> c = Candidate("")
+        >>> c.extend(c for c in ["a", "b", "c"])
+        >>> c.password == "abc"
+        True
+        >>> c = Candidate("123")
+        >>> c.extend(c for c in ["a", "b", "c"])
+        >>> c.password == "123abc"
+        True
+        """
+        for c in iterator:
+            self.password += c
