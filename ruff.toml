@@ -34,6 +34,7 @@ ignore = [
     "D213",     # prefer D212 `multi-line-summary-first-line`
     "COM812",   # conflicts with black and isort precedent
     "ISC001",   # to silence ruff warning
+    "FIX",
 ]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.

@@ -109,6 +109,9 @@ def search(settings: Settings) -> Candidate:
         if not password or settings.allow_repeating or password[-1] != choice:
             password += choice
 
+    # TODO: test this is done at least once  # noqa: TD002, TD003
+    password.shuffle()
+
     while not settings.allow_repeating and password.has_repeating:
         password.shuffle()
 
