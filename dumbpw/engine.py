@@ -114,4 +114,4 @@ def search(settings: Settings) -> Candidate:
         secrets.SystemRandom().shuffle(list(new_password))
         password = new_password
 
-    return Candidate("".join(password))
+    return password
