@@ -209,11 +209,11 @@ class Candidate(str):
         """Extend the password by taking values from an iterator.
 
         >>> c = Candidate("")
-        >>> c.extend(c for c in ["a", "b", "c"])
+        >>> c.extend(x for x in ["a", "b", "c"])
         >>> c.password == "abc"
         True
         >>> c = Candidate("123")
-        >>> c.extend(c for c in ["a", "b", "c"])
+        >>> c.extend(x for x in ["a", "b", "c"])
         >>> c.password == "123abc"
         True
         """
