@@ -81,29 +81,21 @@ def search(settings: Settings) -> Candidate:
         if settings.specials is None
         else settings.specials,
     )
-
     candidate = Candidate("")
-    candidate += "".join(
-        [secrets.choice(charspace.digits) for _ in range(settings.min_digits)]
+
+    candidate.extend(
+        secrets.choice(charspace.digits) for _ in range(settings.min_digits)
     )
-    candidate += "".join(
-        [
-            secrets.choice(charspace.uppers)
-            for _ in range(settings.min_uppercase)
-        ]
+    candidate.extend(
+        secrets.choice(charspace.uppers) for _ in range(settings.min_uppercase)
     )
-    candidate += "".join(
-        [
-            secrets.choice(charspace.lowers)
-            for _ in range(settings.min_lowercase)
-        ]
+    candidate.extend(
+        secrets.choice(charspace.lowers) for _ in range(settings.min_lowercase)
     )
-    candidate += "".join(
-        [
-            secrets.choice(charspace.extras)
-            for _ in range(settings.min_specials)
-            if charspace.extras
-        ]
+    candidate.extend(
+        secrets.choice(charspace.extras)
+        for _ in range(settings.min_specials)
+        if charspace.extras
     )
 
     while len(candidate) < settings.length:
