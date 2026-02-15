@@ -82,26 +82,28 @@ def search(settings: Settings) -> Candidate:
         else settings.specials,
     )
 
-    password = Candidate(
-        "".join(
-            [
-                secrets.choice(charspace.digits)
-                for _ in range(settings.min_digits)
-            ]
-            + [
-                secrets.choice(charspace.uppers)
-                for _ in range(settings.min_uppercase)
-            ]
-            + [
-                secrets.choice(charspace.lowers)
-                for _ in range(settings.min_lowercase)
-            ]
-            + [
-                secrets.choice(charspace.extras)
-                for _ in range(settings.min_specials)
-                if charspace.extras
-            ]
-        )
+    candidate = Candidate("")
+    candidate += "".join(
+        [secrets.choice(charspace.digits) for _ in range(settings.min_digits)]
+    )
+    candidate += "".join(
+        [
+            secrets.choice(charspace.uppers)
+            for _ in range(settings.min_uppercase)
+        ]
+    )
+    candidate += "".join(
+        [
+            secrets.choice(charspace.lowers)
+            for _ in range(settings.min_lowercase)
+        ]
+    )
+    candidate += "".join(
+        [
+            secrets.choice(charspace.extras)
+            for _ in range(settings.min_specials)
+            if charspace.extras
+        ]
     )
 
     while len(password) < settings.length:
