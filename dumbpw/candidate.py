@@ -40,11 +40,11 @@ class Candidate(str):
         """Handle addition operator."""
         return Candidate(self.password + other)
 
-    def shuffle(self) -> None:
+    def shuffled(self) -> "Candidate":
         """Cryptographically shuffle the string."""
-        new_password = self.password
-        secrets.SystemRandom().shuffle(list(new_password))
-        self.password = new_password
+        new_password = list(self.password)
+        secrets.SystemRandom().shuffle(new_password)
+        return Candidate("".join(new_password))
 
     @deal.pure
     @deal.post(
