@@ -110,8 +110,6 @@ def search(settings: Settings) -> Candidate:
             password += choice
 
     while not settings.allow_repeating and password.has_repeating:
-        new_password = password.copy()
-        secrets.SystemRandom().shuffle(list(new_password))
-        password = new_password
+        password.shuffle()
 
     return password
