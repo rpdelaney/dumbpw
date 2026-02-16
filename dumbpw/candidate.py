@@ -29,21 +29,21 @@ class Candidate(str):
     False
     """
 
-    __slots__ = ("password",)
+    __slots__ = ("_text",)
 
     @deal.pure
-    def __init__(self, /, password: str) -> None:
+    def __init__(self, /, text: str) -> None:
         """Initialize the Candidate object."""
-        self.password = password
+        self._text = text
 
     @deal.pure
     def __add__(self, other: str) -> "Candidate":
         """Handle addition operator."""
-        return Candidate(self.password + other)
+        return Candidate(self._text + other)
 
     def shuffled(self) -> "Candidate":
         """Cryptographically shuffle the string."""
-        new_password = list(self.password)
+        new_password = list(self._text)
         secrets.SystemRandom().shuffle(new_password)
         return Candidate("".join(new_password))
 
@@ -66,7 +66,7 @@ class Candidate(str):
         >>> Candidate("abcDEFG123!")._count_string_type(string.punctuation)
         1
         """
-        return sum(1 for char in self.password if char in haystack)
+        return sum(1 for char in self._text if char in haystack)
 
     @property
     @deal.pure
@@ -164,11 +164,7 @@ class Candidate(str):
         >>> Candidate("ABB").has_duplicates
         True
         """
-        return (
-            len(set(self.password)) != len(self.password)
-            if self.password
-            else False
-        )
+        return len(set(self._text)) != len(self._text) if self._text else False
 
     @property
     @deal.pure
@@ -191,8 +187,8 @@ class Candidate(str):
         False
         """
         return any(
-            self.password[i] == self.password[i - 1]
-            for i in range(1, len(self.password))
+            self._text[i] == self._text[i - 1]
+            for i in range(1, len(self._text))
         )
 
     @deal.pure
@@ -202,7 +198,7 @@ class Candidate(str):
     )
     def copy(self) -> "Candidate":
         """Return a copy of self."""
-        return Candidate(self.password)
+        return Candidate(self._text)
 
     @deal.safe
     def extend(self, iterator: Iterator[str]) -> None:
@@ -210,12 +206,12 @@ class Candidate(str):
 
         >>> c = Candidate("")
         >>> c.extend(x for x in ["a", "b", "c"])
-        >>> c.password == "abc"
+        >>> c._text == "abc"
         True
         >>> c = Candidate("123")
         >>> c.extend(x for x in ["a", "b", "c"])
-        >>> c.password == "123abc"
+        >>> c._text == "123abc"
         True
         """
         for c in iterator:
-            self.password += c
+            self._text += c
