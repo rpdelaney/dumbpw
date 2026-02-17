@@ -7,17 +7,14 @@ from typing import NoReturn
 import click
 import deal
 
-
-deal.activate()
-
-from dumbpw.constants import (  # noqa: E402
+from dumbpw.constants import (
     DEFAULT_BLOCKS,
     PASSWORD_LENGTH_MAX,
     PASSWORD_LENGTH_MIN,
 )
-from dumbpw.engine import search  # noqa: E402
-from dumbpw.errors import DumbExitCode, DumbValueError  # noqa: E402
-from dumbpw.settings import Settings  # noqa: E402
+from dumbpw.engine import search
+from dumbpw.errors import DumbExitCode, DumbValueError
+from dumbpw.settings import Settings
 
 
 @click.command(

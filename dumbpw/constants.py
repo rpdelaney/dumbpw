@@ -5,7 +5,6 @@ import string
 import deal
 
 
-deal.activate()
 deal.module_load(deal.pure)
 
 PASSWORD_LENGTH_MIN = 5

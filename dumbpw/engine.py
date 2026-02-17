@@ -11,7 +11,6 @@ from dumbpw.errors import DumbValueError
 from dumbpw.settings import Settings
 
 
-deal.activate()
 deal.module_load(deal.pure)
 
 
