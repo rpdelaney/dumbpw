@@ -2,7 +2,6 @@
 
 import fileinput
 import sys
-from dataclasses import dataclass
 from typing import NoReturn
 
 import click
@@ -18,20 +17,7 @@ from dumbpw.constants import (  # noqa: E402
 )
 from dumbpw.engine import search  # noqa: E402
 from dumbpw.errors import DumbExitCode, DumbValueError  # noqa: E402
-
-
-@dataclass(frozen=True)
-class Settings:
-    """Settings object."""
-
-    allow_repeating: bool
-    blocklist: str
-    length: int
-    min_digits: int
-    min_lowercase: int
-    min_specials: int
-    min_uppercase: int
-    specials: str
+from dumbpw.settings import Settings  # noqa: E402
 
 
 @click.command(
