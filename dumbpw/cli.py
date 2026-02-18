@@ -89,7 +89,8 @@ def cli(  # noqa: PLR0913
 ) -> NoReturn:
     """Provide the cli for the dumb password generator."""
     if specials == "-":
-        specials = "".join(char for char in fileinput.input(files="-")).strip()  # noqa: SIM115
+        with fileinput.input(files="-") as data:
+            specials = "".join(char for char in data).strip()
 
     settings = Settings(
         length=length,
