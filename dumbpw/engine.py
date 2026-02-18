@@ -106,10 +106,10 @@ def search(settings: Settings) -> Candidate:
         ):
             candidate += choice
 
-    # TODO: test this is done at least once  # noqa: TD002, TD003
+    # TODO: test this is done at least once
     password = candidate.shuffled()
 
-    # TODO: abstract this and make it safer.  # noqa: TD002, TD003
+    # TODO: abstract this and make it safer.
     # e.g. 'aaaab' will loop forever
     while not settings.allow_repeating and password.has_repeating:
         password = Candidate(password.shuffled())
