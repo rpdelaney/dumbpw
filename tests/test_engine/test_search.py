@@ -38,6 +38,21 @@ def test_search(case: deal.TestCase) -> None:
     case()
 
 
+def test_search_no_minimums():
+    """No minimums are required."""
+    settings = Settings(
+        allow_repeating=True,
+        length=8,
+        min_uppercase=0,
+        min_lowercase=0,
+        min_digits=0,
+        min_specials=0,
+        specials="!@#$",
+        blocklist="",
+    )
+    engine.search(settings)
+
+
 class TestPigeonholes:
     """Test handling of unreachable requirements."""
 
