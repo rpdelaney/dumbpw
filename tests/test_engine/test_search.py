@@ -53,10 +53,10 @@ def test_search_no_minimums():
     engine.search(settings)
 
 
-class TestPigeonholes:
+class TestSearchPigeonholes:
     """Test handling of unreachable requirements."""
 
-    def test_pigeonholes_small_charset(self):
+    def test_search_pigeonholes_small_charset(self):
         """engine.search raises DumbValueEror on too-short length."""
         settings = Settings(
             allow_repeating=True,
@@ -72,7 +72,7 @@ class TestPigeonholes:
         with pytest.raises(DumbValueError):
             engine.search(settings)
 
-    def test_pigeonholes_empty_specials(self):
+    def test_search_pigeonholes_empty_specials(self):
         """engine.search raises DumbValueError on empty required specials."""
         settings = Settings(
             allow_repeating=True,
