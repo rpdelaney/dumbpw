@@ -87,7 +87,7 @@ def cli(  # noqa: PLR0913
     blocklist: str,
     allow_repeating: bool,
 ) -> NoReturn:
-    """A dumb password generator."""  # noqa: D401
+    """Provide the cli for the dumb password generator."""
     if specials == "-":
         specials = "".join(char for char in fileinput.input(files="-")).strip()  # noqa: SIM115
 
