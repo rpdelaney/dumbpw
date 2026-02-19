@@ -7,7 +7,6 @@ from collections.abc import Iterator
 import deal
 
 
-deal.activate()
 deal.module_load(deal.pure)
 
 
