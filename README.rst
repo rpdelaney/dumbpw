@@ -37,7 +37,7 @@ Installation
 
 .. code-block :: console
 
-    pip3 install dumbpw
+    uv tool install dumbpw
 
 Usage
 -----
@@ -47,12 +47,18 @@ Usage
     $ dumbpw --help
     Usage: dumbpw [OPTIONS] LENGTH
 
+    Generate a secure password conforming to dumb rules.
+
     Options:
     --version                       Show the version and exit.
     --min-uppercase INTEGER         The minimum number of uppercase characters.
+                                    [default: 1]
     --min-lowercase INTEGER         The minimum number of lowercase characters.
+                                    [default: 1]
     --min-digits INTEGER            The minimum number of digit characters.
+                                    [default: 1]
     --min-specials INTEGER          The minimum number of special characters.
+                                    [default: 0]
     --blocklist TEXT                Characters that may not be in the password.
                                     [default: '";]
     --allow-repeating / --reject-repeating
@@ -63,9 +69,9 @@ Usage
                                     input.
     --help                          Show this message and exit.
 
-Caveats
+⚠️ Caveats
 ------------
-* ⚠️The author is neither a cryptographer, nor a security expert. There has
+* The author is neither a cryptographer, nor a security expert. There has
   been no formal, independent, external security review of this software. As
   explained in the LICENSE, the author assumes no responsibility or liability
   for your use of this software.
