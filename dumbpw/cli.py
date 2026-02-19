@@ -26,24 +26,28 @@ from dumbpw.settings import Settings
     "--min-uppercase",
     type=int,
     default=1,
+    show_default=True,
     help="The minimum number of uppercase characters.",
 )
 @click.option(
     "--min-lowercase",
     type=int,
     default=1,
+    show_default=True,
     help="The minimum number of lowercase characters.",
 )
 @click.option(
     "--min-digits",
     type=int,
     default=1,
+    show_default=True,
     help="The minimum number of digit characters.",
 )
 @click.option(
     "--min-specials",
     type=int,
     default=0,
+    show_default=True,
     help="The minimum number of special characters.",
 )
 @click.option(
