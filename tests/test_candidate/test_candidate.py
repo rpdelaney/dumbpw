@@ -4,12 +4,6 @@ from hypothesis import given
 from dumbpw.candidate import Candidate
 
 
-def test_candidate_is_string():
-    cd = Candidate("")
-
-    assert isinstance(cd, str)
-
-
 def test_candidate_zero_len_duplicates():
     cd = Candidate("")
 

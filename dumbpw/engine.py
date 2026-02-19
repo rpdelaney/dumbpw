@@ -112,6 +112,6 @@ def search(settings: Settings) -> Candidate:
     # TODO: abstract this and make it safer.
     # e.g. 'aaaab' will loop forever
     while not settings.allow_repeating and password.has_repeating:
-        password = Candidate(password.shuffled())
+        password = Candidate(str(password.shuffled()))
 
     return password

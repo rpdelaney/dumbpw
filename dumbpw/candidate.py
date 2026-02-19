@@ -10,7 +10,7 @@ import deal
 deal.module_load(deal.pure)
 
 
-class Candidate(str):
+class Candidate:
     """A subclass of str representing a password candidate.
 
     >>> password = Candidate("abcDEFG123!abc")
@@ -197,7 +197,7 @@ class Candidate(str):
     )
     def copy(self) -> "Candidate":
         """Return a copy of self."""
-        return Candidate(self._text)
+        return Candidate(str(self))
 
     @deal.safe
     def extend(self, iterator: Iterator[str]) -> None:
