@@ -5,7 +5,7 @@ description = "A bad password generator for bad websites with bad password polic
 authors = [{ name = "Ryan Delaney", email = "ryan.patrick.delaney+spammers.only@protonmail.com" }]
 requires-python = ">=3.10"
 readme = "README.rst"
-license = "Apache 2.0"
+license = "Apache-2.0"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
