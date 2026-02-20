@@ -84,12 +84,12 @@ Related tools
 Development
 ============
 
-To install development dependencies, you will need `poetry <https://docs.pipenv.org/en/latest/>`_
+To install development dependencies, you will need `uv <https://docs.astral.sh/uv/>`_
 and `pre-commit <https://pre-commit.com/>`_.
 
 .. code-block :: console
 
     pre-commit install --install-hooks
-    poetry install && poetry shell
+    uv sync
 
 `direnv <https://direnv.net/>`_ is optional, but recommended for convenience.
