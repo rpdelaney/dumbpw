@@ -1,6 +1,6 @@
 [project]
 name = "dumbpw"
-version = "1.0.3"
+version = "1.0.4"
 description = "A bad password generator for bad websites with bad password policies"
 authors = [{ name = "Ryan Delaney", email = "ryan.patrick.delaney+spammers.only@protonmail.com" }]
 requires-python = ">=3.10"
