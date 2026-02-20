@@ -1,16 +1,11 @@
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry]
+[project]
 name = "dumbpw"
 version = "1.0.3"
 description = "A bad password generator for bad websites with bad password policies"
-authors = ["Ryan Delaney <ryan.patrick.delaney+git@protonmail.com>"]
-license = "Apache 2.0"
+authors = [{ name = "Ryan Delaney", email = "ryan.patrick.delaney+spammers.only@protonmail.com" }]
+requires-python = ">=3.10"
 readme = "README.rst"
-repository = "https://github.com/rpdelaney/dumbpw"
-homepage = "https://pypi.org/project/dumbpw"
+license = "Apache 2.0"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
@@ -22,24 +17,27 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Security",
 ]
+dependencies = [
+    "click>=8.0.3",
+    "deal>=4.19.1",
+]
+repository = "https://github.com/rpdelaney/dumbpw"
+homepage = "https://pypi.org/project/dumbpw"
 
-[tool.poetry.scripts]
+[project.scripts]
 dumbpw = "dumbpw.cli:cli"
 
-[tool.poetry.dependencies]
-python = ">=3.10, <4.0"
-click = ">=8.0.3"
-deal = ">=4.19.1"
-
-[tool.poetry.group.dev.dependencies]
-deal-solver = ">=0.1.0"
-hypothesis = ">=6.39.4"
-mypy = ">=0.981"
-ptpython = "^3.0.23"
-pytest = ">=6.2.5"
-pytest-cov = ">=3.0.0"
-ruff = "*"
-pre-commit = ">=4.5.1"
+[dependency-groups]
+dev = [
+    "deal-solver>=0.1.0",
+    "hypothesis>=6.39.4",
+    "mypy>=0.981",
+    "ptpython>=3.0.23",
+    "pytest>=6.2.5",
+    "pytest-cov>=3.0.0",
+    "ruff",
+    "pre-commit>=4.5.1",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["dumbpw", "tests"]
