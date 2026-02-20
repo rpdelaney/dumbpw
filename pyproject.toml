@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "dumbpw"
-version = "1.0.4"
+version = "1.0.3"
 description = "A bad password generator for bad websites with bad password policies"
 authors = [{ name = "Ryan Delaney", email = "ryan.patrick.delaney+spammers.only@protonmail.com" }]
 requires-python = ">=3.10"
