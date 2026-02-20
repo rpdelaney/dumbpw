@@ -40,6 +40,31 @@ class Candidate:
         """Handle addition operator."""
         return Candidate(self._text + other)
 
+    @deal.pure
+    def __eq__(self, other) -> bool:  # type: ignore[no-untyped-def,misc]
+        """Check equality between self and other."""
+        return str(self) == str(other)
+
+    @deal.pure
+    def __hash__(self) -> int:
+        """Return a hash of self."""
+        return hash(self._text)
+
+    @deal.pure
+    def __len__(self) -> int:
+        """Return the length of the string."""
+        return len(self._text)
+
+    @deal.pure
+    def __str__(self) -> str:
+        """Return the plain text of the string."""
+        return "".join(self._text)
+
+    @deal.pure
+    def __getitem__(self, item: int) -> str:
+        """Provide subscriptability."""
+        return str(self)[item]
+
     def shuffled(self) -> "Candidate":
         """Cryptographically shuffle the string."""
         new_password = list(self._text)
