@@ -1,7 +1,5 @@
 ---
 name: CI
-# Docs on poetry runner for github actions:
-# https://github.com/marketplace/actions/install-poetry-action
 
 on:
   pull_request:
@@ -11,12 +9,16 @@ on:
       - dumbpw/**
       - tests/**
       - pyproject.toml
-      - poetry.lock
+      - uv.lock
       - .pre-commit-config.yaml
       - .github/workflows/integration.yaml
 
 jobs:
   lint:
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.13"]
     runs-on: ubuntu-latest
     steps:
       # ----------------------------------------------
@@ -33,33 +35,12 @@ jobs:
       # ----------------------------------------------
       # build virtual environment and install
       # ----------------------------------------------
-      - name: Install Poetry
-        uses: snok/install-poetry@v1.4.1
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b  # v7.3.0
         with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830  # v4.3.0
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      - name: Install dependencies if cached venv not found
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
-      - name: Install module
-        run: poetry install --no-interaction
-
-      - name: Install pre-commit
-        run: pip install pre-commit
-      - name: cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830  # v4.3.0
-        with:
-          key: pre-commit-dot-cache-{{ checksum ".pre-commit-config.yaml" }}
-          path: ~/.cache/pre-commit
-      - name: Pre-commit checks
-        run: pre-commit run --all-files --show-diff-on-failure
+          github-token: ${{ github.token }}
+      - name: Run pre-commit checks
+        run: uv tool run pre-commit run --all-files --show-diff-on-failure
 
   test:
     strategy:
@@ -83,26 +64,13 @@ jobs:
       # ----------------------------------------------
       # build virtual environment and install
       # ----------------------------------------------
-      - name: Install Poetry
-        uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a  # v1.4.1
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b  # v7.3.0
         with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830  # v4.3.0
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      - name: Install dependencies if cached venv not found
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
-      - name: Install module
-        run: poetry install --no-interaction
+          github-token: ${{ github.token }}
 
       # ----------------------------------------------
       # run tests
       # ----------------------------------------------
       - name: Run tests
-        run: poetry run pytest
+        run: uv run pytest

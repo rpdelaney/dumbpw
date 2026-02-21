@@ -3,22 +3,27 @@
 # builds and uploads a distribution to pypi
 #
 
-repo="${1:-pypi_test}"
+pypi="https://upload.pypi.org/legacy/"
+pypi_test="https://test.pypi.org/legacy/"
 
-if [ "$repo" = "pypi_test" ]; then
-  TWINE_PASSWORD="$TWINE_TEST_PASSWORD"
-fi
+set -o nounset
+set +x
 
-if [ -z "$TWINE_USERNAME" ] ; then
-  echo "TWINE_USERNAME must be set." 1>&2
-  exit 1
-fi
+export UV_REQUIRE_HASHES=1
+export UV_NO_CONFIG=1
+export UV_PYTHON_DOWNLOADS="never"
+unset UV_INSECURE_HOST
 
-if [ -z "$TWINE_PASSWORD" ] ; then
-  echo "TWINE_PASSWORD must be set." 1>&2
-  exit 1
-fi
-
-if poetry build ; then
-  poetry publish -u "$TWINE_USERNAME" -p "$TWINE_PASSWORD" -r "$repo"
+if uv build --clear --no-create-gitignore ; then
+    case ${1:-foo} in
+    pypi)
+        uv publish --username "$UV_PUBLISH_USERNAME" --password "$UV_PUBLISH_PASSWORD" --publish-url "$pypi"
+        ;;
+    test)
+        uv publish --username "$UV_PUBLISH_TEST_USERNAME" --password "$UV_PUBLISH_TEST_PASSWORD" --publish-url "$pypi_test"
+        ;;
+    *)
+        uv publish --dry-run --username "$UV_PUBLISH_TEST_USERNAME" --password "$UV_PUBLISH_TEST_PASSWORD" --publish-url "$pypi_test"
+        ;;
+    esac
 fi

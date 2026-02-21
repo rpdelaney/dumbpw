@@ -59,32 +59,32 @@ repos:
       - id: pyproject.toml
         name: validate pyproject.toml
         language: system
-        entry: poetry check
+        entry: uv lock --dry-run
         files: 'pyproject\.toml'
         pass_filenames: false
 
       - id: ruff format
         name: ruff format
         language: system
-        entry: poetry run ruff format
+        entry: uv run ruff format --exit-non-zero-on-format
         types: [python]
         pass_filenames: true
 
       - id: ruff check
         name: ruff check
         language: system
-        entry: poetry run ruff check --fix
+        entry: uv run ruff check --fix
         types: [python]
         pass_filenames: true
 
       - id: deal lint
         name: deal lint
         language: system
-        entry: poetry run python3 -m deal lint
+        entry: uv run python3 -m deal lint
         types: [python]
 
       - id: mypy
         name: mypy
         language: system
-        entry: poetry run mypy
+        entry: uv run mypy
         types: [python]
