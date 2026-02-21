@@ -41,8 +41,6 @@ jobs:
         uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b  # v7.3.0
         with:
           github-token: ${{ github.token }}
-      - name: Install pre-commit
-        run: pip install pre-commit
       - name: Run pre-commit checks
         run: uv tool run pre-commit run --all-files --show-diff-on-failure
 
