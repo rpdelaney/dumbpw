@@ -2,6 +2,7 @@
 
 import secrets
 import string
+from collections import Counter
 from collections.abc import Iterator
 
 import deal
@@ -64,6 +65,12 @@ class Candidate:
     def __getitem__(self, item: int) -> str:
         """Provide subscriptability."""
         return str(self)[item]
+
+    def must_repeat(self) -> bool:
+        """Return True if the text cannot construct a non-repeating string."""
+        f_max: int = max(Counter(self._text).values())
+        limit: int = len(self._text) // 2
+        return f_max >= limit
 
     def shuffled(self) -> "Candidate":
         """Cryptographically shuffle the string."""
