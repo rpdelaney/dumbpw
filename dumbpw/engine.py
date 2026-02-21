@@ -98,13 +98,7 @@ def search(settings: Settings) -> Candidate:
     )
 
     while len(candidate) < settings.length:
-        choice = secrets.choice(charspace.charset)
-        if (
-            not candidate
-            or settings.allow_repeating
-            or candidate[-1] != choice
-        ):
-            candidate += choice
+        candidate += secrets.choice(charspace.charset)
 
     # TODO: test this is done at least once
     password = candidate.shuffled()
