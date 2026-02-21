@@ -191,7 +191,7 @@ wheels = [
 [[package]]
 name = "dumbpw"
 version = "1.0.3"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "click" },
     { name = "deal" },
