@@ -6,32 +6,24 @@
 pypi="https://upload.pypi.org/legacy/"
 pypi_test="https://test.pypi.org/legacy/"
 
-case $1 in
-  pypi)
-    publish_url="$pypi"
-    ;;
-  test)
-    publish_url="$pypi_test"
-    ;;
-  *)
-    publish_url="$pypi_test"
-    dry_run="--dry-run"
-    ;;
-esac
-
 set -o nounset
+set +x
 
-if [ "$publish_url" = "pypi_test" ]; then
-  export UV_PUBLISH_PASSWORD="$TWINE_TEST_PASSWORD"
-fi
+export UV_REQUIRE_HASHES=1
+export UV_NO_CONFIG=1
+export UV_PYTHON_DOWNLOADS="never"
+unset UV_INSECURE_HOST
 
-if [ -n "$TWINE_PASSWORD" ] ; then
-  export UV_PUBLISH_USERNAME="$TWINE_USERNAME"
-else
-  echo "TWINE_PASSWORD must be set." 1>&2
-  exit 1
-fi
-
-if uv build ; then
-  uv publish "${dry_run:-}" --publish-url "$publish_url"
+if uv build --clear --no-create-gitignore ; then
+    case ${1:-foo} in
+    pypi)
+        uv publish --username "$UV_PUBLISH_USERNAME" --password "$UV_PUBLISH_PASSWORD" --publish-url "$pypi"
+        ;;
+    test)
+        uv publish --username "$UV_PUBLISH_TEST_USERNAME" --password "$UV_PUBLISH_TEST_PASSWORD" --publish-url "$pypi_test"
+        ;;
+    *)
+        uv publish --dry-run --username "$UV_PUBLISH_TEST_USERNAME" --password "$UV_PUBLISH_TEST_PASSWORD" --publish-url "$pypi_test"
+        ;;
+    esac
 fi
