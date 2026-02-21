@@ -76,9 +76,7 @@ def search(settings: Settings) -> Candidate:
     """Search for a password that meets the given requirements."""
     charspace = Charspace(
         blocklist=settings.blocklist,
-        extras=DEFAULT_EXTRAS
-        if settings.specials is None
-        else settings.specials,
+        extras=settings.specials or DEFAULT_EXTRAS,
     )
     candidate = Candidate("")
 
