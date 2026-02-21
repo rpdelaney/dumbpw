@@ -42,9 +42,11 @@ deal.module_load(deal.pure)
     message="Special characters required from empty character set.",
 )
 @deal.pre(
-    lambda _: not _.settings.blocklist
-    or not _.settings.specials
-    or all(c not in _.settings.blocklist for c in _.settings.specials),
+    lambda _: (
+        not _.settings.blocklist
+        or not _.settings.specials
+        or all(c not in _.settings.blocklist for c in _.settings.specials)
+    ),
     exception=DumbValueError,
     message="Required special characters in the blocklist.",
 )
