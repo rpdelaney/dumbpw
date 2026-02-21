@@ -1,7 +1,5 @@
 ---
 name: CI
-# Docs on poetry runner for github actions:
-# https://github.com/marketplace/actions/install-poetry-action
 
 on:
   pull_request:
