@@ -66,7 +66,7 @@ repos:
       - id: ruff format
         name: ruff format
         language: system
-        entry: uv run ruff format
+        entry: uv run ruff format --exit-non-zero-on-format
         types: [python]
         pass_filenames: true
 
