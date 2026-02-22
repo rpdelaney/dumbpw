@@ -12,7 +12,6 @@ from dumbpw.constants import (
 )
 
 
-deal.activate()
 deal.module_load(deal.pure)
 
 
