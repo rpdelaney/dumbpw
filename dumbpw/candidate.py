@@ -45,12 +45,24 @@ class Candidate:
 
     @deal.pure
     def __add__(self, other: str) -> "Candidate":
-        """Handle addition operator."""
+        """Handle addition operator.
+
+        >>> Candidate("aa") + "bb"
+        Candidate('aabb')
+        """
         return Candidate(self._text + other)
 
     @deal.pure
     def __eq__(self, other) -> bool:  # type: ignore[no-untyped-def,misc]
-        """Check equality between self and other."""
+        """Check equality between self and other.
+
+        >>> Candidate("aa") == Candidate("aa")
+        True
+        >>> Candidate("aa") == Candidate("ab")
+        False
+        >>> Candidate("aa") == "aa"
+        False
+        """
         return str(self) == str(other)
 
     @deal.pure
