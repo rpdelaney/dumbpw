@@ -39,6 +39,11 @@ class Candidate:
         self._text = text
 
     @deal.pure
+    def __repr__(self) -> str:
+        """Return a representation of the Candidate."""
+        return f"{self.__class__.__name__}({self._text!r})"
+
+    @deal.pure
     def __add__(self, other: str) -> "Candidate":
         """Handle addition operator."""
         return Candidate(self._text + other)
