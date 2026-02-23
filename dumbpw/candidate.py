@@ -27,6 +27,8 @@ class Candidate:
     True
     >>> password.has_repeating
     False
+    >>> password.must_repeat
+    False
     """
 
     __slots__ = ("_text",)
@@ -66,6 +68,8 @@ class Candidate:
         """Provide subscriptability."""
         return str(self)[item]
 
+    @property
+    @deal.pure
     def must_repeat(self) -> bool:
         """Return True if the text cannot construct a non-repeating string."""
         f_max: int = max(Counter(self._text).values())

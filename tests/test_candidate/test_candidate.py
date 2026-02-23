@@ -112,4 +112,4 @@ def test_candidate_sizable(text):
 def test_candidate_must_repeat(text, expected):
     cd = Candidate(text)
 
-    assert cd.must_repeat() is expected
+    assert cd.must_repeat is expected
