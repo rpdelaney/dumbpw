@@ -15,17 +15,17 @@ class Candidate:
     """A subclass of str representing a password candidate.
 
     >>> password = Candidate("abcDEFG123!abc")
-    >>> print(password.digits)
+    >>> password.digits
     3
-    >>> print(password.specials)
+    >>> password.specials
     1
-    >>> print(password.uppers)
+    >>> password.uppers
     4
-    >>> print(password.lowers)
+    >>> password.lowers
     6
-    >>> print(password.has_duplicates)
+    >>> password.has_duplicates
     True
-    >>> print(password.has_repeating)
+    >>> password.has_repeating
     False
     """
 
