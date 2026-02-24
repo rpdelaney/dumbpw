@@ -61,7 +61,7 @@ class Candidate:
         >>> Candidate("aa") == Candidate("ab")
         False
         >>> Candidate("aa") == "aa"
-        False
+        True
         """
         return str(self) == str(other)
 
