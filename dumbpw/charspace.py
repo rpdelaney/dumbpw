@@ -1,5 +1,7 @@
 """Define a dataclass for rendering the character search space."""
 
+import secrets
+
 import deal
 
 from dumbpw.constants import (
@@ -79,3 +81,10 @@ class Charspace:
         return "".join(
             char for char in self._uppers if char not in self._blocklist
         )
+
+    @deal.pure
+    def charset_shuffled(self) -> str:
+        """Return a cryptographically shuffled charset."""
+        result = list(self.charset)
+        secrets.SystemRandom().shuffle(result)
+        return str(result)
