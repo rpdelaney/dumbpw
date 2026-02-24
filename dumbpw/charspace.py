@@ -1,7 +1,5 @@
 """Define a dataclass for rendering the character search space."""
 
-from dataclasses import dataclass
-
 import deal
 
 from dumbpw.constants import (
@@ -15,21 +13,30 @@ from dumbpw.constants import (
 deal.module_load(deal.pure)
 
 
-@dataclass(frozen=True)
 class Charspace:
     """Define an object that calculates and renders character space."""
 
-    blocklist: str = ""
-    digits: str = DEFAULT_DIGITS
-    extras: str = DEFAULT_EXTRAS
-    lowers: str = DEFAULT_LOWERS
-    uppers: str = DEFAULT_UPPERS
+    def __init__(
+        self,
+        *,
+        blocklist: str = "",
+        digits: str = DEFAULT_DIGITS,
+        extras: str = DEFAULT_EXTRAS,
+        lowers: str = DEFAULT_LOWERS,
+        uppers: str = DEFAULT_UPPERS,
+    ) -> None:
+        """Initialize a Charspace."""
+        self._blocklist = blocklist
+        self._digits = digits
+        self._extras = extras
+        self._lowers = lowers
+        self._uppers = uppers
 
     @property
     @deal.pure
     def base_charset(self) -> set[str]:
         """Calculate the base (unprocessed) charset."""
-        return set(self.lowers + self.uppers + self.digits + self.extras)
+        return set(self._lowers + self._uppers + self._digits + self._extras)
 
     @property
     @deal.pure
@@ -39,4 +46,36 @@ class Charspace:
         Remove characters that are in the blocklist, and return a
         charset as a string.
         """
-        return "".join(set(self.base_charset) - set(self.blocklist))
+        return "".join(set(self.base_charset) - set(self._blocklist))
+
+    @property
+    @deal.pure
+    def digits(self) -> str:
+        """Return the digits that aren't blocked."""
+        return "".join(
+            char for char in self._digits if char not in self._blocklist
+        )
+
+    @property
+    @deal.pure
+    def extras(self) -> str:
+        """Return the extras that aren't blocked."""
+        return "".join(
+            char for char in self._extras if char not in self._blocklist
+        )
+
+    @property
+    @deal.pure
+    def lowers(self) -> str:
+        """Return the lowers that aren't blocked."""
+        return "".join(
+            char for char in self._lowers if char not in self._blocklist
+        )
+
+    @property
+    @deal.pure
+    def uppers(self) -> str:
+        """Return the uppers that aren't blocked."""
+        return "".join(
+            char for char in self._uppers if char not in self._blocklist
+        )
