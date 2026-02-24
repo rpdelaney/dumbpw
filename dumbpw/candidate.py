@@ -34,14 +34,14 @@ class Candidate:
     __slots__ = ("_text",)
 
     @deal.pure
-    def __init__(self, /, text: str) -> None:
+    def __init__(self, /, text: str | list[str]) -> None:
         """Initialize the Candidate object."""
-        self._text = text
+        self._text: list[str] = list(text)
 
     @deal.pure
     def __repr__(self) -> str:
         """Return a representation of the Candidate."""
-        return f"{self.__class__.__name__}({self._text!r})"
+        return f"{self.__class__.__name__}({''.join(self._text)!r})"
 
     @deal.pure
     def __add__(self, other: str) -> "Candidate":
@@ -50,7 +50,7 @@ class Candidate:
         >>> Candidate("aa") + "bb"
         Candidate('aabb')
         """
-        return Candidate(self._text + other)
+        return Candidate("".join(self._text + list(other)))
 
     @deal.pure
     def __eq__(self, other) -> bool:  # type: ignore[no-untyped-def,misc]
@@ -68,7 +68,7 @@ class Candidate:
     @deal.pure
     def __hash__(self) -> int:
         """Return a hash of self."""
-        return hash(self._text)
+        return hash(str(self._text))
 
     @deal.pure
     def __len__(self) -> int:
@@ -258,11 +258,11 @@ class Candidate:
 
         >>> c = Candidate("")
         >>> c.extend(x for x in ["a", "b", "c"])
-        >>> c._text == "abc"
+        >>> c._text == ["a", "b", "c"]
         True
         >>> c = Candidate("123")
         >>> c.extend(x for x in ["a", "b", "c"])
-        >>> c._text == "123abc"
+        >>> c._text == ["1", "2", "3", "a", "b", "c"]
         True
         """
         for c in iterator:
