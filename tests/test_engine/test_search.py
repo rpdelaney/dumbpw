@@ -33,6 +33,7 @@ PROPERTY_STRATEGY = strats.builds(
 @deal.cases(
     func=engine.search,
     kwargs={"settings": PROPERTY_STRATEGY},
+    count=500,
 )
 def test_search(case: deal.TestCase) -> None:
     case()
