@@ -46,6 +46,8 @@ class Candidate:
 
         >>> Candidate("aa") + "bb"
         Candidate('aabb')
+        >>> Candidate("aa") + Candidate("bb")
+        Candidate('aabb')
         """
         return Candidate("".join(self._text + list(other)))
 
