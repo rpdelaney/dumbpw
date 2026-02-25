@@ -84,14 +84,17 @@ class Candidate:
         """Iterate over the text."""
         yield from self._text
 
+    @deal.raises(IndexError)
     def __getitem__(self, item: int) -> str:
         """Provide subscriptability."""
         return self._text[item]
 
+    @deal.raises(IndexError)
     def __setitem__(self, item: int, value: str) -> None:
         """Provide item assignment."""
         self._text[item] = value
 
+    @deal.raises(IndexError)
     def __delitem__(self, item: int) -> None:
         """Provide item deletion."""
         del self._text[item]
