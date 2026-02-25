@@ -80,6 +80,10 @@ class Candidate:
         return "".join(self._text)
 
     @deal.pure
+    def __iter__(self) -> Iterator[str]:
+        """Iterate over the text."""
+        yield from self._text
+
     def __getitem__(self, item: int) -> str:
         """Provide subscriptability."""
         return str(self)[item]
