@@ -2,10 +2,6 @@
 
 import string
 
-import deal
-
-
-deal.module_load(deal.pure)
 
 PASSWORD_LENGTH_MIN = 5
 PASSWORD_LENGTH_MAX = 64

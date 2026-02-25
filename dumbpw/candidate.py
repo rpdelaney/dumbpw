@@ -8,9 +8,6 @@ from collections.abc import Iterator
 import deal
 
 
-deal.module_load(deal.pure)
-
-
 class Candidate:
     """A subclass of str representing a password candidate.
 

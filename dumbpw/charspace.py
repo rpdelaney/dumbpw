@@ -12,9 +12,6 @@ from dumbpw.constants import (
 )
 
 
-deal.module_load(deal.pure)
-
-
 class Charspace:
     """Define an object that calculates and renders character space."""
 
