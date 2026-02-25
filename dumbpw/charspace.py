@@ -72,6 +72,13 @@ class Charspace:
             char for char in self._digits if char not in self._blocklist
         )
 
+    @deal.pure
+    def digits_shuffled(self) -> list[str]:
+        """Return cryptographically random legal digits."""
+        result = list(self.digits)
+        secrets.SystemRandom().shuffle(result)
+        return result
+
     @property
     @deal.pure
     def extras(self) -> str:
@@ -88,6 +95,13 @@ class Charspace:
             char for char in self._extras if char not in self._blocklist
         )
 
+    @deal.pure
+    def extras_shuffled(self) -> list[str]:
+        """Return cryptographically random legal extras."""
+        result = list(self.extras)
+        secrets.SystemRandom().shuffle(result)
+        return result
+
     @property
     @deal.pure
     def lowers(self) -> str:
@@ -96,6 +110,13 @@ class Charspace:
             char for char in self._lowers if char not in self._blocklist
         )
 
+    @deal.pure
+    def lowers_shuffled(self) -> list[str]:
+        """Return cryptographically random legal lowers."""
+        result = list(self.lowers)
+        secrets.SystemRandom().shuffle(result)
+        return result
+
     @property
     @deal.pure
     def uppers(self) -> str:
@@ -103,6 +124,13 @@ class Charspace:
         return "".join(
             char for char in self._uppers if char not in self._blocklist
         )
+
+    @deal.pure
+    def uppers_shuffled(self) -> list[str]:
+        """Return cryptographically random legal uppers."""
+        result = list(self.uppers)
+        secrets.SystemRandom().shuffle(result)
+        return result
 
     @deal.pure
     def charset_shuffled(self) -> str:
