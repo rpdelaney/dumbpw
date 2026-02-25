@@ -86,7 +86,7 @@ class Candidate:
 
     def __getitem__(self, item: int) -> str:
         """Provide subscriptability."""
-        return str(self)[item]
+        return self._text[item]
 
     def __setitem__(self, item: int, value: str) -> None:
         """Provide item assignment."""
@@ -261,7 +261,7 @@ class Candidate:
     )
     def copy(self) -> "Candidate":
         """Return a copy of self."""
-        return Candidate(str(self))
+        return Candidate(self._text)
 
     @deal.safe
     def extend(self, iterator: Iterator[str]) -> None:
