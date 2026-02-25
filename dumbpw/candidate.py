@@ -85,6 +85,14 @@ class Candidate:
         """Provide subscriptability."""
         return str(self)[item]
 
+    def __setitem__(self, item: int, value: str) -> None:
+        """Provide item assignment."""
+        self._text[item] = value
+
+    def __delitem__(self, item: int) -> None:
+        """Provide item deletion."""
+        del self._text[item]
+
     @property
     @deal.pure
     def must_repeat(self) -> bool:
