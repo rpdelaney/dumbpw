@@ -34,6 +34,11 @@ class Charspace:
         self._lowers = lowers
         self._uppers = uppers
 
+    @deal.pure
+    def __repr__(self) -> str:
+        """Return a representation."""
+        return f"{self.__class__.__name__}({''.join(sorted(self.charset))!r})"
+
     @property
     @deal.pure
     def base_charset(self) -> set[str]:
