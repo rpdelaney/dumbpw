@@ -75,7 +75,15 @@ class Charspace:
     @property
     @deal.pure
     def extras(self) -> str:
-        """Return the extras that aren't blocked."""
+        """Return the extras that aren't blocked.
+
+        >>> c = Charspace()
+        >>> c.extras == DEFAULT_EXTRAS
+        True
+        >>> c = Charspace(blocklist="!%a")
+        >>> c.lowers
+        'bcdefghijklmnopqrstuvwxyz'
+        """
         return "".join(
             char for char in self._extras if char not in self._blocklist
         )
