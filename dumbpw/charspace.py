@@ -39,6 +39,15 @@ class Charspace:
         """Return a representation."""
         return f"{self.__class__.__name__}({''.join(sorted(self.charset))!r})"
 
+    @deal.pure
+    def __str__(self) -> str:
+        """Return the charspace formatted as a string."""
+        return "".join(sorted(self.charset))
+
+    def __getitem__(self, item: int) -> str:
+        """Provide subscriptability."""
+        return str(self)[item]
+
     @property
     @deal.pure
     def base_charset(self) -> set[str]:
