@@ -80,10 +80,10 @@ def search(settings: Settings) -> Candidate:
     candidate = Candidate(["" for _ in range(settings.length)])
 
     args = [
-        (settings.min_digits, charspace.digits_shuffled()),
-        (settings.min_uppercase, charspace.uppers_shuffled()),
-        (settings.min_lowercase, charspace.lowers_shuffled()),
-        (settings.min_specials, charspace.extras_shuffled()),
+        (settings.min_digits, charspace.digits),
+        (settings.min_uppercase, charspace.uppers),
+        (settings.min_lowercase, charspace.lowers),
+        (settings.min_specials, charspace.extras),
     ]
     for count, charstack in args:
         candidate.scatter(
@@ -94,7 +94,7 @@ def search(settings: Settings) -> Candidate:
 
     candidate.scatter(
         count=len(candidate.voids),
-        charstack=charspace.charset_shuffled(),
+        charstack=charspace.charset,
         allow_repeating=settings.allow_repeating,
     )
 
