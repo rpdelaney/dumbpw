@@ -77,7 +77,7 @@ class Candidate:
     @deal.pure
     def __hash__(self) -> int:
         """Return a hash of self."""
-        return hash(str(self._text))
+        return hash(self.__repr__())
 
     @deal.pure
     def __len__(self) -> int:
