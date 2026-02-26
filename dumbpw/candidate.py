@@ -37,8 +37,16 @@ class Candidate:
 
     @deal.pure
     def __repr__(self) -> str:
-        """Return a representation of the Candidate."""
-        return f"{self.__class__.__name__}({''.join(self._text)!r})"
+        """Return a representation of the Candidate.
+
+        >>> Candidate("")
+        Candidate([])
+        >>> Candidate("abc")
+        Candidate(['a', 'b', 'c'])
+        >>> Candidate("a c")
+        Candidate(['a', ' ', 'c'])
+        """
+        return f"{self.__class__.__name__}({self._text!r})"
 
     @deal.pure
     def __add__(self, other: str) -> "Candidate":
