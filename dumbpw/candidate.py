@@ -86,7 +86,17 @@ class Candidate:
 
     @deal.pure
     def __str__(self) -> str:
-        """Return the plain text of the string."""
+        """Return the plain text of the string.
+
+        >>> str(Candidate(""))
+        ''
+        >>> str(Candidate(" "))
+        ' '
+        >>> str(Candidate("abc"))
+        'abc'
+        >>> str(Candidate("a b c"))
+        'a b c'
+        """
         return "".join(self._text)
 
     @deal.pure
