@@ -53,9 +53,11 @@ class Candidate:
         """Handle addition operator.
 
         >>> Candidate("aa") + "bb"
-        Candidate('aabb')
+        Candidate(['a', 'a', 'b', 'b'])
         >>> Candidate("aa") + Candidate("bb")
-        Candidate('aabb')
+        Candidate(['a', 'a', 'b', 'b'])
+        >>> Candidate("aa") + Candidate("")
+        Candidate(['a', 'a'])
         """
         return Candidate("".join(self._text + list(other)))
 
