@@ -130,8 +130,8 @@ class Charspace:
         return result
 
     @deal.pure
-    def charset_shuffled(self) -> str:
+    def charset_shuffled(self) -> list[str]:
         """Return a cryptographically shuffled charset."""
         result = list(self.charset)
         secrets.SystemRandom().shuffle(result)
-        return str(result)
+        return result
