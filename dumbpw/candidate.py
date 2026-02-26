@@ -138,6 +138,30 @@ class Candidate:
         """
         return [i for i, item in enumerate(self._text) if item.strip() == ""]
 
+    def scatter(
+        self, *, count: int, charstack: list[str], allow_repeating: bool
+    ) -> None:
+        """Insert count random characters from the given space.
+
+        Respect the allow_repeating setting.
+        """
+        for _ in range(count):
+            randi = secrets.choice(self.voids)
+            for char in reversed(charstack):
+                try:
+                    char_prev = self[randi - 1]
+                except IndexError:
+                    char_prev = None
+                try:
+                    char_next = self[randi + 1]
+                except IndexError:
+                    char_next = None
+
+                if allow_repeating or char not in (char_prev, char_next):
+                    self[randi] = char
+                    charstack.pop()
+                    break
+
     @property
     @deal.pure
     def must_repeat(self) -> bool:

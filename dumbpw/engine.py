@@ -1,7 +1,5 @@
 """Provide an engine for finding a good dumb password."""
 
-import secrets
-
 import deal
 
 from dumbpw.candidate import Candidate
@@ -77,32 +75,25 @@ def search(settings: Settings) -> Candidate:
         blocklist=settings.blocklist,
         extras=settings.specials or DEFAULT_EXTRAS,
     )
-    candidate = Candidate("")
+    candidate = Candidate(["" for _ in range(settings.length)])
 
-    candidate.extend(
-        secrets.choice(charspace.digits) for _ in range(settings.min_digits)
+    args = [
+        (settings.min_digits, charspace.digits_shuffled()),
+        (settings.min_uppercase, charspace.uppers_shuffled()),
+        (settings.min_lowercase, charspace.lowers_shuffled()),
+        (settings.min_specials, charspace.extras_shuffled()),
+    ]
+    for count, charstack in args:
+        candidate.scatter(
+            count=count,
+            charstack=charstack,
+            allow_repeating=settings.allow_repeating,
+        )
+
+    candidate.scatter(
+        count=len(candidate.voids),
+        charstack=charspace.charset_shuffled(),
+        allow_repeating=settings.allow_repeating,
     )
-    candidate.extend(
-        secrets.choice(charspace.uppers) for _ in range(settings.min_uppercase)
-    )
-    candidate.extend(
-        secrets.choice(charspace.lowers) for _ in range(settings.min_lowercase)
-    )
-    candidate.extend(
-        secrets.choice(charspace.extras)
-        for _ in range(settings.min_specials)
-        if charspace.extras
-    )
 
-    while len(candidate) < settings.length:
-        candidate += secrets.choice(charspace.charset)
-
-    # TODO: test this is done at least once
-    password = candidate.shuffled()
-
-    # TODO: abstract this and make it safer.
-    # e.g. 'aaaab' will loop forever
-    while not settings.allow_repeating and password.has_repeating:
-        password = Candidate(str(password.shuffled()))
-
-    return password
+    return candidate
