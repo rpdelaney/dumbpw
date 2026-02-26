@@ -11,9 +11,6 @@ from dumbpw.errors import DumbValueError
 from dumbpw.settings import Settings
 
 
-deal.module_load(deal.pure)
-
-
 @deal.safe
 @deal.has("random")
 @deal.pre(
