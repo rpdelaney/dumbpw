@@ -148,9 +148,9 @@ class Candidate:
         """
         for _ in range(count):
             randi: int = secrets.choice(self.voids)
+
             char_prev: str | None = None
             char_next: str | None = None
-
             with contextlib.suppress(IndexError):
                 char_prev = self[randi - 1]
             with contextlib.suppress(IndexError):
