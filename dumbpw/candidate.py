@@ -131,7 +131,7 @@ class Candidate:
         """Cryptographically shuffle the string."""
         new_password = list(self._text)
         secrets.SystemRandom().shuffle(new_password)
-        return Candidate("".join(new_password))
+        return Candidate(new_password)
 
     @deal.pure
     @deal.post(
