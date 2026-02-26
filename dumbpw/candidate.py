@@ -32,7 +32,15 @@ class Candidate:
 
     @deal.pure
     def __init__(self, /, text: str | list[str]) -> None:
-        """Initialize the Candidate object."""
+        """Initialize the Candidate object.
+
+        >>> Candidate("a b c")._text
+        ['a', ' ', 'b', ' ', 'c']
+        >>> Candidate(" a  b ")._text
+        [' ', 'a', ' ', ' ', 'b', ' ']
+        >>> Candidate("ab ")._text
+        ['a', 'b', ' ']
+        """
         self._text: list[str] = list(text)
 
     @deal.pure
