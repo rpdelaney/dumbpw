@@ -128,6 +128,17 @@ class Candidate:
         del self._text[item]
 
     @property
+    def voids(self) -> list[int]:
+        """Return the open slots.
+
+        >>> Candidate("a b c").voids
+        [1, 3]
+        >>> Candidate(["a", " ", "b", " ", "c"]).voids
+        [1, 3]
+        """
+        return [i for i, item in enumerate(self._text) if item.strip() == ""]
+
+    @property
     @deal.pure
     def must_repeat(self) -> bool:
         """Return True if the text cannot construct a non-repeating string."""
