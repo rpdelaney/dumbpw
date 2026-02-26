@@ -1,5 +1,6 @@
 """Provide an object for evaluating candidate passwords."""
 
+import contextlib
 import secrets
 import string
 from collections import Counter
@@ -146,17 +147,16 @@ class Candidate:
         Respect the allow_repeating setting.
         """
         for _ in range(count):
-            randi = secrets.choice(self.voids)
-            for char in reversed(charstack):
-                try:
-                    char_prev = self[randi - 1]
-                except IndexError:
-                    char_prev = None
-                try:
-                    char_next = self[randi + 1]
-                except IndexError:
-                    char_next = None
+            randi: int = secrets.choice(self.voids)
+            char_prev: str | None = None
+            char_next: str | None = None
 
+            with contextlib.suppress(IndexError):
+                char_prev = self[randi - 1]
+            with contextlib.suppress(IndexError):
+                char_next = self[randi + 1]
+
+            for char in reversed(charstack):
                 if allow_repeating or char not in (char_prev, char_next):
                     self[randi] = char
                     charstack.pop()
