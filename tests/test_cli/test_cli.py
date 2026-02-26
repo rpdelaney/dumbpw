@@ -1,4 +1,5 @@
 import os
+import string
 
 import hypothesis.strategies as strats
 from click.testing import CliRunner
@@ -27,6 +28,15 @@ def test_cli_constraints_fail():
 
     assert result.exit_code == 1
     assert "You cannot request more characters" in result.output
+
+
+def test_cli_empty_specials():
+    """Zero-length settings.specials is respected."""
+    runner = CliRunner()
+
+    result = runner.invoke(cli, ["12", "--specials", ""])
+
+    assert not any(c in string.punctuation for c in result.output)
 
 
 @given(strats.integers(min_value=5, max_value=12))
