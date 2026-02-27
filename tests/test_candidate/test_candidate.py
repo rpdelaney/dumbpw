@@ -102,15 +102,18 @@ def test_candidate_sizable(text):
     assert sys.getsizeof(cd) is not None
 
 
-def test_candidate_strict_equality_logic():
-    """Equality is structural."""
-    c_voids = Candidate(["a", "", "b"])
-    c_flat = Candidate(["a", "b"])
-    c_str = Candidate("abc")
+def test_candidate_strict_equality_logic(mocker):
+    """Equality agrees with hash."""
+    c1 = Candidate("abc")
+    c2 = Candidate(["a", "b", "c"])
+    c3 = Candidate("abd")
 
-    assert c_voids != c_flat
-    assert list({c_voids, c_flat}) == [c_voids, c_flat]
-    assert c_str != "abc"
+    assert c1 == c2
+    assert c1 != c3
+    assert c1 != "abc"
+    assert hash(c1) == hash(c2)
+    assert len({c1, c2}) == 1
+    assert len({c1, c3}) == 2
 
 
 def test_candidate_scatter_firstlast(mocker):
