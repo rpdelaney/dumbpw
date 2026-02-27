@@ -115,9 +115,7 @@ def test_candidate_scatter_firstlast(mocker):
     """Scattering does not compare the first and last as duplicates."""
     mock_choice = mocker.patch("secrets.choice")
     mock_random = mocker.patch("secrets.SystemRandom")
-
     mock_random.return_value.shuffle.side_effect = lambda x: x.sort()
-
     mock_choice.return_value = 0
 
     cd = Candidate(" XYA")
