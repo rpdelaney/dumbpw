@@ -71,7 +71,7 @@ class Candidate:
         return Candidate("".join(self._text + list(other)))
 
     @deal.pure
-    def __eq__(self, other) -> bool:  # type: ignore[no-untyped-def,misc]
+    def __eq__(self, other: object) -> bool:
         """Check equality between self and other.
 
         >>> Candidate("aa") == Candidate("aa")
@@ -79,14 +79,18 @@ class Candidate:
         >>> Candidate("aa") == Candidate("ab")
         False
         >>> Candidate("aa") == "aa"
+        False
+        >>> Candidate("abc") == Candidate(["a", "b", "c"])
         True
         """
-        return str(self) == str(other)
+        if not isinstance(other, Candidate):
+            return NotImplemented
+        return self._text == other._text
 
     @deal.pure
     def __hash__(self) -> int:
         """Return a hash of self."""
-        return hash(self.__repr__())
+        return hash(tuple(self._text))
 
     @deal.pure
     def __len__(self) -> int:

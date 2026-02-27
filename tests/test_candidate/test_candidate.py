@@ -87,9 +87,10 @@ def test_candidate_subscriptable(text):
 @given(strats.text())
 def test_candidate_hashable(text):
     """Candidate is hashable."""
-    cd = Candidate(text)
+    c1 = Candidate(text)
+    c2 = Candidate(text)
 
-    assert hash(cd) is not None
+    assert hash(c1) == hash(c2)
 
 
 @given(strats.text())
@@ -113,3 +114,14 @@ def test_candidate_must_repeat(text, expected):
     cd = Candidate(text)
 
     assert cd.must_repeat is expected
+
+
+def test_strict_equality_logic():
+    """Equality is structural."""
+    c_voids = Candidate(["a", "", "b"])
+    c_flat = Candidate(["a", "b"])
+    c_str = Candidate("abc")
+
+    assert c_voids != c_flat
+    assert list({c_voids, c_flat}) == [c_voids, c_flat]
+    assert c_str != "abc"
