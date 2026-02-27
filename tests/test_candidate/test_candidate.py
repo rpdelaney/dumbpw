@@ -116,7 +116,7 @@ def test_candidate_must_repeat(text, expected):
     assert cd.must_repeat is expected
 
 
-def test_strict_equality_logic():
+def test_candidate_strict_equality_logic():
     """Equality is structural."""
     c_voids = Candidate(["a", "", "b"])
     c_flat = Candidate(["a", "b"])
