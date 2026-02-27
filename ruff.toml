@@ -66,7 +66,7 @@ unfixable = [
 [lint.per-file-ignores]
 "__init__.py" = ["D104", "E402"]
 "dumbpw/cli.py" = ["T201"]
-"**/{tests,docs}/*" = ["ARG", "ANN", "D", "S"]
+"**/{tests,docs}/*" = ["ARG", "ANN", "D", "S", "SLF"]
 ".pythonrc.py" = ["ALL"]
 
 [lint.mccabe]
