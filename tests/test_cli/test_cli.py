@@ -93,3 +93,15 @@ def test_cli_env_specials():
     result = runner.invoke(cli, ["5", "--min-specials", "1"])
 
     assert sum(1 for char in result.output if char in specials) >= 1
+
+
+def test_cli_whitespace_specials():
+    """Whitespace is supported in the special characters."""
+    runner = CliRunner()
+    specials = " "
+
+    result = runner.invoke(
+        cli, ["5", "--specials", specials, "--min-specials", "1"]
+    )
+
+    assert " " in result.output
