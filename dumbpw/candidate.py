@@ -152,13 +152,12 @@ class Candidate:
         secrets.SystemRandom().shuffle(charstack)
 
         for _ in range(count):
-            randi: int = secrets.choice(self.voids)
-
-            char_prev: str | None
             char_next: str | None
-            try:
+            char_prev: str | None
+
+            if randi := secrets.choice(self.voids):
                 char_prev = self[randi - 1]
-            except IndexError:
+            else:
                 char_prev = None
             try:
                 char_next = self[randi + 1]
