@@ -173,12 +173,6 @@ class Candidate:
             else:
                 raise DumbConstraintError
 
-    def shuffled(self) -> "Candidate":
-        """Cryptographically shuffle the string."""
-        new_password = list(self._text)
-        secrets.SystemRandom().shuffle(new_password)
-        return Candidate(new_password)
-
     @deal.pure
     @deal.post(
         lambda result: result >= 0,
