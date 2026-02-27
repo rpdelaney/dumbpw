@@ -109,3 +109,18 @@ def test_candidate_strict_equality_logic():
     assert c_voids != c_flat
     assert list({c_voids, c_flat}) == [c_voids, c_flat]
     assert c_str != "abc"
+
+
+def test_candidate_scatter_firstlast(mocker):
+    """Scattering does not compare the first and last as duplicates."""
+    mock_choice = mocker.patch("secrets.choice")
+    mock_random = mocker.patch("secrets.SystemRandom")
+
+    mock_random.return_value.shuffle.side_effect = lambda x: x.sort()
+
+    mock_choice.return_value = 0
+
+    cd = Candidate(" XYA")
+    cd.scatter(count=1, charstack=["A"], allow_repeating=False)
+
+    assert cd._text[0] == "A"
