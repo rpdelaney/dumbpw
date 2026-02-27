@@ -6,6 +6,8 @@ from collections.abc import Iterator
 
 import deal
 
+from dumbpw.errors import DumbConstraintError
+
 
 class Candidate:
     """Password constructor.
@@ -168,6 +170,8 @@ class Candidate:
                     self[randi] = char
                     charstack.pop()
                     break
+            else:
+                raise DumbConstraintError
 
     def shuffled(self) -> "Candidate":
         """Cryptographically shuffle the string."""

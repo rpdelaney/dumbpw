@@ -1,9 +1,11 @@
 import sys
 
 import hypothesis.strategies as strats
+import pytest
 from hypothesis import given
 
 from dumbpw.candidate import Candidate
+from dumbpw.errors import DumbConstraintError
 
 
 def test_candidate_zero_len_duplicates():
@@ -122,3 +124,18 @@ def test_candidate_scatter_firstlast(mocker):
     cd.scatter(count=1, charstack=["A"], allow_repeating=False)
 
     assert cd._text[0] == "A"
+
+
+def test_candidate_scatter_unsatisfiable(mocker):
+    """Scatter raises DumbConstraintsError."""
+    mock_choice = mocker.patch("secrets.choice")
+    mock_random = mocker.patch("secrets.SystemRandom")
+    mock_random.return_value.shuffle.side_effect = lambda x: x.sort()
+    mock_choice.return_value = 3
+
+    cd = Candidate("    ")
+    cd.scatter(count=1, charstack=["A"], allow_repeating=False)
+
+    cd = Candidate("AAA ")
+    with pytest.raises(DumbConstraintError):
+        cd.scatter(count=1, charstack=["A"], allow_repeating=False)

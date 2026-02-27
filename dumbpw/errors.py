@@ -12,6 +12,10 @@ class DumbValueError(ValueError, DumbError):
     """ValueError for own objects."""
 
 
+class DumbConstraintError(DumbError):
+    """Constraints are unsatisfiable."""
+
+
 class DumbExitCode(IntEnum):
     """Exit status codes corresponding to 'sysexits.h'."""
 
