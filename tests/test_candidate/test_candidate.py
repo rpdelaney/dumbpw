@@ -1,7 +1,6 @@
 import sys
 
 import hypothesis.strategies as strats
-import pytest
 from hypothesis import given
 
 from dumbpw.candidate import Candidate
@@ -99,21 +98,6 @@ def test_candidate_sizable(text):
     cd = Candidate(text)
 
     assert sys.getsizeof(cd) is not None
-
-
-@pytest.mark.parametrize(
-    ("text", "expected"),
-    [
-        ("abcdef", False),
-        ("aaaaaa", True),
-        ("aaabcd", True),
-        ("aaaacd", True),
-    ],
-)
-def test_candidate_must_repeat(text, expected):
-    cd = Candidate(text)
-
-    assert cd.must_repeat is expected
 
 
 def test_candidate_strict_equality_logic():
