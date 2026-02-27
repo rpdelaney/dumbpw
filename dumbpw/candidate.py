@@ -10,7 +10,7 @@ import deal
 
 
 class Candidate:
-    """A subclass of str representing a password candidate.
+    """Password constructor.
 
     >>> password = Candidate("abcDEFG123!abc")
     >>> password.digits
