@@ -475,9 +475,11 @@ class Candidate:
     def has_repeating(self) -> bool:
         """Return if the password has repeating characters.
 
-        >>> Candidate([Void()]).has_repeating
+        >>> Candidate([]).has_repeating
         False
         >>> Candidate([Void()]).has_repeating
+        False
+        >>> Candidate([Void(), Void()]).has_repeating
         False
         >>> Candidate([Char("A")]).has_repeating
         False
@@ -493,6 +495,7 @@ class Candidate:
         return any(
             self._text[i] == self._text[i - 1]
             for i in range(1, len(self._text))
+            if not isinstance(self._text[i], Void)
         )
 
     @deal.pure
