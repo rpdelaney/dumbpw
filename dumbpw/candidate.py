@@ -325,15 +325,14 @@ class Candidate:
         lambda result: result >= 0,
         message="Count cannot be negative.",
     )
-    def _count_string_type(self, haystack: Iterator[Slot]) -> int:
+    def _count_string_type(self, haystack: list[Slot]) -> int:
         """Count how many characters in the password are part of the haystack.
 
-        >>> lowercase = [Char(c) for c in string.ascii_lowercase]
-        >>> uppercase = [Char(c) for c in string.ascii_uppercase]
-        >>> punctuation = [Char(c) for c in string.punctuation]
-        >>> Candidate([Void()])._count_string_type(lowercase)
+        >>> cd = Candidate([Void()])
+        >>> cd._count_string_type([Char(c) for c in string.ascii_lowercase])
         0
-        >>> Candidate([Void(), Void()])._count_string_type(lowercase)
+        >>> cd = Candidate([Void(), Void()])
+        >>> cd._count_string_type([Char(c) for c in string.ascii_lowercase])
         0
         >>> cd = Candidate(
         ...     [
@@ -355,16 +354,19 @@ class Candidate:
         ...         Void(),
         ...     ]
         ... )
-        >>> cd._count_string_type(lowercase)
+        >>> cd._count_string_type([Char(c) for c in string.ascii_lowercase])
         4
-        >>> cd._count_string_type(uppercase)
+        >>> cd._count_string_type([Char(c) for c in string.ascii_uppercase])
         5
-        >>> cd._count_string_type(punctuation)
+        >>> cd._count_string_type([Char(c) for c in string.punctuation])
+        2
+        >>> cd = Candidate([Char("0"), Char("#"), Char("#")])
+        >>> cd._count_string_type([Char(c) for c in string.digits])
+        1
+        >>> cd._count_string_type([Char(c) for c in string.punctuation])
         2
         """
-        return sum(
-            1 for char in [str(c) for c in self._text] if char in haystack
-        )
+        return len([slot for slot in self._text if slot in haystack])
 
     @property
     @deal.pure
@@ -386,7 +388,7 @@ class Candidate:
         >>> Candidate([Char("0"), Char("#")]).digits
         1
         """
-        return self._count_string_type(Char(c) for c in string.digits)
+        return self._count_string_type([Char(c) for c in string.digits])
 
     @property
     @deal.pure
@@ -401,12 +403,12 @@ class Candidate:
         0
         >>> Candidate([Char("a"), Char("b"), Char("c")]).specials
         0
-        >>> Candidate([Char("a"), Char("%"), Char("^"), Void()]).specials
+        >>> Candidate([Char("a"), Char("%"), Char("%"), Void()]).specials
         2
-        >>> Candidate([Char("a"), Char("!"), Char("b"), Char("c")]).specials
-        1
+        >>> Candidate([Char("!"), Void(), Char("!"), Char("c")]).specials
+        2
         """
-        return self._count_string_type(Char(c) for c in string.punctuation)
+        return self._count_string_type([Char(c) for c in string.punctuation])
 
     @property
     @deal.pure
@@ -426,7 +428,9 @@ class Candidate:
         >>> Candidate([Char("A"), Char("B"), Char("C")]).uppers
         3
         """
-        return self._count_string_type(Char(c) for c in string.ascii_uppercase)
+        return self._count_string_type(
+            [Char(c) for c in string.ascii_uppercase]
+        )
 
     @property
     @deal.pure
@@ -446,7 +450,9 @@ class Candidate:
         >>> Candidate([Char("A"), Char("B"), Char("C")]).lowers
         0
         """
-        return self._count_string_type(Char(c) for c in string.ascii_lowercase)
+        return self._count_string_type(
+            [Char(c) for c in string.ascii_lowercase]
+        )
 
     @property
     @deal.pure
