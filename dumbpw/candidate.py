@@ -314,7 +314,7 @@ class Candidate:
 
             for char in reversed(charstack):
                 if allow_repeating or char not in (char_prev, char_next):
-                    self[randi] = char
+                    self[randi] = Char(char)
                     charstack.pop()
                     break
             else:
