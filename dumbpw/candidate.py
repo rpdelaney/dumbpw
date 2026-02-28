@@ -135,50 +135,53 @@ class Char(Slot):
 class Candidate:
     """Password constructor.
 
-    >>> password = Candidate("abcDEFG123!abc")
-    >>> password.digits
+    >>> cd = Candidate(
+    ...     [
+    ...         Char("a"),
+    ...         Char("b"),
+    ...         Char("c"),
+    ...         Char("D"),
+    ...         Char("E"),
+    ...         Char("F"),
+    ...         Char("G"),
+    ...         Char("1"),
+    ...         Char("2"),
+    ...         Char("3"),
+    ...         Char("!"),
+    ...         Char("a"),
+    ...         Char("b"),
+    ...         Char("c"),
+    ...     ]
+    ... )
+    >>> cd.digits
     3
-    >>> password.specials
+    >>> cd.specials
     1
-    >>> password.uppers
+    >>> cd.uppers
     4
-    >>> password.lowers
+    >>> cd.lowers
     6
-    >>> password.has_duplicates
+    >>> cd.has_duplicates
     True
-    >>> password.has_repeating
+    >>> cd.has_repeating
     False
     """
 
     __slots__ = ("_text",)
 
     @deal.pure
-    def __init__(self, /, text: str | list[str]) -> None:
-        """Initialize the Candidate object.
-
-        >>> Candidate("a b c")._text
-        [Char('a'), Void(), Char('b'), Void(), Char('c')]
-        >>> Candidate(" a  b ")._text
-        [Void(), Char('a'), Void(), Void(), Char('b'), Void()]
-        >>> Candidate("ab ")._text
-        [Char('a'), Char('b'), Void()]
-        """
-        self._text: list[Slot] = [
-            Void() if char == " " else Char(char) for char in text
-        ]
+    def __init__(self, /, text: Iterator[Slot]) -> None:
+        """Initialize the Candidate object."""
+        self._text: list[Slot] = list(text)
 
     @deal.pure
     def __repr__(self) -> str:
         """Return a representation of the Candidate.
 
-        >>> Candidate("")
-        Candidate([])
-        >>> Candidate(" ")
+        >>> Candidate([Void()])
         Candidate([Void()])
-        >>> Candidate("abc")
-        Candidate([Char('a'), Char('b'), Char('c')])
-        >>> Candidate("a c")
-        Candidate([Char('a'), Void(), Char('c')])
+        >>> Candidate([Char("a"), Void(), Char("b")])
+        Candidate([Char('a'), Void(), Char('b')])
         """
         return f"{self.__class__.__name__}({self._text!r})"
 
@@ -186,33 +189,27 @@ class Candidate:
     def __add__(self, other: object) -> "Candidate":
         """Handle addition operator.
 
-        >>> Candidate("aa") + Candidate("bb")
-        Candidate([Char('a'), Char('a'), Char('b'), Char('b')])
-        >>> Candidate("aa") + Candidate("bb")
-        Candidate([Char('a'), Char('a'), Char('b'), Char('b')])
-        >>> Candidate("aa") + Candidate("")
-        Candidate([Char('a'), Char('a')])
-        >>> Candidate("aa") + Candidate(" ")
-        Candidate([Char('a'), Char('a'), Void()])
+        >>> Candidate([Char("a")]) + Candidate([Char("b")])
+        Candidate([Char('a'), Char('b')])
+        >>> Candidate([Char("a")]) + Candidate([Void()])
+        Candidate([Char('a'), Void()])
+        >>> Candidate([Char("a")]) + Candidate([Char(" ")])
+        Candidate([Char('a'), Char(' ')])
         """
         if not isinstance(other, Candidate):
             return NotImplemented
-        return Candidate(
-            [str(c) for c in self._text] + [str(c) for c in other._text]
-        )
+        return Candidate(self._text + other._text)
 
     @deal.pure
     def __eq__(self, other: object) -> bool:
         """Check equality between self and other.
 
-        >>> Candidate("aa") == Candidate("aa")
+        >>> Candidate([Char("a")]) == Candidate([Char("a")])
         True
-        >>> Candidate("aa") == Candidate("ab")
+        >>> Candidate([Char("a")]) == Candidate([Char("b")])
         False
-        >>> Candidate("aa") == "aa"
+        >>> Candidate([Char("a")]) == "a"
         False
-        >>> Candidate("abc") == Candidate(["a", "b", "c"])
-        True
         """
         if not isinstance(other, Candidate):
             return NotImplemented
@@ -232,14 +229,14 @@ class Candidate:
     def __str__(self) -> str:
         """Return the plain text of the string.
 
-        >>> str(Candidate(""))
-        ''
-        >>> str(Candidate(" "))
+        >>> str(Candidate([Void(), Void()]))
+        '  '
+        >>> str(Candidate([Char(" ")]))
         ' '
-        >>> str(Candidate("abc"))
-        'abc'
-        >>> str(Candidate("a b c"))
-        'a b c'
+        >>> str(Candidate([Char("a")]))
+        'a'
+        >>> str(Candidate([Char("a"), Void()]))
+        'a '
         """
         return "".join(
             str(c) if isinstance(c, Char) else str(Void()) for c in self._text
@@ -249,7 +246,7 @@ class Candidate:
     def __iter__(self) -> Iterator[Slot]:
         """Iterate over the text.
 
-        >>> c = iter(Candidate("a b"))
+        >>> c = iter(Candidate([Char("a"), Void(), Char("b")]))
         >>> next(c)
         Char('a')
         >>> next(c)
@@ -270,9 +267,9 @@ class Candidate:
         return self._text[item]
 
     @deal.raises(IndexError)
-    def __setitem__(self, item: int, value: str) -> None:
+    def __setitem__(self, item: int, value: Slot) -> None:
         """Provide item assignment."""
-        self._text[item] = Char(value) if value else Void()
+        self._text[item] = value
 
     @deal.raises(IndexError)
     def __delitem__(self, item: int) -> None:
@@ -283,10 +280,10 @@ class Candidate:
     def voids(self) -> list[int]:
         """Return the open slots.
 
-        >>> Candidate("a b c").voids
-        [1, 3]
-        >>> Candidate(["a", " ", "b", " ", "c"]).voids
-        [1, 3]
+        >>> Candidate([Char("a"), Void(), Char("b")]).voids
+        [1]
+        >>> Candidate([Void(), Char("a"), Void(), Char("b"), Void()]).voids
+        [0, 2, 4]
         """
         return [
             i for i, item in enumerate(self._text) if isinstance(item, Void)
@@ -328,19 +325,42 @@ class Candidate:
         lambda result: result >= 0,
         message="Count cannot be negative.",
     )
-    def _count_string_type(self, haystack: str) -> int:
+    def _count_string_type(self, haystack: Iterator[Slot]) -> int:
         """Count how many characters in the password are part of the haystack.
 
-        >>> Candidate("")._count_string_type(string.ascii_lowercase)
+        >>> lowercase = [Char(c) for c in string.ascii_lowercase]
+        >>> uppercase = [Char(c) for c in string.ascii_uppercase]
+        >>> punctuation = [Char(c) for c in string.punctuation]
+        >>> Candidate([Void()])._count_string_type(lowercase)
         0
-        >>> Candidate("123")._count_string_type(string.ascii_lowercase)
+        >>> Candidate([Void(), Void()])._count_string_type(lowercase)
         0
-        >>> Candidate("abcDEFG123!")._count_string_type(string.ascii_lowercase)
-        3
-        >>> Candidate("abcDEFG123!")._count_string_type(string.ascii_uppercase)
+        >>> cd = Candidate(
+        ...     [
+        ...         Char("!"),
+        ...         Char("a"),
+        ...         Char("b"),
+        ...         Char("c"),
+        ...         Char("D"),
+        ...         Char("E"),
+        ...         Char("F"),
+        ...         Char("G"),
+        ...         Void(),
+        ...         Char("1"),
+        ...         Char("2"),
+        ...         Char("3"),
+        ...         Char("!"),
+        ...         Char("a"),
+        ...         Char("D"),
+        ...         Void(),
+        ...     ]
+        ... )
+        >>> cd._count_string_type(lowercase)
         4
-        >>> Candidate("abcDEFG123!")._count_string_type(string.punctuation)
-        1
+        >>> cd._count_string_type(uppercase)
+        5
+        >>> cd._count_string_type(punctuation)
+        2
         """
         return sum(
             1 for char in [str(c) for c in self._text] if char in haystack
@@ -355,18 +375,18 @@ class Candidate:
     def digits(self) -> int:
         """Return a count of the ASCII digit characters in the password.
 
-        >>> Candidate("").digits
+        >>> Candidate([Void()]).digits
         0
-        >>> Candidate("abc").digits
+        >>> Candidate([Char("a"), Char("b"), Char("c")]).digits
         0
-        >>> Candidate("123").digits
+        >>> Candidate([Char("1"), Char("2"), Char("3")]).digits
         3
-        >>> Candidate("0a").digits
+        >>> Candidate([Char("0"), Char("a")]).digits
         1
-        >>> Candidate("0#").digits
+        >>> Candidate([Char("0"), Char("#")]).digits
         1
         """
-        return self._count_string_type(string.digits)
+        return self._count_string_type(Char(c) for c in string.digits)
 
     @property
     @deal.pure
@@ -375,18 +395,18 @@ class Candidate:
         message="Count cannot be negative.",
     )
     def specials(self) -> int:
-        r"""Return a count of the ASCII punctuation characters in the password.
+        """Return a count of the ASCII punctuation characters in the password.
 
-        >>> Candidate("").specials
+        >>> Candidate([Void()]).specials
         0
-        >>> Candidate("abc").specials
+        >>> Candidate([Char("a"), Char("b"), Char("c")]).specials
         0
-        >>> Candidate(r"abc%^*.").specials
-        4
-        >>> Candidate(r"a\bc").specials
+        >>> Candidate([Char("a"), Char("%"), Char("^"), Void()]).specials
+        2
+        >>> Candidate([Char("a"), Char("!"), Char("b"), Char("c")]).specials
         1
         """
-        return self._count_string_type(string.punctuation)
+        return self._count_string_type(Char(c) for c in string.punctuation)
 
     @property
     @deal.pure
@@ -397,16 +417,16 @@ class Candidate:
     def uppers(self) -> int:
         """Return a count of the ASCII uppercase characters in the password.
 
-        >>> Candidate("").uppers
+        >>> Candidate([Void()]).uppers
         0
-        >>> Candidate("abc").uppers
+        >>> Candidate([Char("a"), Char("b"), Char("c")]).uppers
         0
-        >>> Candidate("ABc").uppers
-        2
-        >>> Candidate("ABC").uppers
+        >>> Candidate([Char("A"), Char("B"), Char("c"), Char("A")]).uppers
+        3
+        >>> Candidate([Char("A"), Char("B"), Char("C")]).uppers
         3
         """
-        return self._count_string_type(string.ascii_uppercase)
+        return self._count_string_type(Char(c) for c in string.ascii_uppercase)
 
     @property
     @deal.pure
@@ -417,29 +437,29 @@ class Candidate:
     def lowers(self) -> int:
         """Return a count of the ASCII lowercase characters in the password.
 
-        >>> Candidate("").lowers
+        >>> Candidate([Void()]).lowers
         0
-        >>> Candidate("abc").lowers
-        3
-        >>> Candidate("ABc").lowers
+        >>> Candidate([Char("a"), Char("b"), Char("c"), Char("a")]).lowers
+        4
+        >>> Candidate([Char("A"), Char("B"), Char("c"), Char("A")]).lowers
         1
-        >>> Candidate("ABC").lowers
+        >>> Candidate([Char("A"), Char("B"), Char("C")]).lowers
         0
         """
-        return self._count_string_type(string.ascii_lowercase)
+        return self._count_string_type(Char(c) for c in string.ascii_lowercase)
 
     @property
     @deal.pure
     def has_duplicates(self) -> bool:
         """Return if the password has duplicate characters.
 
-        >>> Candidate("").has_duplicates
+        >>> Candidate([Void()]).has_duplicates
         False
-        >>> Candidate("ABC").has_duplicates
+        >>> Candidate([Char("A"), Char("B"), Char("C")]).has_duplicates
         False
-        >>> Candidate("ABA").has_duplicates
+        >>> Candidate([Char("A"), Char("B"), Char("A")]).has_duplicates
         True
-        >>> Candidate("ABB").has_duplicates
+        >>> Candidate([Char("A"), Char("B"), Char("B")]).has_duplicates
         True
         """
         return len(set(self._text)) != len(self._text) if self._text else False
@@ -449,19 +469,19 @@ class Candidate:
     def has_repeating(self) -> bool:
         """Return if the password has repeating characters.
 
-        >>> Candidate("").has_repeating
+        >>> Candidate([Void()]).has_repeating
         False
-        >>> Candidate("A").has_repeating
+        >>> Candidate([Void()]).has_repeating
         False
-        >>> Candidate("ABA").has_repeating
+        >>> Candidate([Char("A")]).has_repeating
         False
-        >>> Candidate("AAB").has_repeating
+        >>> Candidate([Char("A"), Char("B"), Char("A")]).has_repeating
+        False
+        >>> Candidate([Char("A"), Char("A"), Char("B")]).has_repeating
         True
-        >>> Candidate("ABB").has_repeating
+        >>> Candidate([Char("A"), Char("B"), Char("B")]).has_repeating
         True
-        >>> Candidate("ABA").has_repeating
-        False
-        >>> Candidate("8[z]>").has_repeating
+        >>> Candidate([Char("A"), Char("B"), Char("A")]).has_repeating
         False
         """
         return any(
@@ -476,18 +496,18 @@ class Candidate:
     )
     def copy(self) -> "Candidate":
         """Return a copy of self."""
-        return Candidate([str(c) for c in self._text])
+        return Candidate(iter(self._text))
 
     @deal.safe
     def extend(self, iterator: Iterator[str]) -> None:
         """Extend the password by taking values from an iterator.
 
-        >>> c = Candidate("")
-        >>> c.extend(x for x in ["a", "b", "c"])
+        >>> c = Candidate([Void()])
+        >>> c.extend([Char("a"), Char("b"), Char("c")])
         >>> c._text
-        [Char('a'), Char('b'), Char('c')]
-        >>> c = Candidate("123")
-        >>> c.extend(x for x in ["a", " ", "c"])
+        [Void(), Char('a'), Char('b'), Char('c')]
+        >>> c = Candidate([Char("1"), Char("2"), Char("3")])
+        >>> c.extend([Char("a"), Char(" "), Char("c")])
         >>> c._text
         [Char('1'), Char('2'), Char('3'), Char('a'), Void(), Char('c')]
         """
