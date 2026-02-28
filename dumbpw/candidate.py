@@ -157,13 +157,15 @@ class Candidate:
         """Initialize the Candidate object.
 
         >>> Candidate("a b c")._text
-        ['a', ' ', 'b', ' ', 'c']
+        [Char('a'), Void(), Char('b'), Void(), Char('c')]
         >>> Candidate(" a  b ")._text
-        [' ', 'a', ' ', ' ', 'b', ' ']
+        [Void(), Char('a'), Void(), Void(), Char('b'), Void()]
         >>> Candidate("ab ")._text
-        ['a', 'b', ' ']
+        [Char('a'), Char('b'), Void()]
         """
-        self._text: list[str] = list(text)
+        self._text: list[Slot] = [
+            Void() if char == " " else Char(char) for char in text
+        ]
 
     @deal.pure
     def __repr__(self) -> str:
@@ -171,25 +173,33 @@ class Candidate:
 
         >>> Candidate("")
         Candidate([])
+        >>> Candidate(" ")
+        Candidate([Void()])
         >>> Candidate("abc")
-        Candidate(['a', 'b', 'c'])
+        Candidate([Char('a'), Char('b'), Char('c')])
         >>> Candidate("a c")
-        Candidate(['a', ' ', 'c'])
+        Candidate([Char('a'), Void(), Char('c')])
         """
         return f"{self.__class__.__name__}({self._text!r})"
 
     @deal.pure
-    def __add__(self, other: str) -> "Candidate":
+    def __add__(self, other: object) -> "Candidate":
         """Handle addition operator.
 
-        >>> Candidate("aa") + "bb"
-        Candidate(['a', 'a', 'b', 'b'])
         >>> Candidate("aa") + Candidate("bb")
-        Candidate(['a', 'a', 'b', 'b'])
+        Candidate([Char('a'), Char('a'), Char('b'), Char('b')])
+        >>> Candidate("aa") + Candidate("bb")
+        Candidate([Char('a'), Char('a'), Char('b'), Char('b')])
         >>> Candidate("aa") + Candidate("")
-        Candidate(['a', 'a'])
+        Candidate([Char('a'), Char('a')])
+        >>> Candidate("aa") + Candidate(" ")
+        Candidate([Char('a'), Char('a'), Void()])
         """
-        return Candidate("".join(self._text + list(other)))
+        if not isinstance(other, Candidate):
+            return NotImplemented
+        return Candidate(
+            [str(c) for c in self._text] + [str(c) for c in other._text]
+        )
 
     @deal.pure
     def __eq__(self, other: object) -> bool:
@@ -231,22 +241,38 @@ class Candidate:
         >>> str(Candidate("a b c"))
         'a b c'
         """
-        return "".join(self._text)
+        return "".join(
+            str(c) if isinstance(c, Char) else str(Void()) for c in self._text
+        )
 
     @deal.pure
-    def __iter__(self) -> Iterator[str]:
-        """Iterate over the text."""
+    def __iter__(self) -> Iterator[Slot]:
+        """Iterate over the text.
+
+        >>> c = iter(Candidate("a b"))
+        >>> next(c)
+        Char('a')
+        >>> next(c)
+        Void()
+        >>> next(c)
+        Char('b')
+        >>> try:
+        ...     next(c)
+        ... except StopIteration:
+        ...     print("winner")
+        winner
+        """
         yield from self._text
 
     @deal.raises(IndexError)
-    def __getitem__(self, item: int) -> str:
+    def __getitem__(self, item: int) -> Slot:
         """Provide subscriptability."""
         return self._text[item]
 
     @deal.raises(IndexError)
     def __setitem__(self, item: int, value: str) -> None:
         """Provide item assignment."""
-        self._text[item] = value
+        self._text[item] = Char(value) if value else Void()
 
     @deal.raises(IndexError)
     def __delitem__(self, item: int) -> None:
@@ -262,7 +288,9 @@ class Candidate:
         >>> Candidate(["a", " ", "b", " ", "c"]).voids
         [1, 3]
         """
-        return [i for i, item in enumerate(self._text) if item.strip() == ""]
+        return [
+            i for i, item in enumerate(self._text) if isinstance(item, Void)
+        ]
 
     def scatter(
         self, *, count: int, charstack: str | list[str], allow_repeating: bool
@@ -279,11 +307,11 @@ class Candidate:
             char_prev: str | None
 
             if randi := secrets.choice(self.voids):
-                char_prev = self[randi - 1]
+                char_prev = str(self[randi - 1])
             else:
                 char_prev = None
             try:
-                char_next = self[randi + 1]
+                char_next = str(self[randi + 1])
             except IndexError:
                 char_next = None
 
@@ -314,7 +342,9 @@ class Candidate:
         >>> Candidate("abcDEFG123!")._count_string_type(string.punctuation)
         1
         """
-        return sum(1 for char in self._text if char in haystack)
+        return sum(
+            1 for char in [str(c) for c in self._text] if char in haystack
+        )
 
     @property
     @deal.pure
@@ -446,7 +476,7 @@ class Candidate:
     )
     def copy(self) -> "Candidate":
         """Return a copy of self."""
-        return Candidate(self._text)
+        return Candidate([str(c) for c in self._text])
 
     @deal.safe
     def extend(self, iterator: Iterator[str]) -> None:
@@ -454,12 +484,12 @@ class Candidate:
 
         >>> c = Candidate("")
         >>> c.extend(x for x in ["a", "b", "c"])
-        >>> c._text == ["a", "b", "c"]
-        True
+        >>> c._text
+        [Char('a'), Char('b'), Char('c')]
         >>> c = Candidate("123")
-        >>> c.extend(x for x in ["a", "b", "c"])
-        >>> c._text == ["1", "2", "3", "a", "b", "c"]
-        True
+        >>> c.extend(x for x in ["a", " ", "c"])
+        >>> c._text
+        [Char('1'), Char('2'), Char('3'), Char('a'), Void(), Char('c')]
         """
         for c in iterator:
-            self._text += c
+            self._text += Candidate([c])

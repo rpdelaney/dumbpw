@@ -61,10 +61,10 @@ def test_candidate_copy_method(text):
 
 @given(strats.text())
 def test_candidate_addable(text):
-    """Candidate can be added with a string."""
+    """Candidate can be added together."""
     cd = Candidate(text)
 
-    cd += "a"
+    cd += Candidate(["a"])
 
     assert str(cd) == text + "a"
 
@@ -82,7 +82,7 @@ def test_candidate_subscriptable(text):
     """Candidate is subscriptable."""
     cd = Candidate(text)
 
-    assert cd[0] == text[0]
+    assert str(cd[0]) == text[0]
 
 
 @given(strats.text())
@@ -126,7 +126,7 @@ def test_candidate_scatter_firstlast(mocker):
     cd = Candidate(" XYA")
     cd.scatter(count=1, charstack=["A"], allow_repeating=False)
 
-    assert cd._text[0] == "A"
+    assert str(cd._text[0]) == "A"
 
 
 def test_candidate_scatter_unsatisfiable(mocker):
