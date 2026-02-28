@@ -238,9 +238,7 @@ class Candidate:
         >>> str(Candidate([Char("a"), Void()]))
         'a•'
         """
-        return "".join(
-            str(c) if isinstance(c, Char) else str(Void()) for c in self._text
-        )
+        return "".join(str(c) for c in self._text)
 
     @deal.pure
     def __iter__(self) -> Iterator[Slot]:
