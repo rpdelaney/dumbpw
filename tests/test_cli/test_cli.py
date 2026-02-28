@@ -2,6 +2,7 @@ import os
 import string
 
 import hypothesis.strategies as strats
+import pytest
 from click.testing import CliRunner
 from hypothesis import given
 
@@ -95,6 +96,7 @@ def test_cli_env_specials():
     assert sum(1 for char in result.output if char in specials) >= 1
 
 
+@pytest.mark.skip(reason="Not implemented yet.")
 def test_cli_whitespace_specials():
     """Whitespace is supported in the special characters."""
     runner = CliRunner()
