@@ -51,7 +51,7 @@ class Void(Slot):
     >>> repr(v)
     'Void()'
     >>> str(v)
-    ' '
+    '•'
     """
 
     def __init__(self) -> None:
@@ -69,7 +69,7 @@ class Void(Slot):
 
     def __str__(self) -> str:
         """Return a string of self._value."""
-        return " "
+        return "•"
 
     def __bool__(self) -> bool:
         """Return False, since null values are falsy."""
@@ -230,13 +230,13 @@ class Candidate:
         """Return the plain text of the string.
 
         >>> str(Candidate([Void(), Void()]))
-        '  '
+        '••'
         >>> str(Candidate([Char(" ")]))
         ' '
         >>> str(Candidate([Char("a")]))
         'a'
         >>> str(Candidate([Char("a"), Void()]))
-        'a '
+        'a•'
         """
         return "".join(
             str(c) if isinstance(c, Char) else str(Void()) for c in self._text
