@@ -170,7 +170,7 @@ class Candidate:
     __slots__ = ("_text",)
 
     @deal.pure
-    def __init__(self, /, text: Iterator[Slot]) -> None:
+    def __init__(self, /, text: list[Slot]) -> None:
         """Initialize the Candidate object."""
         self._text: list[Slot] = list(text)
 
@@ -502,7 +502,7 @@ class Candidate:
     )
     def copy(self) -> "Candidate":
         """Return a copy of self."""
-        return Candidate(iter(self._text))
+        return Candidate(self._text)
 
     @deal.safe
     def extend(self, iterator: Iterator[str]) -> None:
