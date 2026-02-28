@@ -2,11 +2,134 @@
 
 import secrets
 import string
+from abc import ABC, abstractmethod
 from collections.abc import Iterator
 
 import deal
 
 from dumbpw.errors import DumbConstraintError
+
+
+class Slot(ABC):
+    """Position in the password."""
+
+    _value: str | None
+
+    @property
+    @abstractmethod
+    def value(self) -> str | None:
+        """Return the value."""
+
+    @abstractmethod
+    def __repr__(self) -> str:
+        """Return a representation of self."""
+
+    @abstractmethod
+    def __str__(self) -> str:
+        """Return a representation of self."""
+
+    @abstractmethod
+    def __bool__(self) -> bool:
+        """Return the truthiness of the slot."""
+
+    @abstractmethod
+    def __eq__(self, other: object) -> bool:
+        """Check equality between self and other."""
+
+    @abstractmethod
+    def __hash__(self) -> int:
+        """Return the hash of self."""
+
+
+class Void(Slot):
+    """An empty slot in the password under construction.
+
+    >>> v = Void()
+    >>> v.value
+    >>> bool(v)
+    False
+    >>> repr(v)
+    'Void()'
+    >>> str(v)
+    ' '
+    """
+
+    def __init__(self) -> None:
+        """Initialize a Void."""
+        self._value = None
+
+    @property
+    def value(self) -> None:
+        """Return None, as this is an empty slot."""
+        return None
+
+    def __repr__(self) -> str:
+        """Return a representation of self."""
+        return "Void()"
+
+    def __str__(self) -> str:
+        """Return a string of self._value."""
+        return " "
+
+    def __bool__(self) -> bool:
+        """Return False, since null values are falsy."""
+        return False
+
+    def __eq__(self, other: object) -> bool:
+        """Check equality between self and other."""
+        if not isinstance(other, Slot):
+            return NotImplemented
+        return self._value == other._value
+
+    def __hash__(self) -> int:
+        """Return the hash of self."""
+        return hash(self._value)
+
+
+class Char(Slot):
+    """An occupied slot in the password under construction.
+
+    >>> Char("a").value
+    'a'
+    >>> bool(Char("a"))
+    True
+    >>> repr(Char("a"))
+    "Char('a')"
+    >>> str(Char("a"))
+    'a'
+    """
+
+    @deal.pre(lambda self, value: len(value) == 1)  # noqa: ARG005
+    def __init__(self, value: str) -> None:
+        """Initialize a Char with a single character."""
+        self._value: str = value
+
+    @property
+    def value(self) -> str:
+        """Return the character in this slot."""
+        return self._value
+
+    def __str__(self) -> str:
+        """Return a string of a char slot."""
+        return self._value
+
+    def __repr__(self) -> str:
+        """Return a string representation of a character slot."""
+        return f"Char('{self._value}')"
+
+    def __bool__(self) -> bool:
+        """Return True, since characters are truthy."""
+        return True
+
+    def __eq__(self, other: object) -> bool:
+        """Check equality between self and other."""
+        if not isinstance(other, Slot):
+            return NotImplemented
+        return self._value == other._value
+
+    def __hash__(self) -> int:
+        """Return the hash of self."""
+        return hash(self._value)
 
 
 class Candidate:
