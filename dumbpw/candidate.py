@@ -505,17 +505,16 @@ class Candidate:
         return Candidate(self._text)
 
     @deal.safe
-    def extend(self, iterator: Iterator[str]) -> None:
+    def extend(self, slots: list[Slot]) -> None:
         """Extend the password by taking values from an iterator.
 
-        >>> c = Candidate([Void()])
-        >>> c.extend([Char("a"), Char("b"), Char("c")])
-        >>> c._text
+        >>> cd = Candidate([Void()])
+        >>> cd.extend([Char("a"), Char("b"), Char("c")])
+        >>> cd._text
         [Void(), Char('a'), Char('b'), Char('c')]
-        >>> c = Candidate([Char("1"), Char("2"), Char("3")])
-        >>> c.extend([Char("a"), Char(" "), Char("c")])
-        >>> c._text
-        [Char('1'), Char('2'), Char('3'), Char('a'), Void(), Char('c')]
+        >>> cd = Candidate([Char("1"), Char("2"), Char("3")])
+        >>> cd.extend([Char("a"), Char(" "), Char("c")])
+        >>> cd._text
+        [Char('1'), Char('2'), Char('3'), Char('a'), Char(' '), Char('c')]
         """
-        for c in iterator:
-            self._text += Candidate([c])
+        self._text += Candidate(slots)
