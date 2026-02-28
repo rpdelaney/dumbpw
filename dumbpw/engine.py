@@ -77,7 +77,7 @@ def search(settings: Settings) -> Candidate:
         if settings.specials is not None
         else DEFAULT_EXTRAS,
     )
-    candidate = Candidate(["" for _ in range(settings.length)])
+    candidate = Candidate([" " for _ in range(settings.length)])
 
     args = [
         (settings.min_digits, charspace.digits),
