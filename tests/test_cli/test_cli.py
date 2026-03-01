@@ -28,7 +28,10 @@ def test_cli_constraints_fail():
     result = runner.invoke(cli, ["5", "--min-uppercase", "10"])
 
     assert result.exit_code == 1
-    assert "You cannot request more characters" in result.output
+    assert (
+        result.output == "Required domain minimums "
+        "exceed the password length.\n"
+    )
 
 
 def test_cli_empty_specials():

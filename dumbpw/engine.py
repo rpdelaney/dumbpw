@@ -20,7 +20,7 @@ from dumbpw.settings import Settings
         < _.settings.length
     ),
     exception=DumbValueError,
-    message="You cannot request more characters than the password length.",
+    message="Required domain minimums exceed the password length.",
 )
 @deal.pre(
     validator=lambda _: _.settings.length <= PASSWORD_LENGTH_MAX,
