@@ -13,11 +13,11 @@ from dumbpw.settings import Settings
 @deal.raises(DumbConstraintError, DumbValueError)
 @deal.pre(
     lambda _: (
-        _.settings.min_uppercase
+        _.settings.length
+        >= _.settings.min_uppercase
         + _.settings.min_lowercase
         + _.settings.min_digits
         + _.settings.min_specials
-        < _.settings.length
     ),
     exception=DumbValueError,
     message="Required domain minimums exceed the password length.",
