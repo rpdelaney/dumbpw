@@ -2,7 +2,7 @@
 
 import deal
 
-from dumbpw.candidate import Candidate
+from dumbpw.candidate import Candidate, Void
 from dumbpw.charspace import Charspace
 from dumbpw.constants import DEFAULT_EXTRAS, PASSWORD_LENGTH_MAX
 from dumbpw.errors import DumbValueError
@@ -77,7 +77,7 @@ def search(settings: Settings) -> Candidate:
         if settings.specials is not None
         else DEFAULT_EXTRAS,
     )
-    candidate = Candidate([" " for _ in range(settings.length)])
+    candidate = Candidate([Void() for _ in range(settings.length)])
 
     args = [
         (settings.min_digits, charspace.digits),
