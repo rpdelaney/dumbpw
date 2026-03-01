@@ -17,7 +17,7 @@ from dumbpw.settings import Settings
         + _.settings.min_lowercase
         + _.settings.min_digits
         + _.settings.min_specials
-        <= _.settings.length
+        < _.settings.length
     ),
     exception=DumbValueError,
     message="You cannot request more characters than the password length.",
