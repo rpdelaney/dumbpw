@@ -5,12 +5,12 @@ import deal
 from dumbpw.candidate import Candidate, Void
 from dumbpw.charspace import Charspace
 from dumbpw.constants import DEFAULT_EXTRAS, PASSWORD_LENGTH_MAX
-from dumbpw.errors import DumbValueError
+from dumbpw.errors import DumbConstraintError, DumbValueError
 from dumbpw.settings import Settings
 
 
-@deal.safe
 @deal.has("random")
+@deal.raises(DumbConstraintError, DumbValueError)
 @deal.pre(
     lambda _: (
         _.settings.min_uppercase
