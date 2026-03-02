@@ -133,7 +133,7 @@ def test_candidate_scatter_firstlast(mocker):
     mock_choice.return_value = 0
 
     cd = Candidate(" XYA")
-    cd.scatter(count=1, charstack=["A"], allow_repeating=False)
+    cd.scatter(count=1, slots=["A"], allow_repeating=False)
 
     assert str(cd._text[0]) == "A"
 
@@ -146,8 +146,8 @@ def test_candidate_scatter_unsatisfiable(mocker):
     mock_choice.return_value = 3
 
     cd = Candidate("    ")
-    cd.scatter(count=1, charstack=["A"], allow_repeating=False)
+    cd.scatter(count=1, slots=["A"], allow_repeating=False)
 
     cd = Candidate("AAA ")
     with pytest.raises(DumbConstraintError):
-        cd.scatter(count=1, charstack=["A"], allow_repeating=False)
+        cd.scatter(count=1, slots=["A"], allow_repeating=False)
