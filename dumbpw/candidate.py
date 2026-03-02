@@ -289,16 +289,16 @@ class Candidate:
 
     @deal.raises(DumbConstraintError)
     def scatter(
-        self, *, count: int, charstack: str | list[str], allow_repeating: bool
+        self, *, count: int, slots: str | list[str], allow_repeating: bool
     ) -> None:
         """Randomly insert `count` characters from the given charstack.
 
         Respect the allow_repeating setting.
         """
-        charstack = list(charstack)
+        charstack = list(slots)
         secrets.SystemRandom().shuffle(charstack)
 
-        for _ in range(count):
+        for i in range(count):
             char_next: str | None
             char_prev: str | None
 
@@ -317,7 +317,12 @@ class Candidate:
                     charstack.pop()
                     break
             else:
-                raise DumbConstraintError
+                msg = (
+                    f"Failed scattering into {self!s} "
+                    f"on iteration {i} of {count}"
+                    f"from {sorted(slots)}"
+                )
+                raise DumbConstraintError(msg)
 
     @deal.pure
     @deal.post(
