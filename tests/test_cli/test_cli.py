@@ -1,4 +1,3 @@
-import os
 import string
 
 import hypothesis.strategies as strats
@@ -88,11 +87,11 @@ def test_cli_empty_blocklist_allowed():
     assert result.exit_code == DumbExitCode.OK
 
 
-def test_cli_env_specials():
+def test_cli_env_specials(monkeypatch):
     """DUMBPW_SPECIALS env var is read."""
     runner = CliRunner()
     specials = "!"
-    os.environ["DUMBPW_SPECIALS"] = specials
+    monkeypatch.setenv("DUMBPW_SPECIALS", specials)
 
     result = runner.invoke(cli, ["5", "--min-specials", "1"])
 
