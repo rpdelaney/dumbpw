@@ -98,6 +98,36 @@ def test_cli_env_specials(monkeypatch):
     assert sum(1 for char in result.output if char in specials) >= 1
 
 
+@pytest.mark.parametrize(
+    ("param", "value"),
+    [
+        ("--min-digits", "11"),
+        ("--min-lowercase", "27"),
+        ("--min-specials", "30"),
+        ("--min-uppercase", "27"),
+    ],
+)
+def test_cli_single_domain(param, value):
+    """Requirements for characters from a single domain are supported."""
+    runner = CliRunner()
+    parameters = {
+        "--blocklist": "",
+        "--min-digits": "0",
+        "--min-lowercase": "0",
+        "--min-specials": "0",
+        "--min-uppercase": "0",
+    }
+    parameters.update({param: value})
+    args = [value] + [item for pair in parameters.items() for item in pair]
+
+    result = runner.invoke(
+        cli,
+        args,
+    )
+
+    assert result.exit_code == DumbExitCode.OK
+
+
 @pytest.mark.skip(reason="Not implemented yet.")
 def test_cli_whitespace_specials():
     """Whitespace is supported in the special characters."""

@@ -296,7 +296,6 @@ class Candidate:
         Respect the allow_repeating setting.
         """
         charstack = list(slots)
-        secrets.SystemRandom().shuffle(charstack)
 
         for i in range(count):
             char_next: str | None
@@ -311,10 +310,10 @@ class Candidate:
             except IndexError:
                 char_next = None
 
+            secrets.SystemRandom().shuffle(charstack)
             for char in reversed(charstack):
                 if allow_repeating or char not in (char_prev, char_next):
                     self[randi] = Char(char)
-                    charstack.pop()
                     break
             else:
                 msg = (
