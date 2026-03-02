@@ -13,7 +13,7 @@ from dumbpw.constants import (
     PASSWORD_LENGTH_MIN,
 )
 from dumbpw.engine import search
-from dumbpw.errors import DumbExitCode, DumbValueError
+from dumbpw.errors import DumbConstraintError, DumbExitCode, DumbValueError
 from dumbpw.settings import Settings
 
 
@@ -108,10 +108,12 @@ def cli(  # noqa: PLR0913
     )
     try:
         try_password = search(settings)
-    except DumbValueError as ve:
-        print(ve, file=sys.stderr)
+    except DumbValueError as dve:
+        print(dve, file=sys.stderr)
         sys.exit(1)
-
-    print(try_password)
-
-    sys.exit(DumbExitCode.OK)
+    except DumbConstraintError as dce:
+        print(dce, file=sys.stderr)
+        sys.exit(1)
+    else:
+        print(try_password)
+        sys.exit(DumbExitCode.OK)

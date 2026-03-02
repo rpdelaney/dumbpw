@@ -287,6 +287,7 @@ class Candidate:
             i for i, item in enumerate(self._text) if isinstance(item, Void)
         ]
 
+    @deal.raises(DumbConstraintError)
     def scatter(
         self, *, count: int, charstack: str | list[str], allow_repeating: bool
     ) -> None:
