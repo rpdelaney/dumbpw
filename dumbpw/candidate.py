@@ -331,7 +331,7 @@ class Candidate:
                 char_next = None
 
             secrets.SystemRandom().shuffle(charstack)
-            for char in reversed(charstack):
+            for char in charstack:
                 if allow_repeating or char not in (char_prev, char_next):
                     self[randi] = Char(char)
                     break
