@@ -52,6 +52,10 @@ class Void(Slot):
     'Void()'
     >>> str(v)
     '•'
+    >>> v == Void()
+    True
+    >>> v == None
+    False
     """
 
     def __init__(self) -> None:
@@ -89,14 +93,23 @@ class Void(Slot):
 class Char(Slot):
     """An occupied slot in the password under construction.
 
-    >>> Char("a").value
+    >>> c = Char("a")
+    >>> c.value
     'a'
-    >>> bool(Char("a"))
+    >>> bool(c)
     True
-    >>> repr(Char("a"))
+    >>> repr(c)
     "Char('a')"
-    >>> str(Char("a"))
+    >>> str(c)
     'a'
+    >>> c == Char("a")
+    True
+    >>> c == Char("b")
+    False
+    >>> c == Void()
+    False
+    >>> c == "a"
+    False
     """
 
     @deal.pre(lambda self, value: len(value) == 1)  # noqa: ARG005
@@ -164,6 +177,13 @@ class Candidate:
     >>> cd.has_duplicates
     True
     >>> cd.has_repeating
+    False
+    >>> del cd[0]
+    >>> Candidate([Char("a")]) == Candidate([Char("a")])
+    True
+    >>> Candidate([Char("a")]) == Candidate([Char("b")])
+    False
+    >>> Candidate([Char("a")]) == Char("a")
     False
     """
 
