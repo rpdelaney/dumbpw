@@ -11,7 +11,7 @@ from dumbpw.errors import DumbExitCode
 
 @given(strats.integers(min_value=5, max_value=12))
 def test_cli_basic_execution(length):
-    """Verify that providing a length returns a password of that length."""
+    """Returned password matches the required length."""
     runner = CliRunner()
 
     result = runner.invoke(cli, [str(length)])
@@ -21,7 +21,7 @@ def test_cli_basic_execution(length):
 
 
 def test_cli_constraints_fail():
-    """Verify that invalid constraints trigger an error state."""
+    """Invalid constraints trigger an error state."""
     runner = CliRunner()
 
     result = runner.invoke(cli, ["5", "--min-uppercase", "10"])
@@ -44,7 +44,7 @@ def test_cli_empty_specials():
 
 @given(strats.integers(min_value=5, max_value=12))
 def test_cli_stdin_specials(length):
-    """Verify that passing '--specials -' reads from standard input."""
+    """Passing '--specials -' reads from standard input."""
     runner = CliRunner()
     min_specials = 1
 
@@ -59,7 +59,7 @@ def test_cli_stdin_specials(length):
 
 
 def test_cli_no_args_shows_help():
-    """Verify that running without arguments displays help text."""
+    """Running without arguments displays help text."""
     runner = CliRunner()
 
     result = runner.invoke(cli, [])
@@ -69,7 +69,7 @@ def test_cli_no_args_shows_help():
 
 
 def test_cli_help_arg_shows_help():
-    """Verify that running without arguments displays help text."""
+    """Running without arguments displays help text."""
     runner = CliRunner()
 
     result = runner.invoke(cli, ["--help"])

@@ -6,7 +6,7 @@ from dumbpw.cli import Settings
 
 
 def test_settings_frozen():
-    """The instance is frozen."""
+    """Settings instance is frozen."""
     settings = Settings(
         allow_repeating=True,
         blocklist="",

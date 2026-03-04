@@ -55,7 +55,7 @@ def test_search_no_minimums():
 
 
 class TestSearchPigeonholes:
-    """Test handling of unreachable requirements."""
+    """Unreachable requirements are handled."""
 
     def test_search_pigeonholes_small_charset(self):
         """engine.search raises DumbValueEror on too-short length."""

@@ -19,14 +19,14 @@ def test_defaults():
 
 @given(strats.text())
 def test_blocklist(blocklist):
-    """The charset must not contain any characters from the blocklist."""
+    """Charset does not contain any characters from the blocklist."""
     sp = Charspace(blocklist=blocklist)
 
     assert all(char not in sp.charset for char in blocklist)
 
 
 def test_charset_unique():
-    """The characters in the charset must be deduplicated."""
+    """The characters in the charset are deduplicated."""
     sp = Charspace()
     count = Counter()
 
@@ -37,8 +37,7 @@ def test_charset_unique():
 
 
 def test_base_charset():
-    """The characters in the base charspace must come from the charset
-    properties."""
+    """Characters in the base charspace come from the charset properties."""
     sp = Charspace()
 
     assert any(
