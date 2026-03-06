@@ -315,7 +315,7 @@ class Candidate:
 
         Respect the allow_repeating setting.
         """
-        for i in range(count):
+        for idx_count in range(count):
             char_next: str | None
             char_prev: str | None
 
@@ -336,7 +336,7 @@ class Candidate:
             else:
                 msg = (
                     f"Failed scattering into {self!s} "
-                    f"on iteration {i} of {count}"
+                    f"on iteration {idx_count} of {count}"
                     f"from {sorted(slots)}"
                 )
                 raise DumbConstraintError(msg)
