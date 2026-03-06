@@ -28,10 +28,7 @@ def test_blocklist(blocklist):
 def test_charset_unique():
     """The characters in the charset are deduplicated."""
     sp = Charspace()
-    count = Counter()
-
-    for c in sp.charset:
-        count.update(c)
+    count = Counter(sp.charset)
 
     assert all(value == 1 for _, value in count.items())
 
