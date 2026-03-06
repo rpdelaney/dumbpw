@@ -319,19 +319,19 @@ class Candidate:
             char_next: str | None
             char_prev: str | None
 
-            if randi := secrets.choice(self.voids):
-                char_prev = str(self[randi - 1])
+            if void_random := secrets.choice(self.voids):
+                char_prev = str(self[void_random - 1])
             else:
                 char_prev = None
             try:
-                char_next = str(self[randi + 1])
+                char_next = str(self[void_random + 1])
             except IndexError:
                 char_next = None
 
             secrets.SystemRandom().shuffle(slots)
             for char in slots:
                 if allow_repeating or char not in (char_prev, char_next):
-                    self[randi] = Char(char)
+                    self[void_random] = Char(char)
                     break
             else:
                 msg = (
