@@ -1,3 +1,4 @@
+import operator
 import sys
 
 import hypothesis.strategies as strats
@@ -75,6 +76,15 @@ def test_candidate_addable(text):
     cd += Candidate([Char("a")])
 
     assert str(cd) == "".join(str(c) for c in text) + "a"
+
+
+def test_candidate_char_addable():
+    """Candidate cannot be added with Char."""
+    char = Char("a")
+    cd = Candidate([char])
+
+    with pytest.raises(TypeError):
+        operator.add(cd, char)
 
 
 @given(random_chars())
