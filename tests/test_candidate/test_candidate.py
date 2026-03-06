@@ -20,7 +20,7 @@ def random_chars(**kwargs):
 
 
 def test_candidate_zero_len_duplicates():
-    cd = Candidate("")
+    cd = Candidate([])
 
     assert not cd.has_duplicates
 
@@ -123,9 +123,9 @@ def test_candidate_sizable(text):
 
 def test_candidate_strict_equality_logic(mocker):
     """Equality agrees with hash."""
-    c1 = Candidate("abc")
-    c2 = Candidate(["a", "b", "c"])
-    c3 = Candidate("abd")
+    c1 = Candidate([Char("a"), Char("b"), Char("c")])
+    c2 = Candidate([Char("a"), Char("b"), Char("c")])
+    c3 = Candidate([Char("d"), Char("e"), Char("f")])
 
     assert c1 == c2
     assert c1 != c3
@@ -142,7 +142,7 @@ def test_candidate_scatter_firstlast(mocker):
     mock_random.return_value.shuffle.side_effect = lambda x: x.sort()
     mock_choice.return_value = 0
 
-    cd = Candidate(" XYA")
+    cd = Candidate([Void(), Char("X"), Char("Y"), Char("A")])
     cd.scatter(count=1, slots=["A"], allow_repeating=False)
 
     assert str(cd._text[0]) == "A"
@@ -155,9 +155,9 @@ def test_candidate_scatter_unsatisfiable(mocker):
     mock_random.return_value.shuffle.side_effect = lambda x: x.sort()
     mock_choice.return_value = 3
 
-    cd = Candidate("    ")
+    cd = Candidate([Void() for _ in range(4)])
     cd.scatter(count=1, slots=["A"], allow_repeating=False)
 
-    cd = Candidate("AAA ")
+    cd = Candidate([Char("A"), Char("A"), Char("A"), Void()])
     with pytest.raises(DumbConstraintError):
         cd.scatter(count=1, slots=["A"], allow_repeating=False)
