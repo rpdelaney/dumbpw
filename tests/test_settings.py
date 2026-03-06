@@ -19,4 +19,4 @@ def test_settings_frozen():
     )
 
     with pytest.raises(FrozenInstanceError):
-        settings.allow_repeating = True
+        settings.allow_repeating = True  # type: ignore[misc]
