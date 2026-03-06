@@ -309,14 +309,12 @@ class Candidate:
 
     @deal.raises(DumbConstraintError)
     def scatter(
-        self, *, count: int, slots: str | list[str], allow_repeating: bool
+        self, *, count: int, slots: list[str], allow_repeating: bool
     ) -> None:
         """Randomly insert `count` characters from the given charstack.
 
         Respect the allow_repeating setting.
         """
-        charstack = list(slots)
-
         for i in range(count):
             char_next: str | None
             char_prev: str | None
@@ -330,8 +328,8 @@ class Candidate:
             except IndexError:
                 char_next = None
 
-            secrets.SystemRandom().shuffle(charstack)
-            for char in charstack:
+            secrets.SystemRandom().shuffle(slots)
+            for char in slots:
                 if allow_repeating or char not in (char_prev, char_next):
                     self[randi] = Char(char)
                     break

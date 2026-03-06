@@ -88,13 +88,13 @@ def search(settings: Settings) -> Candidate:
     for count, charstack in args:
         candidate.scatter(
             count=count,
-            slots=charstack,
+            slots=list(charstack),
             allow_repeating=settings.allow_repeating,
         )
 
     candidate.scatter(
         count=len(candidate.voids),
-        slots=charspace.charset,
+        slots=list(charspace.charset),
         allow_repeating=settings.allow_repeating,
     )
 
