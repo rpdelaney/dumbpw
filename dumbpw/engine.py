@@ -69,6 +69,10 @@ from dumbpw.settings import Settings
     lambda _: len(_.result) == _.settings.length,
     message="The returned value len must equal the requested length.",
 )
+@deal.post(
+    lambda result: not any(isinstance(item, Void) for item in result),
+    message="Voids found in the result.",
+)
 def search(settings: Settings) -> Candidate:
     """Search for a password that meets the given requirements."""
     charspace = Charspace(
