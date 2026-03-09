@@ -145,7 +145,7 @@ def test_candidate_scatter_firstlast(mocker):
     cd = Candidate([Void(), Char("X"), Char("Y"), Char("A")])
     cd.scatter(count=1, slots=["A"], allow_repeating=False)
 
-    assert str(cd._text[0]) == Char("A")
+    assert str(cd._text[0]) == "A"
 
 
 def test_candidate_scatter_unsatisfiable(mocker):
