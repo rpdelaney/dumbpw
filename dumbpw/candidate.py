@@ -336,7 +336,7 @@ class Candidate:
             else:
                 msg = (
                     f"Failed scattering into {self!s} "
-                    f"on iteration {idx_count} of {count}"
+                    f"on iteration {idx_count} of {count} "
                     f"from {sorted(slots)}"
                 )
                 raise DumbConstraintError(msg)
