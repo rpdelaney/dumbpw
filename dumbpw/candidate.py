@@ -5,11 +5,15 @@ from __future__ import annotations
 import secrets
 import string
 from abc import ABC, abstractmethod
-from collections.abc import Iterator
+from typing import TYPE_CHECKING
 
 import deal
 
 from dumbpw.errors import DumbConstraintError
+
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
 
 
 class Slot(ABC):
