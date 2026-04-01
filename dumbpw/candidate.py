@@ -1,5 +1,7 @@
 """Provide an object for evaluating candidate passwords."""
 
+from __future__ import annotations
+
 import secrets
 import string
 from abc import ABC, abstractmethod
@@ -202,7 +204,7 @@ class Candidate:
         return f"{self.__class__.__name__}({self._text!r})"
 
     @deal.pure
-    def __add__(self, other: object) -> "Candidate":
+    def __add__(self, other: object) -> Candidate:
         """Handle addition operator.
 
         >>> Candidate([Char("a")]) + Candidate([Char("b")])
@@ -522,7 +524,7 @@ class Candidate:
         lambda self, result: self == result and self is not result,
         message="Must return a copy.",
     )
-    def copy(self) -> "Candidate":
+    def copy(self) -> Candidate:
         """Return a copy of self."""
         return Candidate(self._text)
 
