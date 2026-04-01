@@ -52,9 +52,7 @@ class Void(Slot):
     'Void()'
     >>> str(v)
     '•'
-    >>> v == Void()
-    True
-    >>> v == None
+    >>> Void() == Void()
     False
     """
 
@@ -81,9 +79,7 @@ class Void(Slot):
 
     def __eq__(self, other: object) -> bool:
         """Check equality between self and other."""
-        if not isinstance(other, Slot):
-            return NotImplemented
-        return self._value == other._value
+        return False
 
     def __hash__(self) -> int:
         """Return the hash of self."""
