@@ -18,7 +18,6 @@ from dumbpw.settings import Settings
 
 
 @click.command(
-    no_args_is_help=True,
     name="dumbpw",
 )
 @click.version_option()
