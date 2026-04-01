@@ -482,6 +482,8 @@ class Candidate:
 
         >>> Candidate([Void()]).has_duplicates
         False
+        >>> Candidate([Void(), Void()]).has_duplicates
+        False
         >>> Candidate([Char("A"), Char("B"), Char("C")]).has_duplicates
         False
         >>> Candidate([Char("A"), Char("B"), Char("A")]).has_duplicates
