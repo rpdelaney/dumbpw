@@ -529,7 +529,7 @@ class Candidate:
         return Candidate(self._text)
 
     @deal.safe
-    def extend(self, slots: Iterator[Slot]) -> None:
+    def extend(self, slots: list[Slot]) -> None:
         """Extend the password by taking values from an iterator.
 
         >>> cd = Candidate([Void()])
