@@ -185,7 +185,7 @@ class Candidate:
 
     __slots__ = ("_text",)
 
-    @deal.pure
+    @deal.safe
     def __init__(self, /, text: list[Slot]) -> None:
         """Initialize the Candidate object."""
         self._text: list[Slot] = list(text)
