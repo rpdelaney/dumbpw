@@ -321,7 +321,7 @@ class Candidate:
             char_next: str | None
             char_prev: str | None
 
-            if void_random := secrets.choice(self.voids):
+            if (void_random := secrets.choice(self.voids)) != 0:
                 char_prev = str(self[void_random - 1])
             else:
                 char_prev = None
