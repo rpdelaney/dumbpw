@@ -110,7 +110,3 @@ disallow_untyped_defs = false
 check_untyped_defs = true
 disallow_untyped_calls = false
 disallow_any_decorated = false
-
-[[tool.mypy.overrides]]
-module = ".venv.*"
-ignore_errors = true
