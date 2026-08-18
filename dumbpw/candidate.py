@@ -114,7 +114,7 @@ class Char(Slot):
     False
     """
 
-    @deal.pre(lambda self, value: len(value) == 1)  # noqa: ARG005
+    @deal.pre(lambda _, value: len(value) == 1)
     def __init__(self, value: str) -> None:
         """Initialize a Char with a single character."""
         self._value: str = value
