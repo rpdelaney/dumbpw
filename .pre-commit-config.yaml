@@ -83,8 +83,8 @@ repos:
         entry: uv run python3 -m deal lint
         types: [python]
 
-      - id: mypy
-        name: mypy
+      - id: ty
+        name: check types
         language: system
-        entry: uv run mypy
+        entry: uv run ty check
         types: [python]
