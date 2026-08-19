@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class Slot(ABC):
     """Position in the password."""
 
-    _value: str | None
+    _value: str
 
     @property
     @abstractmethod
@@ -39,7 +39,7 @@ class Slot(ABC):
         """Return the truthiness of the slot."""
 
     @abstractmethod
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, _other: object) -> bool:
         """Check equality between self and other."""
 
     @abstractmethod
@@ -64,7 +64,7 @@ class Void(Slot):
 
     def __init__(self) -> None:
         """Initialize a Void."""
-        self._value = None
+        self._value = ""
 
     @property
     def value(self) -> None:
@@ -83,7 +83,7 @@ class Void(Slot):
         """Return False, since null values are falsy."""
         return False
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, _other: object) -> bool:
         """Check equality between self and other."""
         return False
 
@@ -126,7 +126,7 @@ class Char(Slot):
 
     def __str__(self) -> str:
         """Return a string of a char slot."""
-        return self._value
+        return self._value or ""
 
     def __repr__(self) -> str:
         """Return a string representation of a character slot."""
@@ -136,11 +136,11 @@ class Char(Slot):
         """Return True, since characters are truthy."""
         return True
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, _other: object) -> bool:
         """Check equality between self and other."""
-        if not isinstance(other, Slot):
+        if not isinstance(_other, Slot):
             return NotImplemented
-        return self._value == other._value
+        return self._value == _other._value
 
     def __hash__(self) -> int:
         """Return the hash of self."""
